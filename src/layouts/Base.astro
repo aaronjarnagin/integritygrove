@@ -52,17 +52,19 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
 
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=optional"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=optional" rel="stylesheet" />
-    </noscript>
+    <!-- fonts are self-hosted (public/fonts) and preloaded so text never paints in a fallback font and swaps -->
+    <link rel="preload" href="/fonts/hankengrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lora-500-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- hold the page (opacity 0) until the fonts are ready, at most 1s, so there is no visible reflow -->
+    <script is:inline>
+      (function () {
+        var h = document.documentElement;
+        h.classList.add('fonts-pending');
+        var done = function () { h.classList.remove('fonts-pending'); };
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(done);
+        setTimeout(done, 1000);
+      })();
+    </script>
     <!-- "motion" hides animated elements until GSAP takes over. Skipped for reduced motion,
          and removed again if the motion script hasn't started within 3s so nothing stays invisible. -->
     <script is:inline>

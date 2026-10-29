@@ -43,7 +43,7 @@ Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
 
 Also `ink` `#0B1A1E` (hero, CTA band, footer) and `green-dk` `#2E7D4B` for green text on white or mist (5:1, passes AA at small sizes; the lighter `#3F9A5E` only passed for large text).
 
-Fonts (Google Fonts, loaded async): Hanken Grotesk 400 to 800 for everything, plus Lora italic 500 for one accent phrase per headline (Instrument Serif was tried first and read too much like script). Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. The old site used niveau-grotesk (Adobe Fonts).
+Fonts are self-hosted in `public/fonts/` (woff2, latin subset, downloaded from Google Fonts on 2026-10-29) and preloaded in `Base.astro`: Hanken Grotesk variable 400 to 800 for everything, plus Lora italic 500 for one accent phrase per headline (Instrument Serif was tried first and read too much like script). Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. `font-display: block` plus an `html.fonts-pending` hold (body hidden until `document.fonts.ready`, max 1s) means text never paints in a fallback font and reflows. Don't go back to the Google Fonts stylesheet: loading it async caused a visible font swap on every page load. The old site used niveau-grotesk (Adobe Fonts).
 
 ## Design direction (decided 2026-10-29)
 
