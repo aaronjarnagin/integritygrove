@@ -218,6 +218,26 @@ a.pill:hover{border-color:var(--green)}
 .contact-card h2{font-size:1.5rem;margin-bottom:.6rem;word-break:break-word}
 .contact-card .go{display:block;margin-top:1rem}
 
+.split.top{align-items:start}
+.contact-page .contact-cards{margin-top:.5rem}
+
+/* contact form */
+.cform{display:grid;gap:1.1rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:2.2rem;box-shadow:var(--shadow)}
+.cform h2{font-size:1.5rem;margin-bottom:.3rem}
+.cform .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cform label{display:block;font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.35rem}
+.cform .opt{font-weight:400;color:var(--muted)}
+.cform input,.cform textarea,.cform select{width:100%;padding:.8rem .95rem;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--text);font-family:var(--font);font-size:1rem}
+.cform input::placeholder,.cform textarea::placeholder{color:#93A3A7}
+.cform input:focus,.cform textarea:focus,.cform select:focus{outline:none;border-color:var(--green-dk)}
+.cform textarea{min-height:140px;resize:vertical}
+.cform .btn{justify-self:start}
+.cform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form-status{font-size:.95rem;min-height:1.2em}
+.form-status-ok{color:var(--green-dk);font-weight:600}
+.form-status-err{color:#A4483E;font-weight:600}
+@media(max-width:560px){.cform .row{grid-template-columns:1fr}.cform{padding:1.5rem}}
+
 /* discovery call */
 .dc-hero{background:var(--navy);color:var(--on-navy);padding:6rem 0}
 .dc-hero h1{color:#fff;max-width:20ch}

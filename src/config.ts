@@ -6,3 +6,7 @@ export const STAGING = true;
 /* Free 30-minute discovery call (Google Calendar booking page). Main call to action site-wide. */
 export const BOOK_URL = 'https://calendar.app.google/4rns3tHTA2yDxzhJ6';
 export const EMAIL = 'info@integritygrove.com';
+
+/* Formspree endpoint for the contact form (a form delivering to info@integritygrove.com).
+   Empty = not connected yet: the form still shows, and submitting tells the visitor to email or book instead. */
+export const FORM_URL = '';

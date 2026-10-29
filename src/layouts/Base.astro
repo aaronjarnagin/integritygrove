@@ -2,12 +2,12 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { STAGING } from '../config';
+import { STAGING, EMAIL } from '../config';
 
 const {
   title = 'Integrity Grove | Social Media Marketing to Grow Your Business',
   description = 'Social media marketing, websites, photo, and video that drive real results. Creative content, strategic planning, and data-driven insights from a small Iowa agency.',
-  image = '/images/logo-dark.png',
+  image = '/og-default.png',
   type = 'website',
   schema = null,
 } = Astro.props;
@@ -29,6 +29,10 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
     <link rel="canonical" href={canonical} />
     <meta name="robots" content={STAGING ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="theme-color" content="#11252B" />
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->
@@ -99,6 +103,35 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
       })();
+    </script>
+
+    <!-- AJAX form submit (inline success, no redirect). A form with no action isn't connected yet. -->
+    <script is:inline define:vars={{ EMAIL }}>
+      document.querySelectorAll('.cform[data-ajax]').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('button[type="submit"]');
+          var status = form.querySelector('.form-status');
+          var label = btn.textContent;
+          function say(msg, cls) { status.textContent = msg; status.className = 'form-status ' + cls; }
+          if (!form.getAttribute('action')) {
+            say('This form isn\'t connected yet. Please email ' + EMAIL + ' or book a call instead.', 'form-status-err');
+            return;
+          }
+          btn.disabled = true; btn.textContent = 'Sending...'; say('', '');
+          fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+            .then(function (res) {
+              if (!res.ok) throw new Error('Submission failed');
+              form.reset();
+              btn.textContent = 'Sent';
+              say("Thanks, that's sent. One of us will be in touch within one business day.", 'form-status-ok');
+            })
+            .catch(function () {
+              btn.disabled = false; btn.textContent = label;
+              say('Something went wrong. Try again, or email ' + EMAIL + '.', 'form-status-err');
+            });
+        });
+      });
     </script>
 
     <!-- YouTube: swap the thumbnail for the player on click -->

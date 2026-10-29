@@ -43,7 +43,11 @@ Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
 
 Font: the old site used niveau-grotesk (Adobe Fonts). The rebuild uses Hanken Grotesk from Google Fonts as a free stand-in, loaded async.
 
-Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site). Favicons and a 1200x630 OG image still to make.
+Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site; the tree mark is the first 370px).
+
+Favicons: white tree mark on a navy tile. `favicon.ico` (16/32/48), `favicon-32.png`, `favicon-96.png`, `apple-touch-icon.png` (180, square). Regenerate with `node scripts/favicons.mjs`.
+
+Share image: `public/og-default.png` (1200x630, navy, logo + hero headline + UCS work photo), the default `og:image` for every page except case studies, which use their cover. Regenerate with `node scripts/og-image.mjs` after changing the hero headline.
 
 ## Site structure
 
@@ -101,16 +105,15 @@ Category archives: `/category/photography/`, `/category/social-media/`, `/catego
 
 ## Open items
 
-1. Contact form: Formspree endpoint (new form delivering to info@integritygrove.com). Until then, Contact offers the booking link and email.
-2. Favicons and a 1200x630 OG image (social shares currently use the logo).
-3. Review the imported case study copy and the new service and about wording.
-4. Cutover (see "Cutover day" below).
+1. Contact form endpoint: the form on `/contact/` is built (AJAX, inline success, honeypot) but `FORM_URL` in `src/config.ts` is empty. Create a new Formspree form delivering to info@integritygrove.com and paste its `https://formspree.io/f/...` URL there. Don't reuse `xgogozar`: it is shared by aaronjarnagin and aarongoesoutdoors and delivers to outdoors@aaronjarnagin.com.
+2. Review the imported case study copy and the new service and about wording.
+3. Cutover (see "Cutover day" below).
 
 ## Cutover day
 
 Do these in one go, so the new site replaces WordPress the minute it goes live:
 
-1. Every old URL in the inventory above has a new page or a 301 in `public/_redirects`.
+1. Every old URL in the inventory above has a new page or a 301 in `public/_redirects`, and `FORM_URL` is set (send a test message).
 2. Set `STAGING = false` in `src/config.ts` (turns on indexing, analytics, and the sitemap line). Build, commit, push to `master`.
 3. In Sevalla, add `integritygrove.com` and `www.integritygrove.com` as domains on the static site.
 4. Point DNS at Sevalla using the records it gives you. Leave email records (MX, SPF, DKIM) alone.
