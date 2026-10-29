@@ -1,0 +1,53 @@
+---
+/* Ad / outreach landing page. Kept at the old URL. */
+import Base from '../../layouts/Base.astro';
+import Reviews from '../../components/Reviews.astro';
+import { BOOK_URL } from '../../config';
+
+const checks = [
+  { h: "Your current social media reach and what's holding it back", p: "Most business owners are posting but not growing. We'll look at what you're doing now and find out whether it's a content issue, a consistency issue, or something else keeping your audience from expanding." },
+  { h: 'Whether your website is working as a lead-generation tool', p: "Your website should do more than exist. We'll check whether it's guiding visitors toward contacting you, or just sitting there looking nice." },
+  { h: "Where your competitors are showing up that you aren't", p: "When a customer in Ames searches for what you offer, who do they find? You'll get an honest picture of the gaps and the biggest opportunities to stand out." },
+];
+---
+<Base title="Free Discovery Call | Integrity Grove" description="We help Ames businesses get found through social media that builds real audiences and websites that turn visitors into customers. Book a free 30-minute call.">
+  <section class="page-head dc-hero">
+    <div class="wrap">
+      <span class="eyebrow">Free 30-minute discovery call</span>
+      <h1>Is your business showing up where your customers are looking?</h1>
+      <p class="lede">We help Ames businesses get found through social media that builds real audiences and websites that turn visitors into customers. Book a free call and we'll take an honest look at where you stand.</p>
+      <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Schedule your discovery call</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">On the call</span>
+        <h2>What we look at</h2>
+      </div>
+      <div class="feature-grid three">
+        {checks.map((c, i) => (
+          <div class="feature reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{c.h}</h3>
+            <p>{c.p}</p>
+          </div>
+        ))}
+      </div>
+      <div class="center-cta"><a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Schedule your discovery call</a></div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Real results. Real clients.</span>
+        <h2>We're a small agency, and we like it that way</h2>
+        <p>Every client gets our full attention, not a junior account rep.</p>
+      </div>
+      <Reviews limit={6} />
+      <div class="center-cta"><a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Schedule your discovery call</a></div>
+    </div>
+  </section>
+</Base>

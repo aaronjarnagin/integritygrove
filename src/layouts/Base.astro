@@ -86,14 +86,33 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
       })();
     </script>
 
-    <!-- nav border on scroll -->
+    <!-- nav border on scroll, mobile menu -->
     <script is:inline>
       (function () {
         var nav = document.querySelector('nav');
         function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > 8); }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+        var toggle = document.querySelector('.nav-toggle');
+        if (toggle) toggle.addEventListener('click', function () {
+          var open = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
       })();
+    </script>
+
+    <!-- YouTube: swap the thumbnail for the player on click -->
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.yt-btn');
+        if (!btn) return;
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + btn.getAttribute('data-yt') + '?autoplay=1&rel=0';
+        f.title = btn.getAttribute('data-title') || 'YouTube video';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.allowFullscreen = true;
+        btn.replaceWith(f);
+      });
     </script>
   </body>
 </html>

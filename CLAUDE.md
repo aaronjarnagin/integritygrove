@@ -35,7 +35,7 @@ Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
 | Name | Hex | Use |
 | --- | --- | --- |
 | navy | `#11252B` | headings, dark sections, footer (navy-2 `#1B3740`) |
-| green | `#66BF84` | buttons, accents (green-dk `#4FA86D`) |
+| green | `#66BF84` | buttons, accents (green-dk `#3F9A5E` for green text on white) |
 | paper | `#FFFFFF` | page background |
 | mist | `#F3F6F5` | tinted sections |
 | line | `#E2E8E6` | borders |
@@ -47,21 +47,35 @@ Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from th
 
 ## Site structure
 
-- `src/layouts/Base.astro`: head/SEO/meta/OG/schema, Google tag (`GA_ID` constant at the top), reveal animation, nav border on scroll.
-- `src/components/Nav.astro`, `src/components/Footer.astro`.
-- `src/pages/index.astro`: starter homepage carrying over the old site's real copy: hero, services, Integrity Grove vs other agencies, reviews, contact (mailto).
-- `src/pages/404.astro`.
+All old WordPress URLs were kept, so most links need no redirect.
+
+- `src/config.ts`: `STAGING` switch, `BOOK_URL` (Google Calendar discovery-call booking, the main call to action site-wide), `EMAIL`.
+- `src/layouts/Base.astro`: head/SEO/meta/OG/schema, Google tag, reveal animation, nav scroll border, mobile menu, YouTube click-to-load. `src/layouts/Prose.astro` wraps Markdown pages.
+- `src/data/site.ts`: reviews (shared by home, services, discovery call), client logos, filter labels.
+- Components: `Nav`, `Footer`, `WorkCard`, `Reviews`, `CtaBand` (navy "book a call" band, id `contact`), `YouTube`.
+- `src/pages/index.astro`: hero with work-photo stack, client logo strip, stats band, services, 6 latest case studies, us vs other agencies, reviews, CTA.
+- `src/pages/[slug].astro`: case study template, served at the site ROOT (`/<slug>/`) to keep the old post URLs. Cover, Markdown body, video grid, 3 related, CTA.
+- `src/pages/work/`: all case studies with filter chips (`?f=websites|social|photo|video`).
+- `social-media-account-management/` and `websites-digital-assets/`: service pages with packages and pricing from the old site ($1,500/mo social, $1,750 websites).
+- `about/` (team and history timeline), `contact/` (book a call or email, no form yet), `discovery-call/` (ad landing page aimed at Ames businesses), `privacy-policy/` and `terms-conditions/` (Markdown, text copied verbatim from the old site), `404.astro`.
+- Retired with 301s in `public/_redirects`: `/thank-you/`, `/social-media-quiz/`, `/links/`, `/category/*`, `/page/*`, `/author/*`, `/feed/`.
+
+## Case studies
+
+One Markdown file per project in `src/content/work/` (schema in `src/content.config.ts`). The filename is the URL slug. Frontmatter: `title`, `client`, `location`, `date` (newest first everywhere), `summary` (first sentence becomes the card text, first 155 characters the meta description), `filters` (websites, social, photo, video), `cover`, `coverAlt`, optional `videos` (YouTube IDs) and `draft`. Images live in `public/images/work/<slug>/` as WebP.
+
+The 16 existing ones were imported from WordPress on 2026-10-29. Two had self-hosted .mp4 videos on WordPress (Misty Metschke, West Central Tree Service) that were not carried over. Jyles FBA may have rebranded to Locking Profits (aaronjarnagin.com uses the new name); confirm before changing.
 
 ## Key facts, links, and endpoints
 
 - Contact email: `info@integritygrove.com`
 - Socials: Instagram `@integritygrove`, TikTok `@integritygrove`, X `@integritygrove`
 - Google tag on the old site: `GT-KD78VG6S` (wired into `Base.astro`).
-- Clients shown on the old site: Guthrie County State Bank, Denver Savings Bank, UCS Healthcare, Peoples Savings Bank, Spoke Society, Jesse's Embers, Ashley Bermel, Catalyst Gym, and more.
+- Booking link: https://calendar.app.google/4rns3tHTA2yDxzhJ6 (`BOOK_URL`).
 
 ## Old site URL inventory
 
-Every one of these needs either a new page or a 301 in `public/_redirects` before DNS cutover, to keep search rankings.
+All covered as of 2026-10-29: pages and case studies kept their URLs, and the quiz, links, thank-you and category archives 301 (see Site structure).
 
 Pages: `/`, `/about/`, `/contact/`, `/social-media-account-management/`, `/websites-digital-assets/`, `/discovery-call/`, `/social-media-quiz/`, `/links/`, `/thank-you/`, `/privacy-policy/`, `/terms-conditions/`
 
@@ -87,11 +101,10 @@ Category archives: `/category/photography/`, `/category/social-media/`, `/catego
 
 ## Open items
 
-1. Design direction and full page list (services pages, about, work/case studies as a content collection like aaronjarnagin's `src/content/work/`).
-2. Contact form: Formspree endpoint (new form delivering to info@integritygrove.com, or the shared one).
-3. Port case studies and legal pages (privacy policy, terms), then 301 every old URL above.
-4. Favicons, OG image, Search Console.
-5. Cutover (see "Cutover day" below).
+1. Contact form: Formspree endpoint (new form delivering to info@integritygrove.com). Until then, Contact offers the booking link and email.
+2. Favicons and a 1200x630 OG image (social shares currently use the logo).
+3. Review the imported case study copy and the new service and about wording.
+4. Cutover (see "Cutover day" below).
 
 ## Cutover day
 

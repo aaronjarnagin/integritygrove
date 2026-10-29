@@ -1,0 +1,15 @@
+---
+/* Layout for Markdown pages (legal). */
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+---
+<Base title={`${frontmatter.title} | Integrity Grove`} description={frontmatter.description}>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>{frontmatter.title}</h1>
+    </div>
+  </section>
+  <div class="wrap prose legal">
+    <slot />
+  </div>
+</Base>

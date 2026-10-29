@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import Reviews from '../../components/Reviews.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BOOK_URL } from '../../config';
+
+const work = (await getCollection('work', (e) => !e.data.draft && e.data.filters.includes('websites')))
+  .sort((a, b) => +b.data.date - +a.data.date)
+  .slice(0, 6);
+
+const packages = [
+  {
+    name: 'Growth',
+    text: 'For small businesses that need a professional custom site that clearly shows what they do.',
+    items: ['3-5 page custom website', 'Interactive metrics dashboard'],
+  },
+  {
+    name: 'Premium',
+    flag: 'Most popular',
+    text: 'For growing businesses that need their site to generate leads, not just exist.',
+    items: ['6-10 page custom website', 'Custom tools and features', 'Google Business Profile setup', 'Email list generation', 'Interactive metrics dashboard'],
+  },
+  {
+    name: 'Elite',
+    text: 'For established businesses that want a site built for search and ongoing content.',
+    items: ['10+ page custom website', 'Custom tools and features', 'Content and articles', 'Google Business Profile setup', 'Email list generation', 'Interactive metrics dashboard'],
+  },
+];
+
+const why = [
+  { h: 'Custom website', p: 'A site built around your business that ties your social media, email, and ads together and gives customers an easy next step.' },
+  { h: 'Search engine optimization', p: 'Proven, ethical SEO that grows organic traffic and keeps your site showing up in Google and in AI search tools.' },
+  { h: 'Google Business Profile', p: 'An optimized profile with accurate information so local customers find you, trust you, and call or walk in.' },
+  { h: 'Metrics dashboards', p: 'Real-time insight into how your site performs, so we can keep improving it after launch day.' },
+];
+---
+<Base title="Web Design & Digital Assets | Integrity Grove" description="Custom website design from Integrity Grove: fast, search-ready sites with SEO, Google Business Profile setup, and metrics dashboards. Website packages start at $1,750.">
+  <section class="page-head">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Websites & digital assets</span>
+        <h1>Websites that turn visitors into customers</h1>
+        <p class="lede">Your website is the cornerstone of your brand online. A well-built site connects your social media, emails, and ads, and gives your customers an easy next step to do business with you.</p>
+        <div class="hero-cta-row">
+          <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
+          <a href="#packages" class="btn btn-ghost">See packages</a>
+        </div>
+      </div>
+      <figure class="head-img">
+        <img src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="Spoke Society website homepage" width="800" height="1000" fetchpriority="high" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec tint" id="packages">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Packages</span>
+        <h2>Starting at $1,750</h2>
+        <p>Launching a new site or rebuilding an old one, every package is custom-built and comes with a live metrics dashboard.</p>
+      </div>
+      <div class="packages three">
+        {packages.map((p) => (
+          <div class:list={['package', 'reveal', { featured: p.flag }]}>
+            {p.flag && <span class="flag">{p.flag}</span>}
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+            <ul class="checks">{p.items.map((i) => <li>{i}</li>)}</ul>
+            <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Talk to us about {p.name}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Why us</span>
+        <h2>Why build your website with us?</h2>
+      </div>
+      <div class="feature-grid">
+        {why.map((w, i) => (
+          <div class="feature reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{w.h}</h3>
+            <p>{w.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Websites we've built</h2>
+        <a href="/work/?f=websites" class="btn btn-ghost btn-sm">All website work</a>
+      </div>
+      <div class="work-grid">{work.map((w) => <WorkCard entry={w} />)}</div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Hear from our clients</span>
+        <h2>Their success is how we measure ours</h2>
+      </div>
+      <Reviews limit={6} />
+    </div>
+  </section>
+  <CtaBand />
+</Base>

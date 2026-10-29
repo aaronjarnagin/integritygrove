@@ -1,16 +1,25 @@
 ---
-const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+import { BOOK_URL } from '../config';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/work/', label: 'Work' },
+  { href: '/social-media-account-management/', label: 'Social media' },
+  { href: '/websites-digital-assets/', label: 'Websites' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
 ---
 <nav>
   <div class="wrap nav-inner">
-    <a href={`${base}/`} class="brand" aria-label="Integrity Grove home">
+    <a href="/" class="brand" aria-label="Integrity Grove home">
       <img src="/images/logo-dark.png" alt="Integrity Grove" width="170" height="64" />
     </a>
-    <div class="nav-right">
-      <a href={`${base}/#services`} class="nlink">Services</a>
-      <a href={`${base}/#why`} class="nlink">Why us</a>
-      <a href={`${base}/#reviews`} class="nlink">Reviews</a>
-      <a href={`${base}/#contact`} class="btn btn-sm">Contact us</a>
+    <div class="nav-links" id="nav-links">
+      {links.map((l) => <a href={l.href} class:list={['nlink', { active: path.startsWith(l.href) }]}>{l.label}</a>)}
+      <a href={BOOK_URL} class="btn btn-sm" target="_blank" rel="noopener">Book a call</a>
     </div>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span>
+    </button>
   </div>
 </nav>

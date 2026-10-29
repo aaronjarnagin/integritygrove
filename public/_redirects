@@ -1,4 +1,23 @@
-# Old WordPress URLs get 301s here as their new pages are built (see CLAUDE.md "Old site URL inventory").
+# Old WordPress URLs. Pages and case studies kept their URLs; these are the ones that were retired.
+/thank-you/            /contact/                            301
+/thank-you             /contact/                            301
+/social-media-quiz/    /social-media-account-management/    301
+/social-media-quiz     /social-media-account-management/    301
+/links/                /                                    301
+/links                 /                                    301
+/category/website/            /work/?f=websites  301
+/category/website             /work/?f=websites  301
+/category/social-media/       /work/?f=social    301
+/category/social-media        /work/?f=social    301
+/category/photography/        /work/?f=photo     301
+/category/photography         /work/?f=photo     301
+/category/video-production/   /work/?f=video     301
+/category/video-production    /work/?f=video     301
+/category/*                   /work/             301
+/page/*                       /                  301
+/author/*                     /about/            301
+/feed/                        /                  301
+/feed                         /                  301
 
 # Custom 404 for any unmatched path (Sevalla does not serve 404.html on its own). Keep this last.
 /*  /404.html  404

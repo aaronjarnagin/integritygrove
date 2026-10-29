@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { filterLabels } from '../data/site';
+
+const { entry } = Astro.props as { entry: CollectionEntry<'work'> };
+const d = entry.data;
+const firstSentence = d.summary.match(/^.+?[.!?](\s|$)/)?.[0].trim() ?? d.summary;
+---
+<a href={`/${entry.id}/`} class="work-card reveal" data-filters={d.filters.join(' ')}>
+  <div class="work-img">
+    <img src={d.cover} alt={d.coverAlt} loading="lazy" decoding="async" width="800" height="500" />
+  </div>
+  <div class="work-body">
+    <span class="work-client">{d.client}{d.location && <span class="work-loc"> · {d.location}</span>}</span>
+    <h3>{d.title}</h3>
+    <p>{firstSentence}</p>
+    <div class="pills">{d.filters.map((f) => <span class="pill">{filterLabels[f]}</span>)}</div>
+  </div>
+</a>

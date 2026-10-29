@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { BOOK_URL, EMAIL } from '../../config';
+---
+<Base title="Contact | Integrity Grove" description="Contact Integrity Grove. Book a free 30-minute discovery call or email us about social media, websites, photo, and video for your business.">
+  <section class="page-head contact-page">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Contact us</span>
+        <h1>Let's talk about your business</h1>
+        <p class="lede">Questions, a project in mind, or just want to know where you stand online? Reach out and one of us will get back to you within one business day.</p>
+      </div>
+      <div class="contact-cards">
+        <a href={BOOK_URL} class="contact-card primary" target="_blank" rel="noopener">
+          <span class="eyebrow">Fastest</span>
+          <h2>Book a free discovery call</h2>
+          <p>30 minutes, no pressure. We'll take an honest look at your social media, your website, and where your competitors show up that you don't.</p>
+          <span class="go">Pick a time →</span>
+        </a>
+        <a href={`mailto:${EMAIL}`} class="contact-card">
+          <span class="eyebrow">Email</span>
+          <h2>{EMAIL}</h2>
+          <p>Tell us a little about your business and what you're hoping to accomplish.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

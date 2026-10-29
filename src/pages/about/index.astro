@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+const team = [
+  {
+    name: 'Isaac Jarnagin',
+    role: 'Creative Lead',
+    img: '/images/team/isaac.webp',
+    bio: [
+      'Isaac brings years of content creation and business experience to Integrity Grove. Starting with his own social media platforms, he mastered editing, community engagement, and algorithm strategy, building 13 million+ impressions and 47k+ followers.',
+      'He moved into full-time client work during college and has improved the digital presence of 60+ clients, including Pepsi and Kum & Go.',
+    ],
+  },
+  {
+    name: 'Aaron Jarnagin',
+    role: 'Strategy Lead',
+    img: '/images/team/aaron.webp',
+    bio: [
+      'Aaron is an award-winning marketing professional with a BA in Marketing from the University of Northern Iowa and accreditations from Google, HubSpot, and LinkedIn.',
+      'His experience spans financial, nonprofit, and economic development work. At Integrity Grove he builds the strategy and helps clients set and hit real marketing goals.',
+    ],
+  },
+];
+
+const history = [
+  { year: '2013', h: 'Aaron starts creating content on YouTube', p: 'It started in the gaming community. Over time Aaron evolved the channel, blending his personality with faceless content, and passed 6 million views.', img: '/images/about/aaron-youtube.webp', cap: "A thumbnail from one of Aaron's early videos. You'll never find it.", w: 1280, h2: 578 },
+  { year: '2013', h: 'Isaac starts creating content', p: 'Isaac launched on YouTube, then expanded to Instagram and TikTok, mastering editing, community engagement, and the algorithms along the way: 13 million+ impressions and 50k+ followers.' },
+  { year: '2018', h: 'Aaron starts his first marketing job', p: 'After earning his marketing degree, Aaron joined an economic development firm, leading digital marketing for a talent attraction initiative that reached millions. He quickly rose to lead marketing for the whole organization.', img: '/images/about/aaron-presenting.webp', cap: "Aaron presenting the firm's talent attraction work to 60+ young professionals at one of the area's largest employers.", w: 1200, h2: 800 },
+  { year: '2019', h: 'Isaac starts his first business', p: 'Isaac founded Mundane Clothing, a brand about ambition and hard work, and learned audience building, social media, and web design firsthand, selling to 200+ customers in 10+ states and 2 countries.', img: '/images/about/isaac-warehouse.webp', cap: 'Isaac\'s basement "warehouse." He sent every customer a photo of himself holding their order.', w: 1400, h2: 1867 },
+  { year: '2021', h: 'Aaron starts his agency career', p: 'Driven to help local businesses, Aaron joined an agency and worked with clients on hundreds of projects, launching new services and bringing new tools to the team.', img: '/images/about/aaron-agency.webp', cap: '', w: 1400, h2: 1401 },
+  { year: '2022', h: 'Isaac goes full time', p: 'While still in college, Isaac went full time as a digital consultant, improving the online presence of 60+ clients including Pepsi and Kum & Go.', img: '/images/about/isaac-dorm.webp', cap: "Isaac's dorm room desk, home base for schoolwork and client projects.", w: 1008, h2: 756 },
+  { year: '2024', h: 'Integrity Grove begins', p: 'Aaron and Isaac saw how well their skills fit together and launched their own agency, built around high-value content and helping growing businesses own their presence online.', img: '/images/about/aaron-office.webp', cap: 'Aaron\'s "office" in his fixer-upper. The newspaper on the wall turned up under the old flooring and dates to the 1940s.', w: 1400, h2: 1050 },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Integrity Grove',
+    url: 'https://integritygrove.com',
+    founder: team.map((t) => ({ '@type': 'Person', name: t.name, jobTitle: t.role })),
+  },
+};
+---
+<Base title="About | Integrity Grove" description="Founded by Isaac and Aaron Jarnagin, Integrity Grove brings years of content creation and digital marketing experience to help businesses grow." schema={schema}>
+  <section class="page-head">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">About Integrity Grove</span>
+        <h1>Two brothers who built audiences before building an agency</h1>
+        <p class="lede">Founded by Isaac and Aaron Jarnagin, Integrity Grove brings together years of content creation and digital marketing. We've grown our own platforms and run our own businesses, so we know what it takes. We're committed to integrity, trust, and clear communication.</p>
+      </div>
+      <figure class="head-img polaroid">
+        <img src="/images/about/costumes-2007.webp" alt="Aaron and Isaac Jarnagin as kids in Halloween costumes" width="1134" height="886" />
+        <figcaption>The hardest hitting costumes of 2007. (Aaron left, Isaac right.)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Leadership</span>
+        <h2>Meet the team</h2>
+        <p>Every client works directly with us. No junior account reps.</p>
+      </div>
+      <div class="team">
+        {team.map((t) => (
+          <div class="person reveal">
+            <img src={t.img} alt={t.name} width="800" height="800" loading="lazy" />
+            <div>
+              <h3>{t.name}</h3>
+              <span class="role">{t.role}</span>
+              {t.bio.map((b) => <p>{b}</p>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Our history</span>
+        <h2>How we got here</h2>
+      </div>
+      <ol class="timeline">
+        {history.map((t) => (
+          <li class="reveal">
+            <span class="year">{t.year}</span>
+            <div class="tl-body">
+              <h3>{t.h}</h3>
+              <p>{t.p}</p>
+              {t.img && (
+                <figure>
+                  <img src={t.img} alt={t.cap || t.h} width={t.w} height={t.h2} loading="lazy" />
+                  {t.cap && <figcaption>{t.cap}</figcaption>}
+                </figure>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

@@ -2,3 +2,7 @@
    (integritygrove-l3fdz.kinsta.page) stays out of search engines.
    Set to false on cutover day, in the same push that goes live on integritygrove.com. */
 export const STAGING = true;
+
+/* Free 30-minute discovery call (Google Calendar booking page). Main call to action site-wide. */
+export const BOOK_URL = 'https://calendar.app.google/4rns3tHTA2yDxzhJ6';
+export const EMAIL = 'info@integritygrove.com';

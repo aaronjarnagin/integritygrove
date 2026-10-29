@@ -1,4 +1,5 @@
 ---
+import { BOOK_URL, EMAIL } from '../config';
 const year = new Date().getFullYear();
 ---
 <footer>
@@ -6,17 +7,35 @@ const year = new Date().getFullYear();
     <div class="foot-top">
       <div class="foot-brand">
         <img src="/images/logo-white.png" alt="Integrity Grove" width="170" height="64" loading="lazy" />
-        <p>Social media marketing, websites, photo, and video that drive real results.</p>
+        <p>Social media, websites, photo, and video for growing businesses. A small Iowa agency, and we like it that way.</p>
+        <a href={BOOK_URL} class="btn btn-sm" target="_blank" rel="noopener">Book a discovery call</a>
       </div>
-      <div class="foot-social">
-        <a href="mailto:info@integritygrove.com">info@integritygrove.com</a>
+      <div class="foot-col">
+        <span class="foot-h">Services</span>
+        <a href="/social-media-account-management/">Social media management</a>
+        <a href="/websites-digital-assets/">Websites & digital assets</a>
+        <a href="/work/?f=video">Photo & video</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-h">Company</span>
+        <a href="/work/">Work</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="foot-col">
+        <span class="foot-h">Connect</span>
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
         <a href="https://www.instagram.com/integritygrove/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.tiktok.com/@integritygrove" target="_blank" rel="noopener">TikTok</a>
         <a href="https://twitter.com/integritygrove" target="_blank" rel="noopener">X / Twitter</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© {year} Integrity Grove.</span>
+      <span>© {year} Integrity Grove, LLC.</span>
+      <span class="foot-legal">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-conditions/">Terms & Conditions</a>
+      </span>
     </div>
   </div>
 </footer>

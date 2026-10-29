@@ -1,0 +1,12 @@
+---
+import { reviews } from '../data/site';
+const { limit = reviews.length } = Astro.props;
+---
+<div class="reviews">
+  {reviews.slice(0, limit).map((r) => (
+    <figure class="review reveal">
+      <blockquote>{r.text}</blockquote>
+      <figcaption><strong>{r.name}</strong><span>{r.org}</span></figcaption>
+    </figure>
+  ))}
+</div>

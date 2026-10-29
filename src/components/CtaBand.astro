@@ -1,0 +1,20 @@
+---
+import { BOOK_URL, EMAIL } from '../config';
+const {
+  title = "Let's grow your business",
+  text = "Book a free 30-minute discovery call. We'll take an honest look at where you stand online and where the biggest opportunities are.",
+} = Astro.props;
+---
+<section class="cta-band" id="contact">
+  <div class="wrap cta-inner">
+    <div>
+      <span class="eyebrow">Free discovery call</span>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta-actions">
+      <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
+      <a href={`mailto:${EMAIL}`} class="cta-email">{EMAIL}</a>
+    </div>
+  </div>
+</section>

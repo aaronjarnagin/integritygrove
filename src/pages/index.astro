@@ -1,82 +1,103 @@
 ---
-import Base from "../layouts/Base.astro";
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Reviews from '../components/Reviews.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clients } from '../data/site';
+import { BOOK_URL, EMAIL } from '../config';
+
+const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
 
 const services = [
-  { name: "Social media account management", text: "Strategy, original content, posting, and monthly metrics reports, handled by the people who make the content." },
-  { name: "Websites & digital assets", text: "Fast, clean websites and the digital assets that go with them, built to turn visitors into customers." },
-  { name: "Photo & video production", text: "Commercials, event coverage, and image libraries your team can use for months." },
+  { name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.' },
+  { name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.' },
+  { name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.' },
 ];
 
-const us = [
-  "Consistent pricing structure",
-  "We produce original content",
-  "On top of cultural trends",
-  "Quick & effective communication",
-  "We leverage new technology",
-  "Built-in metrics reports",
-  "We've built audiences & businesses personally",
-];
-const them = [
-  "Unclear pricing structure",
-  "Cookie cutter content",
-  "Culturally out of touch",
-  "Ignores new features & tools",
-  "Not easily accessible",
-  "Confusing metrics",
-  "Have never built an audience",
-];
-
-const reviews = [
-  { name: "Melissa Howard", text: "They've taken the chaos out of managing Google reviews and are doing a fantastic job highlighting our rural clinics in a way that actually reflects who we are." },
-  { name: "Tawnia Ganzer", text: "Guthrie County State Bank has worked with Isaac for the past 3-4 years, helping us to record 2-3 events per year. The quality of product and Isaac's professionalism is second to none!" },
-  { name: "Wes J", text: "Integrity Grove is outstanding in the range of their marketing expertise. Five stars, because there aren't six." },
-  { name: "Casey Polizzotto", text: "They really took the time to understand our vision and brought it to life in a way that feels clean, elevated, and true to our brand." },
-  { name: "Jamin Wass", text: "They've done 6 or more videos for me in the past couple years. I can be super picky about the end product and they do a phenomenal job!" },
-  { name: "Jeremy Tran", text: "They've helped our business even with us being out of state. Friendly, knowledgeable, and a strong work ethic." },
-];
+const us = ['Consistent pricing structure', 'We produce original content', 'On top of cultural trends', 'Quick & effective communication', 'We leverage new technology', 'Built-in metrics reports', "We've built audiences & businesses personally"];
+const them = ['Unclear pricing structure', 'Cookie cutter content', 'Culturally out of touch', 'Ignores new features & tools', 'Not easily accessible', 'Confusing metrics', 'Have never built an audience'];
 
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "MarketingAgency",
-  name: "Integrity Grove",
-  url: "https://integritygrove.com",
-  email: "info@integritygrove.com",
-  logo: "https://integritygrove.com/images/logo-dark.png",
-  sameAs: [
-    "https://www.instagram.com/integritygrove/",
-    "https://www.tiktok.com/@integritygrove",
-    "https://twitter.com/integritygrove",
-  ],
+  '@context': 'https://schema.org',
+  '@type': 'MarketingAgency',
+  name: 'Integrity Grove',
+  legalName: 'Integrity Grove, LLC',
+  url: 'https://integritygrove.com',
+  email: EMAIL,
+  logo: 'https://integritygrove.com/images/logo-dark.png',
+  areaServed: 'Iowa',
+  founder: [{ '@type': 'Person', name: 'Isaac Jarnagin' }, { '@type': 'Person', name: 'Aaron Jarnagin' }],
+  sameAs: ['https://www.instagram.com/integritygrove/', 'https://www.tiktok.com/@integritygrove', 'https://twitter.com/integritygrove'],
 };
 ---
 <Base schema={schema}>
   <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow">Integrity Grove</span>
-      <h1>Social media marketing to <em>grow your business</em></h1>
-      <p class="lede">We combine creative content, strategic planning, and data-driven insights to help you connect with your audience and grow your business.</p>
-      <div class="hero-cta-row">
-        <a href="#contact" class="btn">Contact us</a>
-        <a href="#services" class="btn btn-ghost">Our services</a>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Social media · Websites · Photo & video</span>
+        <h1>Social media marketing that <em>grows your business</em></h1>
+        <p class="lede">We combine original content, strategic planning, and real data to help you connect with your audience. A small Iowa agency run by two brothers who built audiences of their own first.</p>
+        <div class="hero-cta-row">
+          <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a free discovery call</a>
+          <a href="/work/" class="btn btn-ghost btn-lg">See our work</a>
+        </div>
+      </div>
+      <div class="hero-stack" aria-hidden="true">
+        <img class="hs-1" src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="" width="800" height="600" fetchpriority="high" />
+        <img class="hs-2" src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="" width="800" height="500" />
+        <img class="hs-3" src="/images/work/catalyst-gym-social-media-success/cover.webp" alt="" width="800" height="600" />
       </div>
     </div>
   </section>
 
-  <section class="sec tint" id="services">
+  <section class="logos" aria-label="Some clients we're proud to partner with">
+    <div class="wrap">
+      <span class="eyebrow center">Some clients we're proud to partner with</span>
+      <div class="logo-row">
+        {clients.map((c) => <img src={c.logo} alt={c.name} width={c.w} height={c.h} loading="lazy" />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="wrap stat-row">
+      <div class="stat reveal"><strong>100s</strong><span>of projects completed across dozens of industries</span></div>
+      <div class="stat reveal"><strong>Millions</strong><span>of organic impressions for our clients last year, with no ad spend</span></div>
+      <div class="stat reveal"><strong>2</strong><span>founders. You work directly with us, not a junior account rep.</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
     <div class="wrap">
       <div class="sec-title reveal">
-        <span class="eyebrow">Full service</span>
-        <h2>Hundreds of projects, dozens of industries</h2>
+        <span class="eyebrow">What we do</span>
+        <h2>A full-service agency, sized for real attention</h2>
         <p>Social media, websites, photo, and video, tailored to what your business actually needs.</p>
       </div>
-      <div class="cards">
+      <div class="service-grid">
         {services.map((s) => (
-          <div class="card reveal">
+          <a href={s.href} class="service reveal">
+            <span class="price">{s.price}</span>
             <h3>{s.name}</h3>
             <p>{s.text}</p>
-          </div>
+            <span class="go">Learn more →</span>
+          </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Recent work</span>
+          <h2>Real results. Real clients.</h2>
+        </div>
+        <a href="/work/" class="btn btn-ghost btn-sm">All {work.length} case studies</a>
+      </div>
+      <div class="work-grid">{work.slice(0, 6).map((w) => <WorkCard entry={w} />)}</div>
     </div>
   </section>
 
@@ -103,27 +124,13 @@ const schema = {
   <section class="sec tint" id="reviews">
     <div class="wrap">
       <div class="sec-title reveal">
-        <span class="eyebrow">Real results. Real clients.</span>
+        <span class="eyebrow">Reviews</span>
         <h2>We're a small agency, and we like it that way</h2>
-        <p>Every client gets our full attention, not a junior account rep.</p>
+        <p>Every client gets our full attention. These reviews reflect what we hear most: clear communication, work that moves the needle, and a team that treats your business like its own.</p>
       </div>
-      <div class="cards">
-        {reviews.map((r) => (
-          <figure class="card review reveal">
-            <blockquote>{r.text}</blockquote>
-            <figcaption>{r.name}</figcaption>
-          </figure>
-        ))}
-      </div>
+      <Reviews limit={6} />
     </div>
   </section>
 
-  <section class="sec contact" id="contact">
-    <div class="wrap">
-      <span class="eyebrow">Contact us</span>
-      <h2>Let's grow your business</h2>
-      <p class="lede">Tell us what you're working on and we'll get back to you.</p>
-      <a href="mailto:info@integritygrove.com" class="big-email">info@integritygrove.com</a>
-    </div>
-  </section>
+  <CtaBand />
 </Base>

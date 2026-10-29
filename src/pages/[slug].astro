@@ -1,0 +1,75 @@
+---
+/* Case study pages, served at the site root to keep the old WordPress URLs. */
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import WorkCard from '../components/WorkCard.astro';
+import YouTube from '../components/YouTube.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { filterLabels } from '../data/site';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
+  return all.map((entry) => {
+    // "more work": others sharing a filter first, newest first
+    const more = all
+      .filter((o) => o.id !== entry.id)
+      .sort((a, b) => Number(b.data.filters.some((f) => entry.data.filters.includes(f))) - Number(a.data.filters.some((f) => entry.data.filters.includes(f))))
+      .slice(0, 3);
+    return { params: { slug: entry.id }, props: { entry, more } };
+  });
+}
+
+const { entry, more } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const description = d.summary.length > 158 ? d.summary.slice(0, 155).replace(/\s+\S*$/, '') + '...' : d.summary;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description,
+  image: `https://integritygrove.com${d.cover}`,
+  datePublished: d.date.toISOString().slice(0, 10),
+  author: { '@type': 'Organization', name: 'Integrity Grove' },
+  publisher: { '@type': 'Organization', name: 'Integrity Grove', logo: { '@type': 'ImageObject', url: 'https://integritygrove.com/images/logo-dark.png' } },
+};
+---
+<Base title={`${d.title} | Integrity Grove`} description={description} image={d.cover} type="article" schema={schema}>
+  <article>
+    <header class="cs-head">
+      <div class="wrap">
+        <a href="/work/" class="back">← All work</a>
+        <span class="eyebrow">{d.client}{d.location && ` · ${d.location}`}</span>
+        <h1>{d.title}</h1>
+        <div class="pills">{d.filters.map((f) => <a class="pill" href={`/work/?f=${f}`}>{filterLabels[f]}</a>)}</div>
+      </div>
+    </header>
+    <div class="wrap">
+      <figure class="cs-cover">
+        <img src={d.cover} alt={d.coverAlt} width="1600" height="900" fetchpriority="high" />
+      </figure>
+    </div>
+    <div class="wrap prose cs-body">
+      <Content />
+    </div>
+    {d.videos.length > 0 && (
+      <section class="wrap cs-videos">
+        <h2>Videos</h2>
+        <div class="video-grid">
+          {d.videos.map((id, i) => <YouTube id={id} title={`${d.client} video ${i + 1}`} />)}
+        </div>
+      </section>
+    )}
+  </article>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>More of our work</h2>
+        <a href="/work/" class="btn btn-ghost btn-sm">See all work</a>
+      </div>
+      <div class="work-grid">{more.map((m) => <WorkCard entry={m} />)}</div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

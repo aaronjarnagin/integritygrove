@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import Reviews from '../../components/Reviews.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { BOOK_URL } from '../../config';
+
+const work = (await getCollection('work', (e) => !e.data.draft && e.data.filters.includes('social')))
+  .sort((a, b) => +b.data.date - +a.data.date)
+  .slice(0, 3);
+
+const packages = [
+  {
+    name: 'Growth',
+    text: 'A consistent social media presence with original content every month and clear reporting on what it is doing.',
+    items: ['Monthly strategy meetings', 'Monthly content recording', '8+ custom posts per month, per platform', 'Content scheduling', 'Interactive metrics dashboard', 'Photo and video library'],
+  },
+  {
+    name: 'Premium',
+    flag: 'Most popular',
+    text: 'Everything in Growth, plus more content and hands-on management of your accounts and community.',
+    items: ['Account creation and optimization', 'Monthly strategy meetings', 'Monthly content recording', '16+ custom posts per month, per platform', 'Content scheduling', 'You send, we post', 'Links page management', 'Community management', 'Interactive metrics dashboard', 'Photo and video library'],
+  },
+];
+
+const why = [
+  { h: 'Proven track record', p: "We've built audiences for our clients and for ourselves, and we have the case studies to show what our content strategies do for a business." },
+  { h: 'Content creation and scheduling', p: 'We record, edit, and post high-quality content at the times your audience is actually online, so your brand stays visible and relevant.' },
+  { h: 'Community management', p: 'Great content gets impressions. Answering messages, comments, and reviews turns those impressions into a community that trusts you.' },
+  { h: 'Metrics dashboards', p: 'A live dashboard of the numbers that matter, so every decision about your content is based on data, not guesses.' },
+];
+---
+<Base title="Social Media Management | Integrity Grove" description="Social media management from Integrity Grove: strategy, monthly content recording, custom posts, community management, and live metrics dashboards. Packages start at $1,500/mo.">
+  <section class="page-head">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Social media management</span>
+        <h1>Social media that builds a real audience</h1>
+        <p class="lede">Your social media is more than posts. It's your brand's voice and its daily connection with your customers. We build a strategy around your business, then create and post the content ourselves.</p>
+        <div class="hero-cta-row">
+          <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
+          <a href="#packages" class="btn btn-ghost">See packages</a>
+        </div>
+      </div>
+      <figure class="head-img">
+        <img src="/images/work/louie-wickett-social-media-content-partnership/cover.webp" alt="Social media content shoot for Louie Wickett" width="800" height="1000" fetchpriority="high" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec tint" id="packages">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Packages</span>
+        <h2>Starting at $1,500/mo</h2>
+        <p>Whether you're starting from zero or leveling up an existing presence, every package includes strategy, original content, and reporting.</p>
+      </div>
+      <div class="packages">
+        {packages.map((p) => (
+          <div class:list={['package', 'reveal', { featured: p.flag }]}>
+            {p.flag && <span class="flag">{p.flag}</span>}
+            <h3>{p.name}</h3>
+            <p>{p.text}</p>
+            <ul class="checks">{p.items.map((i) => <li>{i}</li>)}</ul>
+            <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Talk to us about {p.name}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Why us</span>
+        <h2>Why trust us with your social media?</h2>
+      </div>
+      <div class="feature-grid">
+        {why.map((w, i) => (
+          <div class="feature reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{w.h}</h3>
+            <p>{w.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Brands we manage</h2>
+        <a href="/work/?f=social" class="btn btn-ghost btn-sm">All social media work</a>
+      </div>
+      <div class="work-grid">{work.map((w) => <WorkCard entry={w} />)}</div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Hear from our clients</span>
+        <h2>Their success is how we measure ours</h2>
+      </div>
+      <Reviews limit={6} />
+    </div>
+  </section>
+  <CtaBand />
+</Base>
