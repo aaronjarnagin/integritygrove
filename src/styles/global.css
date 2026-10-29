@@ -383,7 +383,9 @@ footer{background:var(--ink);color:#93A6AB;padding:4.5rem 0 0;overflow:hidden}
 .motion .page-head .contact-cards,.motion .page-head .btn-lg,.motion .page-head .head-img,.motion .page-head .cform,
 .motion .cs-head .back,.motion .cs-head .eyebrow,.motion .cs-head .pills{opacity:0}
 /* the page headline only waits for its word-by-word reveal on desktop; on phones it paints immediately (it is the LCP) */
-@media(min-width:900px){.motion .hero h1,.motion .page-head h1,.motion .cs-head h1{opacity:0}}
+@media(min-width:900px){.motion .hero h1,.motion .page-head h1,.motion .cs-head h1{opacity:0;animation:motion-fallback 0s 1.5s forwards}}
+/* if animation frames are paused (background tab, throttled pane), the headline still appears on its own */
+@keyframes motion-fallback{to{opacity:1}}
 
 /* with a mouse, GSAP drives transform every frame, so CSS must not also transition it */
 .has-cursor :is(.btn,.work-card,.contact-card,.service,.package,.review,.person){transition-property:background,background-color,border-color,color,box-shadow,padding,opacity}
