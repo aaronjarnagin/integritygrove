@@ -68,10 +68,12 @@ function hero() {
     SplitText.create(h1, {
       type: 'lines,words',
       mask: 'lines',
+      linesClass: 'sl',
       autoSplit: true,
       onSplit(self) {
         gsap.set(h1, { opacity: 1 });
-        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out' });
+        // once the words have landed, put the original headline back so nothing can clip its descenders
+        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out', onComplete: () => self.revert() });
       },
     });
   }
@@ -118,10 +120,11 @@ function headings() {
     SplitText.create(h, {
       type: 'lines,words',
       mask: 'lines',
+      linesClass: 'sl',
       autoSplit: true,
       onSplit(self) {
         gsap.set(h, { opacity: 1 });
-        return gsap.from(self.words, { yPercent: 110, duration: 1, stagger: 0.05, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%', once: true } });
+        return gsap.from(self.words, { yPercent: 110, duration: 1, stagger: 0.05, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%', once: true }, onComplete: () => self.revert() });
       },
     });
   });
