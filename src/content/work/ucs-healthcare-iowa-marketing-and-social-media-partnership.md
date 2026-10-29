@@ -12,9 +12,9 @@ videos: ["J2IfV8pP9ao","C2buGoz8nnY","prScBs2p7mo"]
 
 Integrity Grove partnered with [UCS Healthcare](https://www.ucsonline.org), an Iowa-based outpatient provider specializing in medication-assisted treatment (MAT) and behavioral health care, to lead marketing strategy, social media content, and social media advertising across their growing footprint of clinics. UCS serves communities from West Des Moines to Fort Dodge, Iowa City, Decorah, and beyond, and the goal of this partnership was simple: help more Iowans find compassionate, evidence-based care close to home.
 
-![UCS Healthcare project image](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/dsc06746-scaled.webp)
+![UCS Healthcare: overview, image 1](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/dsc06746-scaled.webp)
 
-![UCS Healthcare project image](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/dsc06767-scaled.webp)
+![UCS Healthcare: overview, image 2](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/dsc06767-scaled.webp)
 
 ## Services Performed
 
@@ -44,9 +44,9 @@ As part of the partnership, we built ongoing reporting for UCS Healthcare that t
 
 These insights give UCS Healthcare a clear picture of how every channel is performing, and where opportunities exist to refine messaging, improve patient acquisition, and connect with more Iowans across the [communities UCS serves](https://www.ucsonline.org/who-we-are/locations).
 
-![UCS Healthcare project image](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/ucshome.webp)
+![UCS Healthcare: services performed, image 1](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/ucshome.webp)
 
-![UCS Healthcare project image](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/ucs-web.webp)
+![UCS Healthcare: services performed, image 2](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/ucs-web.webp)
 
 ## Outcomes and Impact
 
@@ -62,10 +62,10 @@ The most notable shifts:
 
 The compounding effect of strategy, organic content, and paid advertising working together is exactly what the partnership was designed to produce. UCS Healthcare is now showing up more often, in more communities, and reaching more of the people who need their care.
 
-![UCS Healthcare project image](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/melissa-howard.webp)
+![UCS Healthcare: outcomes and impact, image 1](/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/melissa-howard.webp)
 
 “Working with Integrity Grove has been a great experience. They’ve taken the chaos out of managing Google reviews and are doing a fantastic job highlighting our rural clinics in a way that actually reflects who we are.
 
-They’re a local team with a strong vision, and it’s been refreshing to work with people who are both easy to collaborate with and serious about delivering results. We’re glad to have them as a partner.“
+They’re a local team with a strong vision, and it’s been refreshing to work with people who are both easy to collaborate with and serious about delivering results. We’re glad to have them as a partner.”
 
-Melissa Howard,Corporate Compliance & Quality Assurance Director
+Melissa Howard, Corporate Compliance & Quality Assurance Director

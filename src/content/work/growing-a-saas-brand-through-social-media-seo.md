@@ -1,5 +1,5 @@
 ---
-title: "Growing a SaaS Brand Through Social Media & SEO"
+title: "Growing an Amazon FBA Brand Through Social Media & SEO"
 client: "Jyles FBA"
 date: 2024-05-31
 summary: "Integrity Grove partnered with Jyles FBA to grow organic traffic and boost sales for his Amazon FBA community. Our goal was to enhance his online presence and attract new customers through strategic content marketing and SEO efforts."
@@ -10,7 +10,7 @@ coverAlt: "Jyles FBA: Growing a SaaS Brand Through Social Media & SEO"
 
 Integrity Grove partnered with Jyles FBA to grow organic traffic and boost sales for his Amazon FBA community. Our goal was to enhance his online presence and attract new customers through strategic content marketing and SEO efforts.
 
-![Jyles FBA project image](/images/work/growing-a-saas-brand-through-social-media-seo/screenshot-2024-05-31-at-2-45-49-pm.webp)
+![Jyles FBA: overview, image 1](/images/work/growing-a-saas-brand-through-social-media-seo/screenshot-2024-05-31-at-2-45-49-pm.webp)
 
 ## Why Did Jyles FBA Choose Us?
 
@@ -22,17 +22,17 @@ To elevate Jyles FBA’s online presence and drive organic traffic, we implement
 
 **Content Strategy:** We developed a targeted content strategy, creating short-form content across all social platforms and writing articles focused on specific keywords to drive organic traffic.
 
-![Jyles FBA project image](/images/work/growing-a-saas-brand-through-social-media-seo/img-0527.webp)
+![Jyles FBA: services performed, image 1](/images/work/growing-a-saas-brand-through-social-media-seo/img-0527.webp)
 
 **Engaging Posts:** 
 Our team produced engaging posts designed to attract and retain followers, with multi-funnel CTAs to convert views into customers.
 
-![Jyles FBA project image](/images/work/growing-a-saas-brand-through-social-media-seo/img-0557.webp)
+![Jyles FBA: services performed, image 2](/images/work/growing-a-saas-brand-through-social-media-seo/img-0557.webp)
 
 **SEO Optimization:** 
 We optimized the website for search engines, focusing on keywords relevant to the Amazon FBA community, leading to significant improvements in organic search rankings.
 
-![Jyles FBA project image](/images/work/growing-a-saas-brand-through-social-media-seo/img-0558.webp)
+![Jyles FBA: services performed, image 3](/images/work/growing-a-saas-brand-through-social-media-seo/img-0558.webp)
 
 ## Outcomes and Impact
 

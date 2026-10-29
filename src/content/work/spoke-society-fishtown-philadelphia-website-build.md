@@ -14,7 +14,7 @@ Integrity Grove partnered with Spoke Society, Fishtown’s first [cycle and stre
 
 ## New Design
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/spokehomepage.webp)
+![Spoke Society: new design, image 1](/images/work/spoke-society-fishtown-philadelphia-website-build/spokehomepage.webp)
 
 ## Services Performed
 
@@ -33,19 +33,19 @@ The site connects directly to Spoke Society’s [Mariana Tek](https://www.marian
 
 Class schedules, membership packages, and account management all flow through a seamless connected experience. Members can also download the [Spoke Society fitness app](https://apps.apple.com/us/app/spoke-society/id6754724093) on iOS or Android directly from the site.
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile1.webp)
+![Spoke Society: services performed, image 1](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile1.webp)
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile2.webp)
+![Spoke Society: services performed, image 2](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile2.webp)
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile-3.webp)
+![Spoke Society: services performed, image 3](/images/work/spoke-society-fishtown-philadelphia-website-build/mobile-3.webp)
 
 **Custom Analytics Report:** As part of the project, we implemented analytics tracking across the Spoke Society site to measure visitor behavior, traffic sources, and class booking engagement.
 
 These insights give Olivier and Shawn a clear picture of how their site is performing from day one, and where opportunities exist to refine the experience, improve conversion, and connect with more riders in Fishtown and across Philadelphia.
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/spokeanalytics.webp)
+![Spoke Society: services performed, image 4](/images/work/spoke-society-fishtown-philadelphia-website-build/spokeanalytics.webp)
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/spokeanalytics2.webp)
+![Spoke Society: services performed, image 5](/images/work/spoke-society-fishtown-philadelphia-website-build/spokeanalytics2.webp)
 
 ## Outcomes and Impact
 
@@ -55,10 +55,10 @@ The schedule and pricing pages account for 10.4% and 10.2% of all site views, re
 
 With a connected booking platform, two intentional conversion paths, and a content structure built for both traditional and AI-powered search, the site is positioned to keep building visibility in Philadelphia’s boutique fitness market. Spoke Society can now connect with new riders online the same way they do in person: with purpose, good energy, and a method that actually works.
 
-![Spoke Society project image](/images/work/spoke-society-fishtown-philadelphia-website-build/headshot-e1770656614835.webp)
+![Spoke Society: outcomes and impact, image 1](/images/work/spoke-society-fishtown-philadelphia-website-build/headshot-e1770656614835.webp)
 
 “Working with the Integrity Grove team has been a great experience. They really took the time to understand our vision and brought it to life in a way that feels clean, elevated, and true to our brand.
 
 They have been responsive, flexible, and easy to collaborate with throughout the process.”
 
-Casey Polizzotto,Studio Director
+Casey Polizzotto, Studio Director

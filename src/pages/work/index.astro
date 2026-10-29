@@ -7,20 +7,21 @@ import { filterLabels } from '../../data/site';
 
 const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
 ---
-<Base title="Our Work | Integrity Grove" description="Case studies from Integrity Grove: websites, social media management, photography, and video production for banks, healthcare, fitness studios, restaurants, realtors, and more.">
+<Base title="Our Work | Integrity Grove" description="Case studies from Integrity Grove: websites, social media, photography, and video for banks, healthcare, fitness studios, restaurants, and realtors.">
   <section class="page-head">
     <div class="wrap">
       <span class="eyebrow">Our work</span>
       <h1>Real projects. <em>Real clients.</em></h1>
       <p class="lede">Websites, social media, photo, and video for businesses across Iowa and beyond. Here's what we built together and how it went.</p>
       <div class="chips" role="group" aria-label="Filter work">
-        <button type="button" class="chip on" data-f="all">All</button>
-        {Object.entries(filterLabels).map(([k, v]) => <button type="button" class="chip" data-f={k}>{v}</button>)}
+        <button type="button" class="chip on" data-f="all" aria-pressed="true">All</button>
+        {Object.entries(filterLabels).map(([k, v]) => <button type="button" class="chip" data-f={k} aria-pressed="false">{v}</button>)}
       </div>
     </div>
   </section>
   <section class="sec sec-tight">
     <div class="wrap">
+      <h2 class="sr-only">All case studies</h2>
       <div class="work-grid" id="work-grid">{work.map((w) => <WorkCard entry={w} />)}</div>
     </div>
   </section>
@@ -31,7 +32,7 @@ const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => 
       var chips = document.querySelectorAll('.chip');
       var cards = document.querySelectorAll('#work-grid .work-card');
       function apply(f) {
-        chips.forEach(function (c) { c.classList.toggle('on', c.getAttribute('data-f') === f); });
+        chips.forEach(function (c) { var on = c.getAttribute('data-f') === f; c.classList.toggle('on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false'); });
         cards.forEach(function (c) {
           var show = f === 'all' || c.getAttribute('data-filters').split(' ').indexOf(f) > -1;
           c.hidden = !show;

@@ -1,27 +1,27 @@
 ---
-title: "[Ashley Bermel Iowa City Realtor](https://ashleybermel.com) Website Redesign"
+title: "Ashley Bermel Realtor Website Redesign"
 client: "Ashley Bermel"
 location: "Iowa City, IA"
 date: 2026-03-12
 summary: "Integrity Grove partnered with Ashley Bermel, a seasoned Iowa City Corridor real estate agent, to redesign her website and build a digital presence that reflects the personal, community-rooted approach she brings to every client relationship. Our goal was to create a modern, easy-to-navigate site that communicates Ashley’s deep local knowledge, captures her distinct voice, and converts visitors into real conversations."
 filters: ["websites","photo"]
 cover: "/images/work/ashley-bermel-realtor-website-redesign/cover.webp"
-coverAlt: "Ashley Bermel: [Ashley Bermel Iowa City Realtor](https://ashleybermel.com) Website Redesign"
+coverAlt: "Ashley Bermel's redesigned real estate website on desktop"
 ---
 
 Integrity Grove partnered with Ashley Bermel, a seasoned Iowa City Corridor real estate agent, to redesign her website and build a digital presence that reflects the personal, community-rooted approach she brings to every client relationship. Our goal was to create a modern, easy-to-navigate site that communicates Ashley’s deep local knowledge, captures her distinct voice, and converts visitors into real conversations.
 
 ## Old Design
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashley-bermel-hero.webp)
+![Ashley Bermel: old design, image 1](/images/work/ashley-bermel-realtor-website-redesign/ashley-bermel-hero.webp)
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashley-feed.webp)
+![Ashley Bermel: old design, image 2](/images/work/ashley-bermel-realtor-website-redesign/ashley-feed.webp)
 
 ## New Design
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashley-bermel-hero-new.webp)
+![Ashley Bermel: new design, image 1](/images/work/ashley-bermel-realtor-website-redesign/ashley-bermel-hero-new.webp)
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashley-new.webp)
+![Ashley Bermel: new design, image 2](/images/work/ashley-bermel-realtor-website-redesign/ashley-new.webp)
 
 ## Services Performed
 
@@ -34,17 +34,17 @@ Integrity Grove worked with Ashley to elevate her digital presence and build an 
 **Smart Integrations:** 
 We connected the site directly to Ashley’s CRM, so every lead is captured and organized from the first click. The site runs two intentional conversion paths, a soft CTA that offers her Relocation Guide and a hard CTA for direct contact, both feeding seamlessly into her pipeline. Her social presence across Facebook, Instagram, LinkedIn, TikTok, YouTube, and Google is linked throughout, giving visitors multiple ways to stay connected.
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashleymobilehero.webp)
+![Ashley Bermel: services performed, image 1](/images/work/ashley-bermel-realtor-website-redesign/ashleymobilehero.webp)
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashleypersonmobile.webp)
+![Ashley Bermel: services performed, image 2](/images/work/ashley-bermel-realtor-website-redesign/ashleypersonmobile.webp)
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/ashleycontactmobile.webp)
+![Ashley Bermel: services performed, image 3](/images/work/ashley-bermel-realtor-website-redesign/ashleycontactmobile.webp)
 
 **Custom Analytics Report:** As part of the project, we implemented analytics tracking to measure visitor behavior, traffic sources, and lead form engagement. These insights give Ashley a clear picture of how her site is performing over time and where opportunities exist to refine the experience and capture more of the right clients.
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/analyticscover.webp)
+![Ashley Bermel: services performed, image 4](/images/work/ashley-bermel-realtor-website-redesign/analyticscover.webp)
 
-![Ashley Bermel project image](/images/work/ashley-bermel-realtor-website-redesign/analyticsnumbers.webp)
+![Ashley Bermel: services performed, image 5](/images/work/ashley-bermel-realtor-website-redesign/analyticsnumbers.webp)
 
 ## Outcomes and Impact
 

@@ -4,7 +4,7 @@ client: "Preferred Pest Management"
 location: "Iowa"
 date: 2025-10-13
 summary: "Integrity Grove partnered with Preferred Pest Management (PPM) to create a visual brand experience that reflects their trusted, people-first approach to pest control. We produced a custom photo library featuring their team in action, along with a website header video that highlights their commitment to serving homeowners and businesses across Central Iowa with honest and effective service."
-filters: ["social","photo","websites"]
+filters: ["social","photo"]
 cover: "/images/work/content-marketing-library-for-preferred-pest-management/cover.webp"
 coverAlt: "Preferred Pest Management: Content Marketing Library for Preferred Pest Management"
 videos: ["iGTxpE2Ke8Q"]
@@ -12,13 +12,13 @@ videos: ["iGTxpE2Ke8Q"]
 
 Integrity Grove partnered with Preferred Pest Management (PPM) to create a visual brand experience that reflects their trusted, people-first approach to pest control. We produced a custom photo library featuring their team in action, along with a website header video that highlights their commitment to serving homeowners and businesses across Central Iowa with honest and effective service.
 
-These visuals give Preferred Pest Management professional content they can use across their website, ads, and social media while staying true to their local identity and reputation. This project will be featured on integritygrove.com as an example of how we help service-based businesses build trust through authentic media.
+These visuals give Preferred Pest Management professional content they can use across their website, ads, and social media while staying true to their local identity and reputation.
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm06293-scaled.webp)
+![Preferred Pest Management: overview, image 1](/images/work/content-marketing-library-for-preferred-pest-management/ppm06293-scaled.webp)
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm05597-scaled.webp)
+![Preferred Pest Management: overview, image 2](/images/work/content-marketing-library-for-preferred-pest-management/ppm05597-scaled.webp)
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm04965-scaled.webp)
+![Preferred Pest Management: overview, image 3](/images/work/content-marketing-library-for-preferred-pest-management/ppm04965-scaled.webp)
 
 ## Why Did PPM Choose Us?
 
@@ -26,11 +26,11 @@ Preferred Pest Management partnered with Integrity Grove knowing our experience 
 
 That confidence allowed us to create a photo library and website header video that reflect Preferred Pest Management’s honest, customer-focused approach. Our partnership resulted in a strong visual foundation they can use across their marketing to connect with homeowners and businesses throughout Central Iowa.
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm05614-scaled.webp)
+![Preferred Pest Management: why did ppm choose us?, image 1](/images/work/content-marketing-library-for-preferred-pest-management/ppm05614-scaled.webp)
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm05027-scaled.webp)
+![Preferred Pest Management: why did ppm choose us?, image 2](/images/work/content-marketing-library-for-preferred-pest-management/ppm05027-scaled.webp)
 
-![Preferred Pest Management project image](/images/work/content-marketing-library-for-preferred-pest-management/ppm05324-scaled.webp)
+![Preferred Pest Management: why did ppm choose us?, image 3](/images/work/content-marketing-library-for-preferred-pest-management/ppm05324-scaled.webp)
 
 ## Services Performed
 

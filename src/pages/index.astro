@@ -144,7 +144,7 @@ const schema = {
         <a href={`/${w.id}/`} class="reel-card">
           <div class:list={['reel-img', { 'fit-contain': w.data.filters.every((f) => f === 'websites') }]}><img src={w.data.cover} alt={w.data.coverAlt} width="1600" height="1000" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" /></div>
           <div class="reel-body">
-            <span class="reel-n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="reel-n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
             <span class="work-client">{w.data.client}</span>
             <h3>{w.data.title}</h3>
             <div class="pills">{w.data.filters.map((f) => <span class="pill">{filterLabels[f]}</span>)}</div>
@@ -187,8 +187,6 @@ const schema = {
       </div>
     </div>
     <Reviews marquee />
-    <div class="wrap">
-    </div>
   </section>
 
   <CtaBand />

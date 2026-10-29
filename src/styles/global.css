@@ -3,7 +3,7 @@
   --navy-2:#1B3740;
   --navy-3:#24454F;
   --green:#66BF84;
-  --green-dk:#3F9A5E;
+  --green-dk:#2E7D4B;
   --green-tint:#E8F5EC;
   --paper:#FFFFFF;
   --mist:#F3F6F5;
@@ -181,7 +181,7 @@ nav.open .nav-toggle span:last-child{transform:translateY(-4px) rotate(-45deg)}
 .service .go::after{content:" →";display:inline-block;transition:transform .3s ease}
 .service:hover .go::after{transform:translateX(5px)}
 .service-cta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem}
-@media(max-width:900px){.service{grid-template-columns:auto 1fr;gap:1.2rem;padding:1.8rem 0}.service .thumb{display:none}.service .go{grid-column:2}.service{grid-template-columns:auto 1fr}.service .thumb,.service .go{display:none}.service:hover{padding-left:0}}
+@media(max-width:900px){.service{grid-template-columns:auto 1fr;gap:1.2rem;padding:1.8rem 0}.service .thumb,.service .go{display:none}.service:hover{padding-left:0}}
 
 /* work cards */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
@@ -276,7 +276,7 @@ a.pill:hover{border-color:var(--green)}
 .contact-card.primary{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
 .contact-card.primary h2{color:#fff}
 .contact-card.primary .go{color:var(--green)}
-.contact-card h2{font-size:1.5rem;margin-bottom:.6rem;word-break:break-word}
+.contact-card h2,.contact-card .h2{display:block;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:.6rem;word-break:break-word}
 .contact-card .go{display:block;margin-top:1rem}
 
 .split.top{align-items:start}
@@ -377,12 +377,25 @@ footer{background:var(--ink);color:#93A6AB;padding:4.5rem 0 0;overflow:hidden}
 
 /* hidden until GSAP animates them in; html.motion is only set when motion is allowed */
 .motion .reveal,
-.motion .hero h1,.motion .page-head h1,.motion .cs-head h1,
 .motion .sec-title h2,.motion .sec-head h2,.motion .cta-band h2,
 .motion .hero .eyebrow,.motion .hero .lede,.motion .hero .hero-cta-row,.motion .hero-stack img,
 .motion .page-head .eyebrow,.motion .page-head .lede,.motion .page-head .hero-cta-row,.motion .page-head .chips,
 .motion .page-head .contact-cards,.motion .page-head .btn-lg,.motion .page-head .head-img,.motion .page-head .cform,
 .motion .cs-head .back,.motion .cs-head .eyebrow,.motion .cs-head .pills{opacity:0}
+/* the page headline only waits for its word-by-word reveal on desktop; on phones it paints immediately (it is the LCP) */
+@media(min-width:900px){.motion .hero h1,.motion .page-head h1,.motion .cs-head h1{opacity:0}}
+
+/* with a mouse, GSAP drives transform every frame, so CSS must not also transition it */
+.has-cursor :is(.btn,.work-card,.contact-card,.service,.package,.review,.person){transition-property:background,background-color,border-color,color,box-shadow,padding,opacity}
+
+/* marquees pause on hover, on keyboard focus, and via the toggle button */
+.marquee:focus-within .marquee-track,.marquee.paused .marquee-track{animation-play-state:paused}
+.marquee-toggle{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:var(--muted);padding:.45rem .9rem;border:1.5px solid var(--line);border-radius:999px;margin:1.2rem auto 0;background:#fff}
+.marquee-toggle:hover{color:var(--text);border-color:var(--text)}
+.review-marquee-wrap{display:flex;flex-direction:column;align-items:center}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:899px){.reel-count{display:none}}
 
 /* SplitText line masks: pad the clip box so serif descenders and italic overhang aren't cut while words rise in.
    The negative margin cancels the padding, so layout doesn't move. (The split is reverted once the entrance ends.) */
@@ -393,7 +406,7 @@ footer{background:var(--ink);color:#93A6AB;padding:4.5rem 0 0;overflow:hidden}
 html:not(.motion) .progress{display:none}
 
 /* nav tucks away on scroll down */
-nav{transition:border-color .2s ease,transform .45s cubic-bezier(.2,.8,.2,1);view-transition-name:site-nav}
+nav{transition:border-color .2s ease,background .3s ease,transform .45s cubic-bezier(.2,.8,.2,1);view-transition-name:site-nav}
 nav.nav-hidden{transform:translateY(-100%)}
 
 /* hero glow that trails the cursor */
@@ -444,7 +457,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 .reel-card:hover .reel-img img{scale:1.06}
 .reel-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.5rem;position:relative}
 .reel-body h3{font-size:1.2rem}
-.reel-n{position:absolute;right:1.4rem;top:1.2rem;font-weight:700;color:var(--line);font-size:2rem;line-height:1}
+.reel-n{position:absolute;right:1.4rem;top:1.2rem;font-weight:700;color:#8FA0A3;font-size:2rem;line-height:1}
 .reel-more{background:var(--navy);color:#fff;justify-content:space-between;padding:2.2rem;border:0;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
 .reel-more .reel-arrow{font-size:3.5rem;color:var(--green);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .reel-more:hover .reel-arrow{transform:translateX(12px)}

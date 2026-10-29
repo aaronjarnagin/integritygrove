@@ -11,7 +11,7 @@ coverAlt: "Misty Metschke: Exponentially Growing Followers for Ames Real Estate 
 
 At Integrity Grove, we partnered with Misty Metschke to elevate her social media presence and drive organic engagement. Leveraging our expertise in social media strategy and content creation, we successfully boosted her visibility and follower base.
 
-![Misty Metschke project image](/images/work/social-media-success-for-misty-metschke/dsc00980m.webp)
+![Misty Metschke: overview, image 1](/images/work/social-media-success-for-misty-metschke/dsc00980m.webp)
 
 ## Challenge and Initial Needs
 
@@ -31,7 +31,7 @@ We actively managed Misty’s social media interactions, responding to comments 
 
 ## Outcomes and Impact
 
-Our comprehensive content production and social media management efforts resulted in Misty’s Facebook page growing from 500 to over 3,500 followers and doubling the following on Misty’s Instagram over the course of a year!
+Our comprehensive content production and social media management efforts resulted in Misty’s Facebook page growing from 500 to over 3,500 followers and doubling the following on Misty’s Instagram over two years!
 
 **650,000 Views on Facebook Reels**
 

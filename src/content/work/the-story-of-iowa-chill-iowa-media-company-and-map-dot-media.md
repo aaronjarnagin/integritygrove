@@ -25,7 +25,7 @@ Map Dot Media partnered with Integrity Grove to help tell their story, from the 
 Our team at Integrity Grove led the full production of Map Dot Media’s brand story video. From the early planning stages to final edits, we handled every part of the process including scheduling, directing, filming, and post-production. The final result was a polished and authentic video that captured their journey from Iowa Chill to a growing creative agency, highlighting the heart behind their work and the people who built it.
 
 **Pre-Production Planning:** 
-We worked closely with Denver Savings Bank from the start, planning every detail to make sure the video aligned with their marketing goals. This included writing the script, mapping out shots, and building a concept that told the story of the debit card program in a clear and engaging way.
+We worked closely with the Map Dot Media team from the start, planning every detail so the video told their story the way they would tell it themselves. That meant mapping out the interview questions, choosing locations that fit the Iowa Chill brand, and building a shot list that could carry the story from a passion project to a full media company.
 
 **Directing:** Our team directed the entire production for Map Dot Media, making sure the tone felt true to their brand while clearly communicating their growth and vision. We kept the project on schedule and ensured the final video reflected their story from start to finish.
 

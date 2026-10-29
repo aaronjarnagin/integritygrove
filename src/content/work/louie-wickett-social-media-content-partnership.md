@@ -34,17 +34,17 @@ As part of the partnership, we track Louie’s content performance across every 
 
 These insights feed directly into the content calendar. When a Reel format takes off, we lean into it. When a topic underperforms, we adjust or drop it. The result is a content operation that gets sharper over time and consistently earns more attention for Louie in the [Central Iowa mortgage market](https://louielends.com/).
 
-![Louie Wickett project image](/images/work/louie-wickett-social-media-content-partnership/louiehome.webp)
+![Louie Wickett: services performed, image 1](/images/work/louie-wickett-social-media-content-partnership/louiehome.webp)
 
-![Louie Wickett project image](/images/work/louie-wickett-social-media-content-partnership/louie-numbers.webp)
+![Louie Wickett: services performed, image 2](/images/work/louie-wickett-social-media-content-partnership/louie-numbers.webp)
 
 ## Outcomes and Impact
 
-The partnership between Louie Wickett and Integrity Grove has turned a personal loan officer brand into a legitimate media presence in Central Iowa. From **January 1, 2025 to January 1, 2026** , Louie’s social media pages amassed a total of **8,144,962 impressions** .
+The partnership between Louie Wickett and Integrity Grove has turned a personal loan officer brand into a legitimate media presence in Central Iowa. From **January 1, 2025 to January 1, 2026**, Louie’s social media pages amassed a total of **8,144,962 impressions**.
 
 The most notable shifts:
 
-**Multiple viral posts pushing awareness beyond the Des Moines metro.** In the last year, individual [Facebook reels](https://www.facebook.com/LouieLends/reels/) have crossed **203,000 views, 134,000 views, 105,000 views, and 100,000 views** . Each one puts Louie in front of tens of thousands of potential homebuyers who would have otherwise never heard his name.
+**Multiple viral posts pushing awareness beyond the Des Moines metro.** In the last year, individual [Facebook reels](https://www.facebook.com/LouieLends/reels/) have crossed **203,000 views, 134,000 views, 105,000 views, and 100,000 views**. Each one puts Louie in front of tens of thousands of potential homebuyers who would have otherwise never heard his name.
 
 **Facebook following up 25% in the last year.** A steady climb in owned audience means every new post starts with a larger built-in reach, compounding the value of the content we produce.
 

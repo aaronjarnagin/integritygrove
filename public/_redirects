@@ -18,6 +18,11 @@
 /author/*                     /about/            301
 /feed/                        /                  301
 /feed                         /                  301
+/tag/*                        /work/             301
+/*/feed/                      /:splat/           301
+# old WordPress media URLs that Google Images and old social posts may still point at
+/wp-content/uploads/*         /work/             301
+/wp-content/*                 /                  301
 
 # Custom 404 for any unmatched path (Sevalla does not serve 404.html on its own). Keep this last.
 /*  /404.html  404

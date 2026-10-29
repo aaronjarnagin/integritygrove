@@ -33,7 +33,7 @@ Integrity Grove handled all aspects of editing and post-production, making sure 
 
 ## Outcomes and Impact
 
-![Denver Savings Bank project image](/images/work/video-commercial-production-for-denver-savings-bank/img-1322-e1729269014532.webp)
+![Denver Savings Bank: outcomes and impact, image 1](/images/work/video-commercial-production-for-denver-savings-bank/img-1322-e1729269014532.webp)
 
 The video campaign resulted in significant success for Denver Savings Bank. The “Saved by the Bell” video became their most-watched content on Facebook.
 

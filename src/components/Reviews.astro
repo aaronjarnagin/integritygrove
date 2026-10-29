@@ -6,6 +6,7 @@ const half = Math.ceil(reviews.length / 2);
 const rows = [reviews.slice(0, half), reviews.slice(half)];
 ---
 {marquee ? (
+  <div class="review-marquee-wrap">
   <div class="review-marquee">
     {rows.map((row, r) => (
       <div class:list={['marquee', { reverse: r === 1 }]}>
@@ -23,6 +24,20 @@ const rows = [reviews.slice(0, half), reviews.slice(half)];
         </div>
       </div>
     ))}
+  </div>
+  <button type="button" class="marquee-toggle" aria-pressed="false" data-marquee-toggle>Pause reviews</button>
+  <script is:inline>
+    (function () {
+      var btn = document.querySelector('[data-marquee-toggle]');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var paused = btn.getAttribute('aria-pressed') !== 'true';
+        btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        btn.textContent = paused ? 'Play reviews' : 'Pause reviews';
+        document.querySelectorAll('.review-marquee .marquee').forEach(function (m) { m.classList.toggle('paused', paused); });
+      });
+    })();
+  </script>
   </div>
 ) : (
   <div class="reviews">

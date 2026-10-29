@@ -34,7 +34,7 @@ const schema = {
   publisher: { '@type': 'Organization', name: 'Integrity Grove', logo: { '@type': 'ImageObject', url: 'https://integritygrove.com/images/logo-dark.png' } },
 };
 ---
-<Base title={`${d.title} | Integrity Grove`} description={description} image={d.cover} type="article" schema={schema}>
+<Base title={`${d.title} | Integrity Grove`} description={description} image={d.cover.replace("cover.webp", "share.jpg")} type="article" schema={schema}>
   <article>
     <header class="cs-head">
       <div class="wrap">

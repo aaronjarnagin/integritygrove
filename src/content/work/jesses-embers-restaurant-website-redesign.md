@@ -14,15 +14,15 @@ Integrity Grove partnered with [Jesse’s Embers](https://theoriginaljessesember
 
 ## Old Design
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/je-old-e1760024768303.webp)
+![Jesse's Embers: old design, image 1](/images/work/jesses-embers-restaurant-website-redesign/je-old-e1760024768303.webp)
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/jemenu-old-e1760024915249.webp)
+![Jesse's Embers: old design, image 2](/images/work/jesses-embers-restaurant-website-redesign/jemenu-old-e1760024915249.webp)
 
 ## New Design
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/je-new-e1760024949119.webp)
+![Jesse's Embers: new design, image 1](/images/work/jesses-embers-restaurant-website-redesign/je-new-e1760024949119.webp)
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/jemenu-new-e1760025011518.webp)
+![Jesse's Embers: new design, image 2](/images/work/jesses-embers-restaurant-website-redesign/jemenu-new-e1760025011518.webp)
 
 ## Services Performed
 
@@ -41,17 +41,17 @@ To make the digital experience authentic, our team visited Jesse’s Embers for 
 
 These images now serve as the visual foundation of the website, inviting guests to experience the same warmth and ambiance they will find in person.
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/image0-e1760025662466.webp)
+![Jesse's Embers: services performed, image 1](/images/work/jesses-embers-restaurant-website-redesign/image0-e1760025662466.webp)
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/image1-e1760025735504.webp)
+![Jesse's Embers: services performed, image 2](/images/work/jesses-embers-restaurant-website-redesign/image1-e1760025735504.webp)
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/image2-e1760025772133.webp)
+![Jesse's Embers: services performed, image 3](/images/work/jesses-embers-restaurant-website-redesign/image2-e1760025772133.webp)
 
 **Custom Analytics Report:** As part of the project, we implemented analytics tracking to measure visitor behavior, traffic sources, and engagement. These insights allow Jesse’s Embers to monitor website performance over time and identify opportunities to enhance guest interactions online.
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/report-home.webp)
+![Jesse's Embers: services performed, image 4](/images/work/jesses-embers-restaurant-website-redesign/report-home.webp)
 
-![Jesse's Embers project image](/images/work/jesses-embers-restaurant-website-redesign/report-interior.webp)
+![Jesse's Embers: services performed, image 5](/images/work/jesses-embers-restaurant-website-redesign/report-interior.webp)
 
 ## Outcomes and Impact
 

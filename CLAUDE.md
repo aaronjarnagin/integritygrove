@@ -41,7 +41,7 @@ Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
 | line | `#E2E8E6` | borders |
 | muted | `#5A6B70` | body copy |
 
-Also `ink` `#0B1A1E` (hero, CTA band, footer) and `green-dk` `#3F9A5E` (green text on white, passes contrast).
+Also `ink` `#0B1A1E` (hero, CTA band, footer) and `green-dk` `#2E7D4B` for green text on white or mist (5:1, passes AA at small sizes; the lighter `#3F9A5E` only passed for large text).
 
 Fonts (Google Fonts, loaded async): Hanken Grotesk 400 to 800 for everything, plus Lora italic 500 for one accent phrase per headline (Instrument Serif was tried first and read too much like script). Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. The old site used niveau-grotesk (Adobe Fonts).
 
@@ -57,7 +57,9 @@ Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from th
 
 Favicons: white tree mark on a navy tile. `favicon.ico` (16/32/48), `favicon-32.png`, `favicon-96.png`, `apple-touch-icon.png` (180, square). Regenerate with `node scripts/favicons.mjs`.
 
-Share image: `public/og-default.png` (1200x630, navy, logo + hero headline + UCS work photo), the default `og:image` for every page except case studies, which use their cover. Regenerate with `node scripts/og-image.mjs` after changing the hero headline.
+Share images: `public/og-default.png` (1200x630, navy, logo + hero headline + UCS work photo) is the default `og:image`. Case studies use `public/images/work/<slug>/share.jpg`, a 1200x630 JPG made from the cover by `node scripts/share-jpgs.mjs` (Facebook and LinkedIn don't render WebP); that script also re-encodes any cover over 300KB. Run it after adding a case study. Regenerate the default with `node scripts/og-image.mjs` after changing the hero headline.
+
+Markdown images in case studies get `width`/`height` (and lazy loading) at build time from `src/plugins/rehype-img-size.mjs`, so they don't shift the page as they load.
 
 ## Site structure
 
@@ -128,8 +130,9 @@ Category archives: `/category/photography/`, `/category/social-media/`, `/catego
 ## Open items
 
 1. Contact form endpoint: the form on `/contact/` is built (AJAX, inline success, honeypot) but `FORM_URL` in `src/config.ts` is empty. Create a new Formspree form delivering to info@integritygrove.com and paste its `https://formspree.io/f/...` URL there. Don't reuse `xgogozar`: it is shared by aaronjarnagin and aarongoesoutdoors and delivers to outdoors@aaronjarnagin.com.
-2. Review the imported case study copy and the new service and about wording.
-3. Cutover (see "Cutover day" below).
+2. Confirm with Aaron (found in the 2026-10-29 review, carried over from WordPress): the Peoples Savings Bank case study uses Denver Savings Bank's testimonial signed by Jamin Wass (needs a real PSB quote or removal); About says 47k+ followers in one place and 50k+ in another; the client logo file is labelled Pollari Productions while the Google review says Pollari Media.
+3. Case study alt text is generated ("Client: section, image N"). Real descriptions would be better; the older posts (Noble Method, Guthrie County, Misty Metschke) could also use a tightening pass.
+4. Cutover (see "Cutover day" below).
 
 ## Cutover day
 

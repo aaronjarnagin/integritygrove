@@ -17,23 +17,30 @@ const $$ = <T extends Element = HTMLElement>(s: string, root: ParentNode = docum
 if (import.meta.env.DEV) (window as any).gsap = gsap;
 
 if (!reduce) {
-  nav();
-  progress();
-  hero();
-  headings();
-  reveals();
-  counters();
-  compare();
-  reel();
-  marqueeSkew();
-  coverReveal();
-  if (fine) {
-    cursor();
-    magnetic();
-    tilt();
+  try {
+    nav();
+    progress();
+    hero();
+    headings();
+    reveals();
+    counters();
+    compare();
+    reel();
+    marqueeSkew();
+    coverReveal();
+    if (fine) {
+      cursor();
+      magnetic();
+      tilt();
+    }
+    // fonts load async and can shift line breaks; re-measure once they're in
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  } catch (err) {
+    // never leave content hidden: drop the pre-animation styles and show everything as-is
+    document.documentElement.classList.remove('motion');
+    gsap.set('.reveal, h1, h2', { clearProps: 'all' });
+    console.error('[motion] disabled after error:', err);
   }
-  // fonts load async and can shift line breaks; re-measure once they're in
-  document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }
 
 /* nav hides on scroll down, returns on scroll up */
@@ -62,7 +69,8 @@ function progress() {
 
 /* hero: headline rises word by word out of masked lines, then the rest; photo stack drops in and floats */
 function hero() {
-  const h1 = $('.hero h1, .page-head h1, .cs-head h1');
+  // the headline is the largest paint on the page, so phones skip its word reveal and show it straight away
+  const h1 = matchMedia('(min-width: 900px)').matches ? $('.hero h1, .page-head h1, .cs-head h1') : null;
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
   if (h1) {
     SplitText.create(h1, {
@@ -204,7 +212,17 @@ function reel() {
         },
       },
     });
-    return () => section.classList.remove('reel-pinned');
+    // keyboard: tabbing to a card scrolls the page to where that card is in view
+    const st = tween.scrollTrigger!;
+    const onFocus = (e: FocusEvent) => {
+      const card = (e.target as Element).closest('.reel-card');
+      if (!card) return;
+      const all = $$('.reel-card', track);
+      const p = all.indexOf(card as HTMLElement) / Math.max(1, all.length - 1);
+      window.scrollTo({ top: st.start + p * (st.end - st.start), behavior: 'auto' });
+    };
+    track.addEventListener('focusin', onFocus);
+    return () => { section.classList.remove('reel-pinned'); track.removeEventListener('focusin', onFocus); };
   });
 }
 

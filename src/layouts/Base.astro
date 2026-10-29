@@ -6,7 +6,7 @@ import { STAGING, EMAIL } from '../config';
 
 const {
   title = 'Integrity Grove | Social Media Marketing to Grow Your Business',
-  description = 'Social media marketing, websites, photo, and video that drive real results. Creative content, strategic planning, and data-driven insights from a small Iowa agency.',
+  description = 'Social media marketing, websites, photo, and video that drive real results. Original content and real strategy from a small Iowa agency.',
   image = '/og-default.png',
   type = 'website',
   schema = null,
@@ -56,12 +56,12 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=optional"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=optional" rel="stylesheet" />
     </noscript>
     <!-- "motion" hides animated elements until GSAP takes over. Skipped for reduced motion,
          and removed again if the motion script hasn't started within 3s so nothing stays invisible. -->
@@ -100,14 +100,22 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
         var nav = document.querySelector('nav');
         // over a dark hero the bar stays transparent until the hero is scrolled past
         var hero = nav && nav.classList.contains('nav-dark') ? document.querySelector('.hero') : null;
-        function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > (hero ? hero.offsetHeight - 76 : 8)); }
+        var heroH = hero ? hero.offsetHeight : 0;
+        window.addEventListener('resize', function () { heroH = hero ? hero.offsetHeight : 0; });
+        function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > (hero ? heroH - 76 : 8)); }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
         var toggle = document.querySelector('.nav-toggle');
-        if (toggle) toggle.addEventListener('click', function () {
-          var open = nav.classList.toggle('open');
+        function setMenu(open) {
+          nav.classList.toggle('open', open);
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
+          toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+        if (toggle) {
+          toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); toggle.focus(); } });
+        }
       })();
     </script>
 
