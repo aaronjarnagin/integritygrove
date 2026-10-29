@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import WorkCard from '../components/WorkCard.astro';
 import Reviews from '../components/Reviews.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { clients } from '../data/site';
+import { clients, filterLabels } from '../data/site';
 import { BOOK_URL, EMAIL } from '../config';
 
 const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
+const reel = work.slice(0, 8);
 
 const services = [
   { name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.' },
@@ -33,6 +33,7 @@ const schema = {
 ---
 <Base schema={schema}>
   <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Social media · Websites · Photo & video</span>
@@ -54,17 +55,23 @@ const schema = {
   <section class="logos" aria-label="Some clients we're proud to partner with">
     <div class="wrap">
       <span class="eyebrow center">Some clients we're proud to partner with</span>
-      <div class="logo-row">
-        {clients.map((c) => <img src={c.logo} alt={c.name} width={c.w} height={c.h} loading="lazy" />)}
+    </div>
+    <div class="marquee logo-marquee">
+      <div class="marquee-track">
+        {[0, 1].map((copy) => (
+          <div class="logo-row" aria-hidden={copy === 1 ? 'true' : undefined}>
+            {clients.map((c) => <img src={c.logo} alt={copy === 1 ? '' : c.name} width={c.w} height={c.h} loading="lazy" />)}
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="stats">
     <div class="wrap stat-row">
-      <div class="stat reveal"><strong>100s</strong><span>of projects completed across dozens of industries</span></div>
-      <div class="stat reveal"><strong>Millions</strong><span>of organic impressions for our clients last year, with no ad spend</span></div>
-      <div class="stat reveal"><strong>2</strong><span>founders. You work directly with us, not a junior account rep.</span></div>
+      <div class="stat reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects completed across dozens of industries</span></div>
+      <div class="stat reveal"><strong data-scramble>Millions</strong><span>of organic impressions for our clients last year, with no ad spend</span></div>
+      <div class="stat reveal"><strong data-count="2">2</strong><span>founders. You work directly with us, not a junior account rep.</span></div>
     </div>
   </section>
 
@@ -88,16 +95,36 @@ const schema = {
     </div>
   </section>
 
-  <section class="sec tint">
-    <div class="wrap">
+  <!-- work reel: pinned sideways scroll on desktop (motion.ts), swipeable carousel otherwise -->
+  <section class="reel" aria-label="Recent work">
+    <div class="wrap reel-head">
       <div class="sec-head">
         <div>
           <span class="eyebrow">Recent work</span>
           <h2>Real results. Real clients.</h2>
         </div>
-        <a href="/work/" class="btn btn-ghost btn-sm">All {work.length} case studies</a>
+        <div class="reel-meta">
+          <span class="reel-count" aria-hidden="true"><b>01</b> / {String(reel.length).padStart(2, '0')}</span>
+          <a href="/work/" class="btn btn-ghost btn-sm">All {work.length} case studies</a>
+        </div>
       </div>
-      <div class="work-grid">{work.slice(0, 6).map((w) => <WorkCard entry={w} />)}</div>
+    </div>
+    <div class="reel-track">
+      {reel.map((w, i) => (
+        <a href={`/${w.id}/`} class="reel-card">
+          <div class="reel-img"><img src={w.data.cover} alt={w.data.coverAlt} width="900" height="1100" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" /></div>
+          <div class="reel-body">
+            <span class="reel-n">{String(i + 1).padStart(2, '0')}</span>
+            <span class="work-client">{w.data.client}</span>
+            <h3>{w.data.title}</h3>
+            <div class="pills">{w.data.filters.map((f) => <span class="pill">{filterLabels[f]}</span>)}</div>
+          </div>
+        </a>
+      ))}
+      <a href="/work/" class="reel-card reel-more">
+        <span>See all {work.length}<br />case studies</span>
+        <span class="reel-arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
@@ -128,7 +155,9 @@ const schema = {
         <h2>We're a small agency, and we like it that way</h2>
         <p>Every client gets our full attention. These reviews reflect what we hear most: clear communication, work that moves the needle, and a team that treats your business like its own.</p>
       </div>
-      <Reviews limit={6} />
+    </div>
+    <Reviews marquee />
+    <div class="wrap">
     </div>
   </section>
 

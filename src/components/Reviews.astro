@@ -1,12 +1,36 @@
 ---
+/* Grid of reviews, or (marquee) two rows drifting in opposite directions. */
 import { reviews } from '../data/site';
-const { limit = reviews.length } = Astro.props;
+const { limit = reviews.length, marquee = false } = Astro.props;
+const half = Math.ceil(reviews.length / 2);
+const rows = [reviews.slice(0, half), reviews.slice(half)];
 ---
-<div class="reviews">
-  {reviews.slice(0, limit).map((r) => (
-    <figure class="review reveal">
-      <blockquote>{r.text}</blockquote>
-      <figcaption><strong>{r.name}</strong><span>{r.org}</span></figcaption>
-    </figure>
-  ))}
-</div>
+{marquee ? (
+  <div class="review-marquee">
+    {rows.map((row, r) => (
+      <div class:list={['marquee', { reverse: r === 1 }]}>
+        <div class="marquee-track">
+          {[0, 1].map((copy) => (
+            <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>
+              {row.map((rv) => (
+                <figure class="review">
+                  <blockquote>{rv.text}</blockquote>
+                  <figcaption><strong>{rv.name}</strong><span>{rv.org}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div class="reviews">
+    {reviews.slice(0, limit).map((r) => (
+      <figure class="review reveal">
+        <blockquote>{r.text}</blockquote>
+        <figcaption><strong>{r.name}</strong><span>{r.org}</span></figcaption>
+      </figure>
+    ))}
+  </div>
+)}

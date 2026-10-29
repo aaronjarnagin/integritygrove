@@ -4,8 +4,16 @@ const {
   title = "Let's grow your business",
   text = "Book a free 30-minute discovery call. We'll take an honest look at where you stand online and where the biggest opportunities are.",
 } = Astro.props;
+const words = ["Let's grow your business", 'Social media', 'Websites', 'Photo & video'];
 ---
 <section class="cta-band" id="contact">
+  <div class="marquee big-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map(() => (
+        <div class="marquee-set">{words.map((w) => <span>{w}<i>✦</i></span>)}</div>
+      ))}
+    </div>
+  </div>
   <div class="wrap cta-inner">
     <div>
       <span class="eyebrow">Free discovery call</span>
@@ -13,7 +21,7 @@ const {
       <p>{text}</p>
     </div>
     <div class="cta-actions">
-      <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
+      <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a discovery call</a>
       <a href={`mailto:${EMAIL}`} class="cta-email">{EMAIL}</a>
     </div>
   </div>

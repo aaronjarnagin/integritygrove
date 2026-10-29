@@ -35,8 +35,10 @@ const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => 
         cards.forEach(function (c) {
           var show = f === 'all' || c.getAttribute('data-filters').split(' ').indexOf(f) > -1;
           c.hidden = !show;
-          if (show) c.classList.add('in');
+          if (show) { c.style.opacity = '1'; c.style.translate = 'none'; c.style.transform = 'none'; }
         });
+        // layout changed: let ScrollTrigger re-measure
+        window.dispatchEvent(new Event('resize'));
       }
       chips.forEach(function (c) {
         c.addEventListener('click', function () {

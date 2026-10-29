@@ -104,10 +104,6 @@ nav.open .nav-toggle span:last-child{transform:translateY(-4px) rotate(-45deg)}
 
 /* client logos */
 .logos{padding:2.5rem 0 3rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.logo-row{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5rem;align-items:center;margin-top:1.2rem}
-.logo-row img{max-height:56px;width:auto;margin:0 auto;filter:brightness(0);opacity:.5;transition:opacity .2s ease}
-.logo-row img:hover{opacity:.85}
-@media(max-width:800px){.logo-row{grid-template-columns:repeat(3,1fr);gap:2rem 1.5rem}.logo-row img{max-height:44px}}
 
 /* stats */
 .stats{background:var(--navy);padding:3.5rem 0}
@@ -312,6 +308,115 @@ footer{background:#0B1A1E;color:#93A6AB;padding:4.5rem 0 2rem}
 
 @media(max-width:640px){.sec{padding:4.5rem 0}.page-head{padding:3.5rem 0 3rem}.hero{padding:3.5rem 0 4rem}}
 
-/* reveal: opacity only, no layout shift */
-.reveal-on .reveal{opacity:0;transition:opacity .7s ease}
-.reveal-on .reveal.in{opacity:1}
+/* ============ MOTION LAYER (src/scripts/motion.ts) ============ */
+
+/* hidden until GSAP animates them in; html.motion is only set when motion is allowed */
+.motion .reveal,
+.motion .hero h1,.motion .page-head h1,.motion .cs-head h1,
+.motion .sec-title h2,.motion .sec-head h2,.motion .cta-band h2,
+.motion .hero .eyebrow,.motion .hero .lede,.motion .hero .hero-cta-row,.motion .hero-stack img,
+.motion .page-head .eyebrow,.motion .page-head .lede,.motion .page-head .hero-cta-row,.motion .page-head .chips,
+.motion .page-head .contact-cards,.motion .page-head .btn-lg,.motion .page-head .head-img,.motion .page-head .cform,
+.motion .cs-head .back,.motion .cs-head .eyebrow,.motion .cs-head .pills{opacity:0}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;z-index:120;pointer-events:none}
+html:not(.motion) .progress{display:none}
+
+/* nav tucks away on scroll down */
+nav{transition:border-color .2s ease,transform .45s cubic-bezier(.2,.8,.2,1);view-transition-name:site-nav}
+nav.nav-hidden{transform:translateY(-100%)}
+
+/* hero glow that trails the cursor */
+.hero{position:relative;isolation:isolate}
+.hero-glow{position:absolute;left:50%;top:50%;width:720px;height:720px;margin:-360px 0 0 -360px;border-radius:50%;background:radial-gradient(circle,rgba(102,191,132,.32),rgba(102,191,132,0) 65%);filter:blur(30px);z-index:-1;pointer-events:none;animation:glow-breathe 8s ease-in-out infinite}
+@keyframes glow-breathe{50%{opacity:.6;scale:1.15}}
+.hero-stack img{will-change:transform}
+
+/* marquees: two identical sets, slide one set-width, loop */
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee 40s linear infinite}
+.marquee.reverse .marquee-track{animation-direction:reverse}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.logo-marquee{margin-top:1.4rem}
+.logo-marquee .marquee-track{animation-duration:32s}
+.logo-row{display:flex;align-items:center;gap:4.5rem;padding-right:4.5rem}
+.logo-row img{height:48px;width:auto;max-width:180px;object-fit:contain;filter:brightness(0);opacity:.5;transition:opacity .2s ease}
+.logo-row img:hover{opacity:.9}
+.review-marquee{display:grid;gap:1.2rem}
+.review-marquee .marquee-track{animation-duration:90s}
+.marquee-set{display:flex;gap:1.2rem;padding-right:1.2rem;align-items:stretch}
+.review-marquee .review{width:380px;margin:0;flex:none}
+
+/* big outlined marquee over the CTA band */
+.cta-band{overflow:hidden;padding-top:0}
+.big-marquee{-webkit-mask-image:none;mask-image:none;padding:3.5rem 0 4rem}
+.big-marquee .marquee-track{animation-duration:38s}
+.big-marquee .marquee-set{gap:0;padding:0}
+.big-marquee span{font-size:clamp(3.5rem,9vw,8.5rem);font-weight:700;letter-spacing:-.04em;line-height:1;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.28);padding-right:.35em}
+.big-marquee span:nth-child(odd){color:var(--green);-webkit-text-stroke:0}
+.big-marquee i{font-style:normal;color:var(--green);-webkit-text-stroke:0;padding-left:.35em;font-size:.5em;vertical-align:middle}
+
+/* work reel: swipe carousel by default, pinned sideways scroll on desktop */
+.reel{background:var(--mist);padding:6rem 0 5rem;overflow:hidden}
+.reel-meta{display:flex;align-items:center;gap:1.4rem}
+.reel-count{font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.reel-count b{color:var(--text);font-size:1.4rem}
+.reel-track{--pad:max(1.25rem,calc((100vw - var(--maxw)) / 2));display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);padding:0 var(--pad) 1rem;scrollbar-width:none}
+.reel-track::-webkit-scrollbar{display:none}
+.reel-card{flex:0 0 min(78vw,420px);scroll-snap-align:start;display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+.reel-img{aspect-ratio:5/4;overflow:hidden;background:var(--line)}
+.reel-img img{width:116%;max-width:none;height:100%;margin-left:-8%;object-fit:cover;transition:scale .8s cubic-bezier(.2,.8,.2,1)}
+.reel-card:hover .reel-img img{scale:1.06}
+.reel-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.5rem;position:relative}
+.reel-body h3{font-size:1.2rem}
+.reel-n{position:absolute;right:1.4rem;top:1.2rem;font-weight:700;color:var(--line);font-size:2rem;line-height:1}
+.reel-more{background:var(--navy);color:#fff;justify-content:space-between;padding:2.2rem;border:0;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.reel-more .reel-arrow{font-size:3.5rem;color:var(--green);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.reel-more:hover .reel-arrow{transform:translateX(12px)}
+.reel-pinned{height:100vh;min-height:620px;padding:0;display:flex;flex-direction:column;justify-content:center}
+.reel-pinned .reel-head .sec-head{margin-bottom:2rem}
+.reel-pinned .reel-track{overflow:visible;padding-bottom:0}
+.reel-pinned .reel-card{flex-basis:clamp(340px,32vw,500px)}
+.reel-pinned .reel-more{margin-right:var(--pad)}
+
+/* cursor follower (desktop with a mouse only) */
+.cursor{position:fixed;left:0;top:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--green);pointer-events:none;z-index:200;opacity:0;display:none;align-items:center;justify-content:center;transition:width .35s cubic-bezier(.2,.8,.2,1),height .35s cubic-bezier(.2,.8,.2,1),margin .35s cubic-bezier(.2,.8,.2,1),background .3s,opacity .3s}
+.has-cursor .cursor{display:flex}
+.cursor.on{opacity:1}
+.cursor.link{width:44px;height:44px;margin:-22px 0 0 -22px;background:rgba(102,191,132,.28)}
+.cursor.big{width:92px;height:92px;margin:-46px 0 0 -46px;background:var(--green)}
+.cursor-label{font-size:.82rem;font-weight:700;color:var(--navy);opacity:0;transition:opacity .2s}
+.cursor.big .cursor-label{opacity:1}
+
+/* spotlight that follows the cursor across tilting cards */
+.has-cursor :is(.service,.package,.work-card,.review,.contact-card,.person){background-image:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(102,191,132,.14),transparent 45%);transform-style:preserve-3d}
+
+/* comparison: their list gets struck through */
+.col-them li{width:fit-content;transition:color .5s ease}
+.col-them li::after{content:"";position:absolute;left:2rem;right:0;top:55%;height:1.5px;background:#B4635A;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.6,0,.2,1)}
+.compare.struck .col-them li{color:#93A3A7}
+.compare.struck .col-them li::after{transform:scaleX(1)}
+.col-them li:nth-child(2)::after{transition-delay:.08s}.col-them li:nth-child(3)::after{transition-delay:.16s}.col-them li:nth-child(4)::after{transition-delay:.24s}
+.col-them li:nth-child(5)::after{transition-delay:.32s}.col-them li:nth-child(6)::after{transition-delay:.4s}.col-them li:nth-child(7)::after{transition-delay:.48s}
+
+/* page-to-page transitions (browsers with cross-document view transitions) */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .3s ease both}
+::view-transition-new(root){animation:vt-in .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-16px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(28px)}}
+
+/* reduced motion: everything static, marquees become plain rows */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track{animation:none;width:auto;flex-wrap:wrap}
+  .marquee [aria-hidden="true"]{display:none}
+  .marquee{-webkit-mask-image:none;mask-image:none}
+  .logo-row{flex-wrap:wrap;justify-content:center;gap:2rem 3rem;padding:0 1.25rem}
+  .marquee-set{flex-wrap:wrap;justify-content:center;padding:0 1.25rem}
+  .hero-glow{animation:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .compare .col-them li::after{display:none}
+}

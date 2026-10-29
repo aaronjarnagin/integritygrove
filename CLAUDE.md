@@ -64,6 +64,18 @@ All old WordPress URLs were kept, so most links need no redirect.
 - `about/` (team and history timeline), `contact/` (book a call or email, no form yet), `discovery-call/` (ad landing page aimed at Ames businesses), `privacy-policy/` and `terms-conditions/` (Markdown, text copied verbatim from the old site), `404.astro`.
 - Retired with 301s in `public/_redirects`: `/thank-you/`, `/social-media-quiz/`, `/links/`, `/category/*`, `/page/*`, `/author/*`, `/feed/`.
 
+## Motion
+
+All animation lives in `src/scripts/motion.ts` (GSAP 3 with ScrollTrigger and SplitText, bundled from npm), with its CSS in the "MOTION LAYER" block at the end of `global.css`.
+
+- Headlines rise word by word (SplitText, masked lines); `.reveal` blocks fade up in staggered batches; the hero photo stack drops in, drifts at different speeds on scroll, and leans toward the cursor with a trailing green glow.
+- Homepage: client logo marquee, stats count up ("Millions" scrambles in), a pinned sideways-scrolling work reel with a counter (desktop 900px+; a swipeable carousel below that), two review marquees running opposite ways, us-vs-them list where their side gets struck through, and a big outlined marquee over every CTA band that skews with scroll speed.
+- Site-wide: green scroll progress bar, nav hides on scroll down and returns on scroll up, case study covers wipe open, cross-page fade/slide (CSS `@view-transition`).
+- Mouse only (`hover: hover` and `pointer: fine`): cursor follower that grows into "View"/"Play" over work and videos, magnetic buttons, 3D tilt plus a cursor spotlight on cards.
+- Safety: `html.motion` (set by an inline script in `Base.astro`) is what hides elements before they animate. It is never set with reduced motion, and it is removed after 3s if `motion.ts` hasn't started, so content can't get stuck invisible. Reduced motion gets a fully static page with marquees turned into plain wrapped rows.
+- To add motion to a new block, give it `class="reveal"`. New `h2`s inside `.sec-title`/`.sec-head` animate automatically.
+- Testing gotcha: when the Claude app window isn't in the foreground, its browser pane runs almost no animation frames, so everything looks stuck mid-entrance. In `npm run dev`, `window.gsap` is exposed: run `gsap.ticker.lagSmoothing(0); setInterval(() => gsap.ticker.tick(), 16)` in the page to drive it.
+
 ## Case studies
 
 One Markdown file per project in `src/content/work/` (schema in `src/content.config.ts`). The filename is the URL slug. Frontmatter: `title`, `client`, `location`, `date` (newest first everywhere), `summary` (first sentence becomes the card text, first 155 characters the meta description), `filters` (websites, social, photo, video), `cover`, `coverAlt`, optional `videos` (YouTube IDs) and `draft`. Images live in `public/images/work/<slug>/` as WebP.

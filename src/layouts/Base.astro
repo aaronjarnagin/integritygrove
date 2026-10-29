@@ -63,6 +63,16 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     </noscript>
+    <!-- "motion" hides animated elements until GSAP takes over. Skipped for reduced motion,
+         and removed again if the motion script hasn't started within 3s so nothing stays invisible. -->
+    <script is:inline>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var h = document.documentElement;
+        h.classList.add('motion');
+        setTimeout(function () { if (!window.__motion) h.classList.remove('motion'); }, 3000);
+      })();
+    </script>
     {GA_ID && (
       <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} is:inline></script>
       <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}></script>
@@ -76,18 +86,12 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
     </main>
     <Footer />
 
-    <!-- reveal on scroll -->
-    <script is:inline>
-      (function () {
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        document.body.classList.add('reveal-on');
-        var els = document.querySelectorAll('.reveal');
-        if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-        els.forEach(function (e) { io.observe(e); });
-      })();
+    <!-- motion layer: scroll progress + cursor follower (driven by src/scripts/motion.ts) -->
+    <div class="progress" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+
+    <script>
+      import '../scripts/motion.ts';
     </script>
 
     <!-- nav border on scroll, mobile menu -->
