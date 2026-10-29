@@ -1,0 +1,95 @@
+# Integrity Grove: Agency Site
+
+Marketing agency site for Integrity Grove (Aaron Jarnagin, Strategy Lead & Partner, and Isaac Jarnagin). Social media account management, websites and digital assets, photo and video production. Being rebuilt in October 2026 from a WordPress/Divi site into a custom static site, same setup as the aaronjarnagin and aarongoesoutdoors sites.
+
+Positioning: small agency, full attention, original content, real results. "We're a small agency, and we like it that way."
+
+## Output rules
+
+1. NEVER use em dashes in any output.
+2. Keep answers concise. Use numbered lists for step-by-step instructions.
+3. Honest, confident, no-fluff voice.
+
+## Tech stack & hosting
+
+- Framework: Astro (static site generator), compiled to plain HTML/CSS at build time. Same system as aaronjarnagin and aarongoesoutdoors.
+- Hosting: Sevalla (Kinsta static hosting) is the intended host, auto-deploys on git push. Build command `npm run build`, publish dir `dist`, root `.`, Node LTS.
+- Live domain: https://integritygrove.com (still the old WordPress site until cutover).
+- Local folder: `C:\Users\aaron\Documents\integritygrove`
+- Repo: GitHub `aaronjarnagin/integritygrove`, branch `master` (not `main`), private. (Not created yet, see Open items.)
+- `public/_redirects`: Sevalla does NOT auto-serve `404.html`, so the catch-all `/* /404.html 404` rule there is what makes the custom 404 work. Keep it last.
+
+## Development
+
+```
+npm run dev
+```
+
+Dev server runs on port 4323 (`.claude/launch.json`). 4321 is aarongoesoutdoors, 4322 is aaronjarnagin. Build with `npm run build` (output in `dist/`), preview with `npm run preview`.
+
+## Brand colors & fonts
+
+Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
+
+| Name | Hex | Use |
+| --- | --- | --- |
+| navy | `#11252B` | headings, dark sections, footer (navy-2 `#1B3740`) |
+| green | `#66BF84` | buttons, accents (green-dk `#4FA86D`) |
+| paper | `#FFFFFF` | page background |
+| mist | `#F3F6F5` | tinted sections |
+| line | `#E2E8E6` | borders |
+| muted | `#5A6B70` | body copy |
+
+Font: the old site used niveau-grotesk (Adobe Fonts). The rebuild uses Hanken Grotesk from Google Fonts as a free stand-in, loaded async.
+
+Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site). Favicons and a 1200x630 OG image still to make.
+
+## Site structure
+
+- `src/layouts/Base.astro`: head/SEO/meta/OG/schema, Google tag (`GA_ID` constant at the top), reveal animation, nav border on scroll.
+- `src/components/Nav.astro`, `src/components/Footer.astro`.
+- `src/pages/index.astro`: starter homepage carrying over the old site's real copy: hero, services, Integrity Grove vs other agencies, reviews, contact (mailto).
+- `src/pages/404.astro`.
+
+## Key facts, links, and endpoints
+
+- Contact email: `info@integritygrove.com`
+- Socials: Instagram `@integritygrove`, TikTok `@integritygrove`, X `@integritygrove`
+- Google tag on the old site: `GT-KD78VG6S` (wired into `Base.astro`).
+- Clients shown on the old site: Guthrie County State Bank, Denver Savings Bank, UCS Healthcare, Peoples Savings Bank, Spoke Society, Jesse's Embers, Ashley Bermel, Catalyst Gym, and more.
+
+## Old site URL inventory
+
+Every one of these needs either a new page or a 301 in `public/_redirects` before DNS cutover, to keep search rankings.
+
+Pages: `/`, `/about/`, `/contact/`, `/social-media-account-management/`, `/websites-digital-assets/`, `/discovery-call/`, `/social-media-quiz/`, `/links/`, `/thank-you/`, `/privacy-policy/`, `/terms-conditions/`
+
+Case studies (posts at the root):
+- `/louie-wickett-social-media-content-partnership/`
+- `/spoke-society-fishtown-philadelphia-website-build/`
+- `/jesses-embers-restaurant-website-redesign/`
+- `/the-story-of-iowa-chill-iowa-media-company-and-map-dot-media/`
+- `/catalyst-gym-social-media-success/`
+- `/content-marketing-library-for-preferred-pest-management/`
+- `/ashley-bermel-realtor-website-redesign/`
+- `/ucs-healthcare-iowa-marketing-and-social-media-partnership/`
+- `/social-media-success-for-misty-metschke/`
+- `/growing-a-saas-brand-through-social-media-seo/`
+- `/social-media-success-for-west-central-tree-service/`
+- `/fitness-gym-website-redesign-and-mariana-tek-integration/`
+- `/video-commercial-production-for-denver-savings-bank/`
+- `/image-marketing-library-for-guthrie-county-state-bank/`
+- `/commercial-production-for-peoples-savings-bank/`
+- `/debit-card-commercial-for-denver-savings-bank/`
+
+Category archives: `/category/photography/`, `/category/social-media/`, `/category/video-production/`, `/category/website/`
+
+## Open items
+
+1. Create the private GitHub repo `aaronjarnagin/integritygrove` and push `master`.
+2. Create the Sevalla static site from the repo (build `npm run build`, publish `dist`).
+3. Design direction and full page list (services pages, about, work/case studies as a content collection like aaronjarnagin's `src/content/work/`).
+4. Contact form: Formspree endpoint (new form delivering to info@integritygrove.com, or the shared one).
+5. Port case studies and legal pages (privacy policy, terms), then 301 every old URL above.
+6. Favicons, OG image, Search Console.
+7. DNS cutover once the new site is live on its Sevalla temp URL.

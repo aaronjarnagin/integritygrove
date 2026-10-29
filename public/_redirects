@@ -1,0 +1,4 @@
+# Old WordPress URLs get 301s here as their new pages are built (see CLAUDE.md "Old site URL inventory").
+
+# Custom 404 for any unmatched path (Sevalla does not serve 404.html on its own). Keep this last.
+/*  /404.html  404

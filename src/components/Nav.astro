@@ -1,0 +1,16 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<nav>
+  <div class="wrap nav-inner">
+    <a href={`${base}/`} class="brand" aria-label="Integrity Grove home">
+      <img src="/images/logo-dark.png" alt="Integrity Grove" width="170" height="64" />
+    </a>
+    <div class="nav-right">
+      <a href={`${base}/#services`} class="nlink">Services</a>
+      <a href={`${base}/#why`} class="nlink">Why us</a>
+      <a href={`${base}/#reviews`} class="nlink">Reviews</a>
+      <a href={`${base}/#contact`} class="btn btn-sm">Contact us</a>
+    </div>
+  </div>
+</nav>
