@@ -146,7 +146,7 @@ function counters() {
     gsap.to(o, {
       v: end, duration: 2, ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: () => { el.textContent = Math.round(o.v) + suffix; },
+      onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString('en-US') + suffix; },
     });
   });
   $$('[data-scramble]').forEach((el) => {

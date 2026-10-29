@@ -9,10 +9,11 @@ const links = [
   { href: '/contact/', label: 'Contact' },
 ];
 ---
-<nav>
+<nav class:list={{ 'nav-dark': path === '/' }}>
   <div class="wrap nav-inner">
     <a href="/" class="brand" aria-label="Integrity Grove home">
-      <img src="/images/logo-dark.png" alt="Integrity Grove" width="170" height="64" />
+      <img class="logo-dark" src="/images/logo-dark.png" alt="Integrity Grove" width="170" height="64" />
+      <img class="logo-light" src="/images/logo-white.png" alt="" width="170" height="64" />
     </a>
     <div class="nav-links" id="nav-links">
       {links.map((l) => <a href={l.href} class:list={['nlink', { active: path.startsWith(l.href) }]}>{l.label}</a>)}

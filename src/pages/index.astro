@@ -10,9 +10,9 @@ const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => 
 const reel = work.slice(0, 8);
 
 const services = [
-  { name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.' },
-  { name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.' },
-  { name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.' },
+  { name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.', img: '/images/work/louie-wickett-social-media-content-partnership/cover.webp' },
+  { name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.', img: '/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp' },
+  { name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.', img: '/images/work/video-commercial-production-for-denver-savings-bank/cover.webp' },
 ];
 
 const us = ['Consistent pricing structure', 'We produce original content', 'On top of cultural trends', 'Quick & effective communication', 'We leverage new technology', 'Built-in metrics reports', "We've built audiences & businesses personally"];
@@ -32,16 +32,21 @@ const schema = {
 };
 ---
 <Base schema={schema}>
-  <section class="hero">
+  <section class="hero grain">
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Social media · Websites · Photo & video</span>
-        <h1>Social media marketing that <em>grows your business</em></h1>
-        <p class="lede">We combine original content, strategic planning, and real data to help you connect with your audience. A small Iowa agency run by two brothers who built audiences of their own first.</p>
+        <h1>Social media marketing that <em>actually grows</em> your business</h1>
+        <p class="lede">Original content, real strategy, and numbers you can read. A small Iowa agency run by two brothers who built audiences of their own first.</p>
         <div class="hero-cta-row">
           <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a free discovery call</a>
           <a href="/work/" class="btn btn-ghost btn-lg">See our work</a>
+        </div>
+        <div class="hero-meta">
+          <div><b>100s</b> of projects</div>
+          <div><b>Millions</b> of organic impressions</div>
+          <div><b>Ames, Iowa</b> and beyond</div>
         </div>
       </div>
       <div class="hero-stack" aria-hidden="true">
@@ -50,6 +55,7 @@ const schema = {
         <img class="hs-3" src="/images/work/catalyst-gym-social-media-success/cover.webp" alt="" width="800" height="600" />
       </div>
     </div>
+    <span class="hero-scroll" aria-hidden="true">Scroll</span>
   </section>
 
   <section class="logos" aria-label="Some clients we're proud to partner with">
@@ -67,11 +73,27 @@ const schema = {
     </div>
   </section>
 
-  <section class="stats">
-    <div class="wrap stat-row">
-      <div class="stat reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects completed across dozens of industries</span></div>
-      <div class="stat reveal"><strong data-scramble>Millions</strong><span>of organic impressions for our clients last year, with no ad spend</span></div>
-      <div class="stat reveal"><strong data-count="2">2</strong><span>founders. You work directly with us, not a junior account rep.</span></div>
+  <section class="sec tint" id="results">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">Results</span>
+        <h2>Numbers our clients <em>actually</em> feel</h2>
+      </div>
+      <div class="bento">
+        <div class="tile tile-dark tile-wide reveal"><strong data-scramble>Millions</strong><span>of organic impressions for our clients last year, with zero ad spend</span></div>
+        <div class="tile reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
+        <figure class="tile tile-photo tile-tall reveal">
+          <img src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="UCS Healthcare mobile clinic photographed by Integrity Grove" width="800" height="1000" loading="lazy" />
+          <figcaption>UCS Healthcare, Iowa</figcaption>
+        </figure>
+        <div class="tile tile-green reveal"><strong data-count="500" data-suffix="K+">500K+</strong><span>views on a single post for a realtor who started near zero</span></div>
+        <div class="tile reveal"><strong data-count="3500" data-suffix="+">3,500+</strong><span>Facebook followers built for that same client in two years</span></div>
+        <figure class="tile tile-quote tile-wide reveal">
+          <blockquote>“Five stars, because there aren't six.”</blockquote>
+          <figcaption>Wes J, Google review</figcaption>
+        </figure>
+        <div class="tile reveal"><strong data-count="2">2</strong><span>founders on every account. No junior reps, ever.</span></div>
+      </div>
     </div>
   </section>
 
@@ -79,18 +101,26 @@ const schema = {
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">What we do</span>
-        <h2>A full-service agency, sized for real attention</h2>
+        <h2>A full-service agency, <em>sized for real attention</em></h2>
         <p>Social media, websites, photo, and video, tailored to what your business actually needs.</p>
       </div>
-      <div class="service-grid">
-        {services.map((s) => (
+      <div class="service-list">
+        {services.map((s, i) => (
           <a href={s.href} class="service reveal">
-            <span class="price">{s.price}</span>
-            <h3>{s.name}</h3>
-            <p>{s.text}</p>
-            <span class="go">Learn more →</span>
+            <span class="num">0{i + 1}</span>
+            <div>
+              <span class="price">{s.price}</span>
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+            </div>
+            <div class="thumb" aria-hidden="true"><img src={s.img} alt="" width="440" height="330" loading="lazy" /></div>
+            <span class="go">Learn more</span>
           </a>
         ))}
+      </div>
+      <div class="service-cta reveal">
+        <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Not sure what you need? Let's talk</a>
+        <span>Free 30-minute discovery call, no pitch.</span>
       </div>
     </div>
   </section>
@@ -101,7 +131,7 @@ const schema = {
       <div class="sec-head">
         <div>
           <span class="eyebrow">Recent work</span>
-          <h2>Real results. Real clients.</h2>
+          <h2>Real results. <em>Real clients.</em></h2>
         </div>
         <div class="reel-meta">
           <span class="reel-count" aria-hidden="true"><b>01</b> / {String(reel.length).padStart(2, '0')}</span>
@@ -132,7 +162,7 @@ const schema = {
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Why us</span>
-        <h2>Content that drives real impact</h2>
+        <h2>Content that drives <em>real impact</em></h2>
         <p>Unlike agencies that settle for surface-level strategies, we craft authentic brand stories that build engaged audiences and measurable results.</p>
       </div>
       <div class="compare reveal">
@@ -152,7 +182,7 @@ const schema = {
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Reviews</span>
-        <h2>We're a small agency, and we like it that way</h2>
+        <h2>A small agency, <em>and we like it that way</em></h2>
         <p>Every client gets our full attention. These reviews reflect what we hear most: clear communication, work that moves the needle, and a team that treats your business like its own.</p>
       </div>
     </div>
