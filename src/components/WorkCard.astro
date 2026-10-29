@@ -7,8 +7,8 @@ const d = entry.data;
 const firstSentence = d.summary.match(/^.+?[.!?](\s|$)/)?.[0].trim() ?? d.summary;
 ---
 <a href={`/${entry.id}/`} class="work-card reveal" data-filters={d.filters.join(' ')}>
-  <div class="work-img">
-    <img src={d.cover} alt={d.coverAlt} loading="lazy" decoding="async" width="800" height="500" />
+  <div class:list={['work-img', { 'fit-contain': d.filters.every((f) => f === 'websites') }]}>
+    <img src={d.cover} alt={d.coverAlt} loading="lazy" decoding="async" width="1600" height="1000" />
   </div>
   <div class="work-body">
     <span class="work-client">{d.client}{d.location && <span class="work-loc"> · {d.location}</span>}</span>

@@ -45,14 +45,14 @@ const schema = {
         </div>
         <div class="hero-meta">
           <div><b>100s</b> of projects</div>
-          <div><b>Millions</b> of organic impressions</div>
+          <div><b>15.4M</b> organic impressions last year</div>
           <div><b>Ames, Iowa</b> and beyond</div>
         </div>
       </div>
       <div class="hero-stack" aria-hidden="true">
-        <img class="hs-1" src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="" width="800" height="600" fetchpriority="high" />
-        <img class="hs-2" src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="" width="800" height="500" />
-        <img class="hs-3" src="/images/work/catalyst-gym-social-media-success/cover.webp" alt="" width="800" height="600" />
+        <img class="hs-1" src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="" width="1600" height="1200" fetchpriority="high" />
+        <img class="hs-2" src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="" width="1558" height="870" />
+        <img class="hs-3" src="/images/work/catalyst-gym-social-media-success/cover.webp" alt="" width="1600" height="1200" />
       </div>
     </div>
     <span class="hero-scroll" aria-hidden="true">Scroll</span>
@@ -80,10 +80,9 @@ const schema = {
         <h2>Numbers our clients <em>actually</em> feel</h2>
       </div>
       <div class="bento">
-        <div class="tile tile-dark tile-wide reveal"><strong data-scramble>Millions</strong><span>of organic impressions for our clients last year, with zero ad spend</span></div>
-        <div class="tile reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
-        <figure class="tile tile-photo tile-tall reveal">
-          <img src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="UCS Healthcare mobile clinic photographed by Integrity Grove" width="800" height="1000" loading="lazy" />
+        <div class="tile tile-dark tile-wide reveal"><strong data-count="15450000">15,450,000</strong><span>organic impressions for our clients last year, with no ad spend behind them</span></div>
+        <figure class="tile tile-photo tile-big reveal">
+          <img src="/images/work/ucs-healthcare-iowa-marketing-and-social-media-partnership/cover.webp" alt="UCS Healthcare mobile clinic photographed by Integrity Grove" width="1600" height="1200" loading="lazy" />
           <figcaption>UCS Healthcare, Iowa</figcaption>
         </figure>
         <div class="tile tile-green reveal"><strong data-count="500" data-suffix="K+">500K+</strong><span>views on a single post for a realtor who started near zero</span></div>
@@ -92,6 +91,7 @@ const schema = {
           <blockquote>“Five stars, because there aren't six.”</blockquote>
           <figcaption>Wes J, Google review</figcaption>
         </figure>
+        <div class="tile reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
         <div class="tile reveal"><strong data-count="2">2</strong><span>founders on every account. No junior reps, ever.</span></div>
       </div>
     </div>
@@ -142,7 +142,7 @@ const schema = {
     <div class="reel-track">
       {reel.map((w, i) => (
         <a href={`/${w.id}/`} class="reel-card">
-          <div class="reel-img"><img src={w.data.cover} alt={w.data.coverAlt} width="900" height="1100" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" /></div>
+          <div class:list={['reel-img', { 'fit-contain': w.data.filters.every((f) => f === 'websites') }]}><img src={w.data.cover} alt={w.data.coverAlt} width="1600" height="1000" loading={i < 2 ? 'eager' : 'lazy'} decoding="async" /></div>
           <div class="reel-body">
             <span class="reel-n">{String(i + 1).padStart(2, '0')}</span>
             <span class="work-client">{w.data.client}</span>

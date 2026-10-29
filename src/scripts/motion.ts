@@ -187,7 +187,7 @@ function reel() {
   mm.add('(min-width: 900px)', () => {
     section.classList.add('reel-pinned');
     const count = $('.reel-count b');
-    const cards = $$('.reel-card', track);
+    const cards = $$('.reel-card:not(.reel-more)', track);
     const distance = () => track.scrollWidth - track.clientWidth;
     const tween = gsap.to(track, {
       x: () => -distance(),
@@ -203,11 +203,6 @@ function reel() {
           if (count) count.textContent = String(Math.min(cards.length, Math.floor(self.progress * (cards.length - 1) + 1.5))).padStart(2, '0');
         },
       },
-    });
-    // each card's photo drifts inside its frame as it travels
-    cards.forEach((c) => {
-      const img = $('img', c);
-      if (img) gsap.fromTo(img, { xPercent: -8 }, { xPercent: 8, ease: 'none', scrollTrigger: { trigger: c, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } });
     });
     return () => section.classList.remove('reel-pinned');
   });

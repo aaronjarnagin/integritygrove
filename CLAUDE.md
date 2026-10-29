@@ -43,15 +43,15 @@ Taken from the WordPress site. CSS `:root` vars in `src/styles/global.css`:
 
 Also `ink` `#0B1A1E` (hero, CTA band, footer) and `green-dk` `#3F9A5E` (green text on white, passes contrast).
 
-Fonts (Google Fonts, loaded async): Hanken Grotesk 400 to 800 for everything, plus Instrument Serif italic for one accent phrase per headline. Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. The old site used niveau-grotesk (Adobe Fonts).
+Fonts (Google Fonts, loaded async): Hanken Grotesk 400 to 800 for everything, plus Lora italic 500 for one accent phrase per headline (Instrument Serif was tried first and read too much like script). Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. The old site used niveau-grotesk (Adobe Fonts).
 
 ## Design direction (decided 2026-10-29)
 
-"Cinematic dark hero, light body." The homepage opens on a full-height ink hero with film grain (`.grain`), a cursor-following green glow, the tilted project-photo stack, and a transparent nav (white logo) that turns solid white once the hero is scrolled past (`nav.nav-dark`, set in `Nav.astro` for `/`). The hero's bottom corners are rounded into the light body. Everything you have to read sits on white or mist. CTA bands and the footer go back to ink with grain, and the footer ends in a giant outlined "integrity grove" wordmark.
+"Cinematic dark hero, light body." The homepage opens on a full-height ink hero with film grain (`.grain`), a cursor-following green glow, the tilted project-photo stack, and a transparent nav (white logo) that turns solid white once the hero is scrolled past (`nav.nav-dark`, set in `Nav.astro` for `/`). The hero's bottom corners are rounded into the light body. Everything you have to read sits on white or mist. CTA bands and the footer go back to ink with grain.
 
 Type is a fluid scale (`--fs-display`, `--fs-h1`, `--fs-h2` in `:root`) so headlines are huge on desktop and still fit a 390px phone. Body stays 17px / 1.65. `text-wrap: balance` on headings, `pretty` on paragraphs. Eyebrows are small caps with a green dot.
 
-Homepage sections, in order: hero → client logo marquee → results bento (`.bento`, counters and a serif pull quote) → numbered editorial service rows that reveal a photo on hover (`.service-list`) → pinned work reel → us vs other agencies → review marquees → CTA band. Inner pages keep the light `page-head` pattern with a serif accent in the h1.
+Homepage sections, in order: hero → client logo marquee → results bento (`.bento`, counters including the real 15,450,000 organic impressions figure from the old site, a photo tile and a serif pull quote) → numbered editorial service rows that reveal a photo on hover (`.service-list`) → pinned work reel → us vs other agencies → review marquees → CTA band. Inner pages keep the light `page-head` pattern with a serif accent in the h1.
 
 Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site; the tree mark is the first 370px).
 
