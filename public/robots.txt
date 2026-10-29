@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://integritygrove.com/sitemap-index.xml
