@@ -5,7 +5,7 @@ date: 2024-05-31
 summary: "Integrity Grove partnered with Jyles FBA to grow organic traffic and boost sales for his Amazon FBA community. Our goal was to enhance his online presence and attract new customers through strategic content marketing and SEO efforts."
 filters: ["social","websites"]
 cover: "/images/work/growing-a-saas-brand-through-social-media-seo/cover.webp"
-coverAlt: "Jyles FBA: Growing a SaaS Brand Through Social Media & SEO"
+coverAlt: "Jyles FBA: Growing an Amazon FBA Brand Through Social Media & SEO"
 ---
 
 Integrity Grove partnered with Jyles FBA to grow organic traffic and boost sales for his Amazon FBA community. Our goal was to enhance his online presence and attract new customers through strategic content marketing and SEO efforts.

@@ -3,8 +3,9 @@ import { visit } from 'unist-util-visit';
 import sharp from 'sharp';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const PUBLIC = new URL('../../public/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+const PUBLIC = fileURLToPath(new URL('../../public/', import.meta.url));
 const cache = new Map();
 
 export default function rehypeImgSize() {

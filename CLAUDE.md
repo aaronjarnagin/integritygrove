@@ -69,7 +69,7 @@ All old WordPress URLs were kept, so most links need no redirect.
 - `src/layouts/Base.astro`: head/SEO/meta/OG/schema, Google tag, reveal animation, nav scroll border, mobile menu, YouTube click-to-load. `src/layouts/Prose.astro` wraps Markdown pages.
 - `src/data/site.ts`: reviews (shared by home, services, discovery call), client logos, filter labels.
 - Components: `Nav`, `Footer`, `WorkCard`, `Reviews`, `CtaBand` (navy "book a call" band, id `contact`), `YouTube`.
-- `src/pages/index.astro`: hero with work-photo stack, client logo strip, stats band, services, 6 latest case studies, us vs other agencies, reviews, CTA.
+- `src/pages/index.astro`: hero with work-photo stack, client logo strip, stats band, services, pinned reel of the 8 latest case studies, us vs other agencies, reviews, CTA.
 - `src/pages/[slug].astro`: case study template, served at the site ROOT (`/<slug>/`) to keep the old post URLs. Cover, Markdown body, video grid, 3 related, CTA.
 - `src/pages/work/`: all case studies with filter chips (`?f=websites|social|photo|video`).
 - `social-media-account-management/` and `websites-digital-assets/`: service pages with packages and pricing from the old site ($1,500/mo social, $1,750 websites).

@@ -8,18 +8,22 @@ import CtaBand from '../components/CtaBand.astro';
 import { filterLabels } from '../data/site';
 
 export async function getStaticPaths() {
+  const sharp = (await import('sharp')).default;
   const all = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
-  return all.map((entry) => {
+  return Promise.all(all.map(async (entry) => {
+    // real cover dimensions so the browser reserves the right space (the cover is the LCP image)
+    const meta = await sharp(`public${entry.data.cover}`).metadata();
+    const cover = { w: meta.width ?? 1600, h: meta.height ?? 900 };
     // "more work": others sharing a filter first, newest first
     const more = all
       .filter((o) => o.id !== entry.id)
       .sort((a, b) => Number(b.data.filters.some((f) => entry.data.filters.includes(f))) - Number(a.data.filters.some((f) => entry.data.filters.includes(f))))
       .slice(0, 3);
-    return { params: { slug: entry.id }, props: { entry, more } };
-  });
+    return { params: { slug: entry.id }, props: { entry, more, cover } };
+  }));
 }
 
-const { entry, more } = Astro.props;
+const { entry, more, cover } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 const description = d.summary.length > 158 ? d.summary.slice(0, 155).replace(/\s+\S*$/, '') + '...' : d.summary;
@@ -46,7 +50,7 @@ const schema = {
     </header>
     <div class="wrap">
       <figure class="cs-cover">
-        <img src={d.cover} alt={d.coverAlt} width="1600" height="900" fetchpriority="high" />
+        <img src={d.cover} alt={d.coverAlt} width={cover.w} height={cover.h} fetchpriority="high" />
       </figure>
     </div>
     <div class="wrap prose cs-body">

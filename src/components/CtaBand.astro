@@ -9,8 +9,8 @@ const words = ["Let's grow your business", 'Social media', 'Websites', 'Photo & 
 <section class="cta-band grain" id="contact">
   <div class="marquee big-marquee" aria-hidden="true">
     <div class="marquee-track">
-      {[0, 1].map(() => (
-        <div class="marquee-set">{words.map((w) => <span>{w}<i>✦</i></span>)}</div>
+      {[0, 1].map((copy) => (
+        <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>{words.map((w) => <span>{w}<i>✦</i></span>)}</div>
       ))}
     </div>
   </div>

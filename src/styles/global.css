@@ -3,7 +3,6 @@
 @font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 800;font-display:block;src:url("/fonts/hankengrotesk-var.woff2") format("woff2")}
 @font-face{font-family:"Lora";font-style:italic;font-weight:500;font-display:block;src:url("/fonts/lora-500-italic.woff2") format("woff2")}
 /* page is held invisible until fonts are ready (html.fonts-pending, max 1s), then fades in */
-body{transition:opacity .22s ease}
 html.fonts-pending body{opacity:0}
 
 :root{
@@ -310,7 +309,8 @@ a.pill:hover{border-color:var(--green)}
 /* discovery call */
 .dc-hero{background:var(--navy);color:var(--on-navy);padding:6rem 0}
 .dc-hero h1{color:#fff;max-width:20ch}
-.dc-hero .eyebrow{color:var(--green)}
+.dc-hero .eyebrow,.dc-hero h1 em{color:var(--green)}
+.package .btn{white-space:normal;text-align:center}
 
 /* case studies */
 .cs-head{padding:4rem 0 2.5rem}
@@ -467,7 +467,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 .reel-card:hover .reel-img img{scale:1.06}
 .reel-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.5rem;position:relative}
 .reel-body h3{font-size:1.2rem}
-.reel-n{position:absolute;right:1.4rem;top:1.2rem;font-weight:700;color:#8FA0A3;font-size:2rem;line-height:1}
+.reel-n{position:absolute;right:1.4rem;top:1.2rem;font-weight:700;color:#7A8C90;font-size:2rem;line-height:1}
 .reel-more{background:var(--navy);color:#fff;justify-content:space-between;padding:2.2rem;border:0;font-size:clamp(1.6rem,2.4vw,2.2rem);font-weight:700;line-height:1.1;letter-spacing:-.02em}
 .reel-more .reel-arrow{font-size:3.5rem;color:var(--green);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .reel-more:hover .reel-arrow{transform:translateX(12px)}
@@ -508,7 +508,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .marquee-track{animation:none;width:auto;flex-wrap:wrap}
-  .marquee [aria-hidden="true"]{display:none}
+  .marquee [aria-hidden="true"],.marquee-toggle{display:none}
   .marquee{-webkit-mask-image:none;mask-image:none}
   .logo-row{flex-wrap:wrap;justify-content:center;gap:2rem 3rem;padding:0 1.25rem}
   .marquee-set{flex-wrap:wrap;justify-content:center;padding:0 1.25rem}

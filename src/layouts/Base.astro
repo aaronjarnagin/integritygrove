@@ -117,6 +117,8 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
         if (toggle) {
           toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); toggle.focus(); } });
+          // resized past the mobile breakpoint with the menu open: release the scroll lock
+          matchMedia('(min-width: 901px)').addEventListener('change', function (e) { if (e.matches && nav.classList.contains('open')) setMenu(false); });
         }
       })();
     </script>
@@ -161,6 +163,7 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
         f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
         f.allowFullscreen = true;
         btn.replaceWith(f);
+        f.focus();
       });
     </script>
   </body>

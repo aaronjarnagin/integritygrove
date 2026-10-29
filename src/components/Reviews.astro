@@ -33,7 +33,6 @@ const rows = [reviews.slice(0, half), reviews.slice(half)];
       btn.addEventListener('click', function () {
         var paused = btn.getAttribute('aria-pressed') !== 'true';
         btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-        btn.textContent = paused ? 'Play reviews' : 'Pause reviews';
         document.querySelectorAll('.review-marquee .marquee').forEach(function (m) { m.classList.toggle('paused', paused); });
       });
     })();

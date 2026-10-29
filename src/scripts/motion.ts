@@ -140,6 +140,7 @@ function headings() {
 
 /* cards and blocks fade up in staggered batches */
 function reveals() {
+  if (!$$('.reveal').length) return;
   gsap.set('.reveal', { opacity: 0, y: 48 });
   ScrollTrigger.batch('.reveal', {
     start: 'top 90%',
@@ -216,7 +217,8 @@ function reel() {
     const st = tween.scrollTrigger!;
     const onFocus = (e: FocusEvent) => {
       const card = (e.target as Element).closest('.reel-card');
-      if (!card) return;
+      // keyboard focus only: a mouse click also focuses the link, and scrolling then would move the card away mid-click
+      if (!card || !(e.target as Element).matches(':focus-visible')) return;
       const all = $$('.reel-card', track);
       const p = all.indexOf(card as HTMLElement) / Math.max(1, all.length - 1);
       window.scrollTo({ top: st.start + p * (st.end - st.start), behavior: 'auto' });
