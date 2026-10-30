@@ -61,9 +61,13 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
       (function () {
         var h = document.documentElement;
         h.classList.add('fonts-pending');
+        // release when fonts are in AND the motion script has finished setting up (or after 1.2s, whichever first)
+        var fontsOk = false, motionOk = matchMedia('(prefers-reduced-motion: reduce)').matches;
         var done = function () { h.classList.remove('fonts-pending'); };
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(done);
-        setTimeout(done, 1000);
+        var check = function () { if (fontsOk && motionOk) done(); };
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { fontsOk = true; check(); }); else { fontsOk = true; }
+        addEventListener('motion:ready', function () { motionOk = true; check(); });
+        setTimeout(done, 1200);
       })();
     </script>
     <!-- "motion" hides animated elements until GSAP takes over. Skipped for reduced motion,

@@ -18,6 +18,8 @@ const $$ = <T extends Element = HTMLElement>(s: string, root: ParentNode = docum
 if (import.meta.env.DEV) (window as any).gsap = gsap;
 
 if (!reduce) {
+  // fonts first: SplitText measures line breaks, and the real font must be in place before that happens
+  const start = () => {
   try {
     smoother();
     const delay = intro();
@@ -46,7 +48,13 @@ if (!reduce) {
     document.documentElement.classList.remove('motion');
     gsap.set('.reveal, h1, h2', { clearProps: 'all' });
     console.error('[motion] disabled after error:', err);
+  } finally {
+    // Base.astro holds the page (html.fonts-pending) until this fires, so nothing is seen mid-setup
+    (window as any).__motionReady = true;
+    dispatchEvent(new Event('motion:ready'));
   }
+  };
+  (document.fonts?.ready ?? Promise.resolve()).then(start);
 }
 
 /* nav hides on scroll down, returns on scroll up */
@@ -83,11 +91,10 @@ function hero(delay = 0) {
       type: 'lines,words',
       mask: 'lines',
       linesClass: 'sl',
-      autoSplit: true,
       onSplit(self) {
         gsap.set(h1, { opacity: 1 });
         // once the words have landed, put the original headline back so nothing can clip its descenders
-        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out', delay, onComplete: () => self.revert() });
+        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out', delay, onComplete: () => self.masks.forEach((m: HTMLElement) => { m.style.overflow = 'visible'; }) });
       },
     });
   }
@@ -135,10 +142,9 @@ function headings() {
       type: 'lines,words',
       mask: 'lines',
       linesClass: 'sl',
-      autoSplit: true,
       onSplit(self) {
         gsap.set(h, { opacity: 1 });
-        return gsap.from(self.words, { yPercent: 110, duration: 1, stagger: 0.05, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%', once: true }, onComplete: () => self.revert() });
+        return gsap.from(self.words, { yPercent: 110, duration: 1, stagger: 0.05, ease: 'expo.out', scrollTrigger: { trigger: h, start: 'top 85%', once: true }, onComplete: () => self.masks.forEach((m: HTMLElement) => { m.style.overflow = 'visible'; }) });
       },
     });
   });

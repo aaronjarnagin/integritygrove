@@ -47,7 +47,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 [id]{scroll-margin-top:96px}
 [hidden]{display:none!important}
 
-h1,h2,h3{font-family:var(--font);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--text);text-wrap:balance}
+h1,h2,h3{font-family:var(--font);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--text)}
 h2{font-size:var(--fs-h2)}
 h3{font-size:1.22rem;letter-spacing:-.01em;line-height:1.25}
 p{text-wrap:pretty}
