@@ -62,7 +62,10 @@ html:not(.motion) .intro{display:none}
 
 /* mega number */
 .mega{padding:7rem 0 6rem}
-.mega-num{font-weight:800;font-size:clamp(3.4rem,1rem + 13.5vw,15.5rem);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums;color:transparent;-webkit-text-stroke:2px var(--navy);background:linear-gradient(var(--green-dk),var(--green-dk)) no-repeat 0 100%/100% var(--fill,0%);-webkit-background-clip:text;background-clip:text;margin:1rem 0 1.2rem}
+/* outlined digits: the fill is painted over the stroke (paint-order) so overlapping glyph contours don't show
+   interior lines; the green is a second copy of the text (::after, mirrored from data-text) clipped to --fill */
+.mega-num{position:relative;display:inline-block;font-weight:800;font-size:clamp(3.4rem,1rem + 13.5vw,15.5rem);line-height:.9;letter-spacing:-.06em;font-variant-numeric:tabular-nums;color:var(--mist);-webkit-text-stroke:3px var(--navy);paint-order:stroke fill;margin:1rem 0 1.2rem}
+.mega-num::after{content:attr(data-text);position:absolute;inset:0;color:var(--green-dk);-webkit-text-stroke:0;clip-path:inset(calc(100% - var(--fill,0%)) 0 0 0);pointer-events:none}
 .mega-cap{font-size:clamp(1.15rem,1rem + 1vw,1.7rem);color:var(--text);max-width:40ch;line-height:1.3}
 .mega-cap em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--green-dk)}
 .mega-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--line)}

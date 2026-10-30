@@ -164,7 +164,11 @@ function counters() {
     gsap.to(o, {
       v: end, duration: 2, ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString('en-US') + suffix; },
+      onUpdate: () => {
+        const text = Math.round(o.v).toLocaleString('en-US') + suffix;
+        el.textContent = text;
+        if ('mirror' in el.dataset) el.dataset.text = text; // keeps the CSS overlay copy (::after) in sync
+      },
     });
   });
   $$('[data-scramble]').forEach((el) => {
