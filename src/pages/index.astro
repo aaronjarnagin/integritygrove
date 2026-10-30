@@ -1,5 +1,7 @@
 ---
-/* Homepage v2 "full out": same colors, fonts and content as v1 (kept in _index-v1.astro), new scroll-driven layout. */
+/* Homepage v3: the page changes color as you scroll (data-theme per section), a drifting wall of work behind
+   the hero, a scroll-lit manifesto, horizontal pinned services, stacked case studies, and a magnetic orb to close.
+   v1 lives in _index-v1.astro (tag v1-classic). See CLAUDE.md "Homepage v3". */
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import WorkCard from '../components/WorkCard.astro';
@@ -8,14 +10,15 @@ import { clients, filterLabels, reviews } from '../data/site';
 import { BOOK_URL, EMAIL } from '../config';
 
 const work = (await getCollection('work', (e) => !e.data.draft)).sort((a, b) => +b.data.date - +a.data.date);
-const strip = work.slice(0, 8);
-const stack = work.slice(0, 5);
+const thumb = (w: (typeof work)[number]) => w.data.cover.replace('cover.webp', 'thumb.webp');
 const isShot = (w: (typeof work)[number]) => w.data.filters.every((f) => f === 'websites');
+const rows = [work.slice(0, 6), work.slice(6, 12), [...work.slice(12), ...work.slice(0, 2)]];
+const stack = work.slice(0, 5);
 
 const services = [
-  { name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.', img: '/images/work/louie-wickett-social-media-content-partnership/cover.webp', alt: 'Content shoot for Louie Wickett' },
-  { name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.', img: '/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp', alt: 'Spoke Society website' },
-  { name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.', img: '/images/work/video-commercial-production-for-denver-savings-bank/cover.webp', alt: 'Denver Savings Bank commercial still' },
+  { n: '01', name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.', img: '/images/work/louie-wickett-social-media-content-partnership/cover.webp', alt: 'Content shoot for Louie Wickett' },
+  { n: '02', name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.', img: '/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp', alt: 'Spoke Society website' },
+  { n: '03', name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.', img: '/images/work/video-commercial-production-for-denver-savings-bank/cover.webp', alt: 'Denver Savings Bank commercial still' },
 ];
 
 const us = ['Consistent pricing structure', 'We produce original content', 'On top of cultural trends', 'Quick & effective communication', 'We leverage new technology', 'Built-in metrics reports', "We've built audiences & businesses personally"];
@@ -36,209 +39,168 @@ const schema = {
 };
 ---
 <Base schema={schema}>
-  <!-- intro curtain: once per session, 1s, removed by motion.ts (never shown with reduced motion) -->
-  <div class="intro" aria-hidden="true">
-    <div class="intro-inner">
-      <img class="intro-mark" src="/images/logo-white.png" alt="" width="1257" height="474" />
-    </div>
-  </div>
+  <div class="intro" aria-hidden="true"><div class="intro-inner"><img class="intro-mark" src="/images/logo-white.png" alt="" width="1257" height="474" /></div></div>
 
-  <section class="hero hero2 grain">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="wrap">
-      <span class="eyebrow">Social media · Websites · Photo & video · Iowa</span>
-      <h1 class="h2-display">
-        <span class="l">Social media</span>
-        <span class="l">marketing that</span>
-        <span class="l"><em>actually grows</em></span>
-        <span class="l">your business</span>
-      </h1>
-      <div class="hero2-row">
-        <p class="lede">Original content, real strategy, and numbers you can read. A small Iowa agency run by two brothers who built audiences of their own first.</p>
-        <div class="hero2-side">
-          <div class="hero-cta-row">
-            <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a free discovery call</a>
-            <a href="#work" class="btn btn-ghost btn-lg">See the work</a>
+  <div class="v3">
+    <!-- HERO: headline over a tilted, drifting wall of every project -->
+    <section class="hero hero3" data-theme="dark">
+      <div class="wall" aria-hidden="true">
+        {rows.map((row, r) => (
+          <div class:list={['wall-row', { reverse: r === 1 }]}>
+            <div class="wall-track">
+              {[0, 1].map(() => (
+                <div class="wall-set">
+                  {row.map((w) => (
+                    <div class:list={['wall-item', { 'fit-contain': isShot(w) }]}><img src={thumb(w)} alt="" width="480" height="300" decoding="async" /></div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-          <dl class="hero2-meta">
-            <div><dt>15.4M</dt><dd>organic impressions last year</dd></div>
-            <div><dt>100s</dt><dd>of projects completed</dd></div>
-            <div><dt>2</dt><dd>founders on every account</dd></div>
-          </dl>
+        ))}
+      </div>
+      <div class="hero3-inner wrap">
+        <span class="eyebrow">Social media · Websites · Photo & video · Iowa</span>
+        <h1>
+          <span class="l">Social media marketing</span>
+          <span class="l">that <em>actually grows</em></span>
+          <span class="l">your business</span>
+        </h1>
+        <p class="lede">Original content, real strategy, and numbers you can read. A small Iowa agency run by two brothers who built audiences of their own first.</p>
+        <div class="hero-cta-row">
+          <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a free discovery call</a>
+          <a href="#work" class="btn btn-ghost btn-lg">See the work</a>
         </div>
       </div>
-    </div>
-    <!-- film strip of recent work bleeding off the bottom of the hero -->
-    <div class="strip marquee" aria-hidden="true" data-speed="0.92">
-      <div class="marquee-track">
-        {[0, 1].map((copy) => (
-          <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>
-            {strip.map((w) => (
-              <a href={`/${w.id}/`} class:list={['frame', { 'fit-contain': isShot(w) }]} tabindex="-1">
-                <img src={w.data.cover} alt="" width="800" height="500" loading="eager" decoding="async" />
-                <span>{w.data.client}</span>
-              </a>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+      <span class="hero-scroll" aria-hidden="true">Scroll</span>
+    </section>
 
-  <section class="logos" aria-label="Some clients we're proud to partner with">
-    <div class="wrap"><span class="eyebrow center">Some clients we're proud to partner with</span></div>
-    <div class="marquee logo-marquee">
-      <div class="marquee-track">
-        {[0, 1].map((copy) => (
-          <div class="logo-row" aria-hidden={copy === 1 ? 'true' : undefined}>
-            {clients.map((c) => <img src={c.logo} alt={copy === 1 ? '' : c.name} width={c.w} height={c.h} loading="lazy" />)}
-          </div>
-        ))}
+    <!-- MANIFESTO: words light up as you scroll through them -->
+    <section class="manifesto" data-theme="dark">
+      <div class="wrap">
+        <p class="manifesto-text" data-manifesto>We're a small agency, and we like it that way. Every client gets our full attention, not a junior account rep. We make the content ourselves, we post it ourselves, and we show you the numbers every month. Sponsored or not, the work has to actually move your business, or we don't ship it.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- results: one enormous number that fills with green as you scroll, then the supporting numbers -->
-  <section class="sec mega" id="results">
-    <div class="wrap">
-      <span class="eyebrow">Results</span>
-      <p class="mega-num" data-count="15450000" data-mirror data-text="15,450,000">15,450,000</p>
-      <p class="mega-cap">organic impressions for our clients last year, <em>with no ad spend behind them</em></p>
-      <div class="mega-row">
-        <div class="reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
-        <div class="reveal"><strong data-count="500" data-suffix="K+">500K+</strong><span>views on a single post for a realtor who started near zero</span></div>
-        <div class="reveal"><strong data-count="3500" data-suffix="+">3,500+</strong><span>Facebook followers built for that same client in two years</span></div>
-        <div class="reveal"><strong data-count="2">2</strong><span>founders on every account. No junior reps, ever.</span></div>
+    <!-- CLIENTS -->
+    <section class="logos logos3" aria-label="Some clients we're proud to partner with" data-theme="dark">
+      <div class="wrap"><span class="eyebrow center">Some clients we're proud to partner with</span></div>
+      <div class="marquee logo-marquee">
+        <div class="marquee-track">
+          {[0, 1].map((copy) => (
+            <div class="logo-row" aria-hidden={copy === 1 ? 'true' : undefined}>
+              {clients.map((c) => <img src={c.logo} alt={copy === 1 ? '' : c.name} width={c.w} height={c.h} loading="lazy" />)}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- services: pinned index on the left, tall photo panels scroll past on the right (desktop) -->
-  <section class="sec svc tint" id="services">
-    <div class="wrap svc-grid">
-      <div class="svc-sticky">
+    <!-- RESULTS: the page goes green, the number counts up -->
+    <section class="mega mega3" id="results" data-theme="green">
+      <div class="wrap">
+        <span class="eyebrow">Results</span>
+        <p class="mega-num" data-count="15450000">15,450,000</p>
+        <p class="mega-cap">organic impressions for our clients last year, <em>with no ad spend behind them</em></p>
+        <div class="mega-row">
+          <div class="reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
+          <div class="reveal"><strong data-count="500" data-suffix="K+">500K+</strong><span>views on a single post for a realtor who started near zero</span></div>
+          <div class="reveal"><strong data-count="3500" data-suffix="+">3,500+</strong><span>Facebook followers built for that same client in two years</span></div>
+          <div class="reveal"><strong data-count="2">2</strong><span>founders on every account. No junior reps, ever.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES: a pinned horizontal journey through three full-screen panels -->
+    <section class="hsvc" id="services" data-theme="light">
+      <div class="wrap hsvc-head">
         <span class="eyebrow">What we do</span>
         <h2>A full-service agency, <em>sized for real attention</em></h2>
-        <ol class="svc-index">
-          {services.map((s, i) => (
-            <li class:list={['svc-item', { on: i === 0 }]}>
-              <a href={s.href}>
-                <span class="num">0{i + 1}</span>
-                <span class="svc-name">{s.name}</span>
-                <span class="svc-price">{s.price}</span>
-              </a>
-              <p>{s.text}</p>
-            </li>
-          ))}
-        </ol>
       </div>
-      <div class="svc-panels">
-        {services.map((s, i) => (
-          <a href={s.href} class="svc-panel" data-i={i}>
-            <img src={s.img} alt={s.alt} width="1600" height="1100" loading="lazy" decoding="async" />
-            <span class="svc-tag"><b>0{i + 1}</b> {s.name}</span>
+      <div class="hsvc-track">
+        {services.map((s) => (
+          <article class="hpanel">
+            <div class="hpanel-text">
+              <span class="hpanel-n">{s.n}</span>
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+              <div class="hpanel-foot">
+                <span class="price">{s.price}</span>
+                <a href={s.href} class="btn">Learn more</a>
+              </div>
+            </div>
+            <a href={s.href} class="hpanel-img" tabindex="-1" aria-hidden="true"><img src={s.img} alt="" width="1600" height="1100" loading="lazy" decoding="async" /></a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- WORK: full-width cards that pin and stack (desktop), grid on mobile -->
+    <section class="sec stack-sec" id="work" data-theme="light">
+      <div class="wrap">
+        <div class="sec-head">
+          <div><span class="eyebrow">Recent work</span><h2>Real results. <em>Real clients.</em></h2></div>
+          <a href="/work/" class="btn btn-ghost btn-sm">All {work.length} case studies</a>
+        </div>
+      </div>
+      <div class="wrap stack">
+        {stack.map((w, i) => (
+          <a href={`/${w.id}/`} class="stack-card">
+            <div class:list={['stack-img', { 'fit-contain': isShot(w) }]}><img src={w.data.cover} alt={w.data.coverAlt} width="1600" height="1000" loading="lazy" decoding="async" /></div>
+            <div class="stack-body">
+              <span class="stack-n">0{i + 1}</span>
+              <span class="work-client">{w.data.client}{w.data.location && <span class="work-loc"> · {w.data.location}</span>}</span>
+              <h3>{w.data.title}</h3>
+              <p>{w.data.summary.match(/^.+?[.!?](\s|$)/)?.[0]}</p>
+              <div class="pills">{w.data.filters.map((f) => <span class="pill">{filterLabels[f]}</span>)}</div>
+              <span class="go">Read the case study</span>
+            </div>
           </a>
         ))}
       </div>
-    </div>
-    <!-- mobile: plain rows -->
-    <div class="wrap service-list svc-mobile">
-      <h2 class="sr-only">What we do</h2>
-      {services.map((s, i) => (
-        <a href={s.href} class="service">
-          <span class="num">0{i + 1}</span>
-          <div>
-            <span class="price">{s.price}</span>
-            <h3>{s.name}</h3>
-            <p>{s.text}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+      <div class="wrap work-grid stack-mobile">{stack.map((w) => <WorkCard entry={w} />)}</div>
+    </section>
 
-  <!-- work: full-width case study cards that stack as you scroll (desktop), grid on mobile -->
-  <section class="sec stack-sec" id="work">
-    <div class="wrap">
-      <div class="sec-head">
+    <!-- WHY US -->
+    <section class="sec" id="why" data-theme="light">
+      <div class="wrap">
+        <div class="sec-title reveal">
+          <span class="eyebrow">Why us</span>
+          <h2>Content that drives <em>real impact</em></h2>
+        </div>
+        <div class="compare reveal">
+          <div class="col col-us grain"><h3>Integrity Grove</h3><ul>{us.map((i) => <li>{i}</li>)}</ul></div>
+          <div class="col col-them"><h3>Other agencies</h3><ul>{them.map((i) => <li>{i}</li>)}</ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="sec" id="reviews" data-theme="light">
+      <div class="wrap">
+        <figure class="featured-quote reveal"><blockquote>“{featured.text}”</blockquote><figcaption>{featured.name}, {featured.org}</figcaption></figure>
+      </div>
+      <Reviews marquee />
+    </section>
+
+    <!-- CLOSE: the page goes dark again, one giant magnetic orb -->
+    <section class="orb-sec" id="contact" data-theme="dark">
+      <div class="marquee big-marquee" aria-hidden="true">
+        <div class="marquee-track">
+          {[0, 1].map((copy) => (
+            <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>{["Let's grow your business", 'Social media', 'Websites', 'Photo & video'].map((w) => <span>{w}<i>✦</i></span>)}</div>
+          ))}
+        </div>
+      </div>
+      <div class="wrap orb-inner">
         <div>
-          <span class="eyebrow">Recent work</span>
-          <h2>Real results. <em>Real clients.</em></h2>
+          <span class="eyebrow">Free 30-minute discovery call</span>
+          <h2>Ready when <em>you are.</em></h2>
+          <p>An honest look at where you stand online and where the biggest opportunities are. No pitch deck, no junior rep.</p>
+          <a href={`mailto:${EMAIL}`} class="cta-email">{EMAIL}</a>
         </div>
-        <a href="/work/" class="btn btn-ghost btn-sm">All {work.length} case studies</a>
+        <a href={BOOK_URL} class="orb btn" target="_blank" rel="noopener"><span>Book<br />a call</span></a>
       </div>
-    </div>
-    <div class="wrap stack">
-      {stack.map((w, i) => (
-        <a href={`/${w.id}/`} class="stack-card" style={`--i:${i}`}>
-          <div class:list={['stack-img', { 'fit-contain': isShot(w) }]}>
-            <img src={w.data.cover} alt={w.data.coverAlt} width="1600" height="1000" loading="lazy" decoding="async" />
-          </div>
-          <div class="stack-body">
-            <span class="stack-n">0{i + 1}</span>
-            <span class="work-client">{w.data.client}{w.data.location && <span class="work-loc"> · {w.data.location}</span>}</span>
-            <h3>{w.data.title}</h3>
-            <p>{w.data.summary.match(/^.+?[.!?](\s|$)/)?.[0]}</p>
-            <div class="pills">{w.data.filters.map((f) => <span class="pill">{filterLabels[f]}</span>)}</div>
-            <span class="go">Read the case study</span>
-          </div>
-        </a>
-      ))}
-    </div>
-    <div class="wrap work-grid stack-mobile">
-      {stack.map((w) => <WorkCard entry={w} />)}
-    </div>
-  </section>
-
-  <section class="sec" id="why">
-    <div class="wrap">
-      <div class="sec-title reveal">
-        <span class="eyebrow">Why us</span>
-        <h2>Content that drives <em>real impact</em></h2>
-        <p>Unlike agencies that settle for surface-level strategies, we craft authentic brand stories that build engaged audiences and measurable results.</p>
-      </div>
-      <div class="compare reveal">
-        <div class="col col-us grain">
-          <h3>Integrity Grove</h3>
-          <ul>{us.map((i) => <li>{i}</li>)}</ul>
-        </div>
-        <div class="col col-them">
-          <h3>Other agencies</h3>
-          <ul>{them.map((i) => <li>{i}</li>)}</ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec tint" id="reviews">
-    <div class="wrap">
-      <figure class="featured-quote reveal">
-        <blockquote>“{featured.text}”</blockquote>
-        <figcaption>{featured.name}, {featured.org}</figcaption>
-      </figure>
-      <div class="sec-title reveal">
-        <span class="eyebrow">Reviews</span>
-        <h2>A small agency, <em>and we like it that way</em></h2>
-      </div>
-    </div>
-    <Reviews marquee />
-  </section>
-
-  <!-- closing: full-height call to action -->
-  <section class="cta-xl grain" id="contact">
-    <div class="marquee big-marquee" aria-hidden="true">
-      <div class="marquee-track">
-        {[0, 1].map((copy) => (
-          <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>{["Let's grow your business", 'Social media', 'Websites', 'Photo & video'].map((w) => <span>{w}<i>✦</i></span>)}</div>
-        ))}
-      </div>
-    </div>
-    <div class="wrap cta-xl-inner">
-      <span class="eyebrow">Free 30-minute discovery call</span>
-      <h2>Ready when <em>you are.</em></h2>
-      <p>We'll take an honest look at where you stand online and where the biggest opportunities are. No pitch deck, no junior rep.</p>
-      <a href={BOOK_URL} class="btn btn-xl" target="_blank" rel="noopener">Book a discovery call</a>
-      <a href={`mailto:${EMAIL}`} class="cta-email">{EMAIL}</a>
-    </div>
-  </section>
+    </section>
+  </div>
 </Base>

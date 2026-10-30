@@ -26,8 +26,12 @@ if (!reduce) {
     nav();
     progress();
     hero(delay);
+    themes();
+    wall();
+    manifesto();
     mega();
     services();
+    hservices();
     stack();
     headings();
     reveals();
@@ -282,7 +286,7 @@ function cursor() {
   document.addEventListener('pointerleave', () => c.classList.remove('on'));
   document.addEventListener('pointerover', (e) => {
     const t = e.target as Element;
-    const big = t.closest('.work-card, .reel-card, .stack-card, .frame, .svc-panel, .yt-btn');
+    const big = t.closest('.work-card, .reel-card, .stack-card, .frame, .svc-panel, .hpanel-img, .yt-btn');
     const link = t.closest('a, button, select, input, textarea, label');
     c.classList.toggle('big', !!big);
     c.classList.toggle('link', !big && !!link);
@@ -378,5 +382,61 @@ function stack() {
     ScrollTrigger.create({ trigger: card, start: 'top top+=100', endTrigger: '.stack', end: 'bottom bottom', pin: true, pinSpacing: false });
     const next = cards[i + 1];
     if (next) gsap.to(card, { scale: 0.94, opacity: 0.55, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top top+=100', scrub: true } });
+  });
+}
+
+/* ---------- homepage v3 ---------- */
+
+/* the page body changes color as sections with data-theme pass the middle of the screen */
+function themes() {
+  const secs = $$('[data-theme]');
+  if (!secs.length) return;
+  const html = document.documentElement;
+  html.dataset.theme = secs[0].dataset.theme ?? 'light';
+  secs.forEach((sec) => {
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 50%', end: 'bottom 50%',
+      onToggle: (self) => { if (self.isActive) html.dataset.theme = sec.dataset.theme ?? 'light'; },
+    });
+  });
+}
+
+/* hero wall leans with the mouse and drifts up as you scroll away */
+function wall() {
+  const el = $('.wall');
+  if (!el) return;
+  gsap.to(el, { yPercent: -18, ease: 'none', scrollTrigger: { trigger: '.hero3', start: 'top top', end: 'bottom top', scrub: true } });
+  if (!fine) return;
+  const rx = gsap.quickTo(el, 'rotationX', { duration: 1.4, ease: 'power3' });
+  const rz = gsap.quickTo(el, 'rotationZ', { duration: 1.4, ease: 'power3' });
+  gsap.set(el, { transformPerspective: 1400, rotationX: 18, rotationZ: -7, scale: 1.08 });
+  $('.hero3')!.addEventListener('pointermove', (e) => {
+    const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
+    rx(18 - ny * 8);
+    rz(-7 + nx * 6);
+  });
+}
+
+/* manifesto: words brighten one by one as the paragraph scrolls through */
+function manifesto() {
+  const el = $('[data-manifesto]');
+  if (!el) return;
+  const split = SplitText.create(el, { type: 'words', wordsClass: 'word' });
+  gsap.to(split.words, { opacity: 1, stagger: 0.04, ease: 'none', scrollTrigger: { trigger: el, start: 'top 75%', end: 'bottom 45%', scrub: 0.4 } });
+}
+
+/* services: pinned, the three panels travel sideways (desktop only) */
+function hservices() {
+  const sec = $('.hsvc');
+  const track = $('.hsvc-track');
+  if (!sec || !track) return;
+  gsap.matchMedia().add('(min-width: 900px)', () => {
+    sec.classList.add('pinned');
+    const distance = () => track.scrollWidth - track.clientWidth;
+    gsap.to(track, {
+      x: () => -distance(), ease: 'none',
+      scrollTrigger: { trigger: sec, start: 'top top', end: () => '+=' + distance(), pin: true, scrub: 0.8, invalidateOnRefresh: true },
+    });
+    return () => sec.classList.remove('pinned');
   });
 }

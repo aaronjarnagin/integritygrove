@@ -48,7 +48,8 @@ Fonts are self-hosted in `public/fonts/` (woff2, latin subset, downloaded from G
 ## Versions
 
 - **v1 "classic"**: git tag `v1-classic` (2026-10-29). Dark hero + light body, structurally close to the WordPress site. Aaron liked it. The homepage file is kept as `src/pages/_index-v1.astro` (underscore = not routed). To restore: `cp src/pages/_index-v1.astro src/pages/index.astro` and drop the v2 pieces noted below.
-- **v2 "full out"** (current `src/pages/index.astro`): same colors, fonts and content, new layout built around scroll-driven motion. See "Homepage v2" below.
+- **v2 "full out"**: scroll-driven layout (film-strip hero, pinned services index, stacked cards). Its homepage-only CSS is still in `v2.css` (unused now; the inner-page rules in that file are live). Aaron's verdict: not different enough.
+- **v3** (current `src/pages/index.astro`, styles in `v3.css`, "homepage v3" functions in `motion.ts`): the page body changes color per section (`data-theme` dark/light/green on each section, mirrored to `html[data-theme]` by ScrollTrigger; everything is styled from `--bg/--fg/--fg2/--accent`), a tilted drifting wall of all 16 project thumbnails behind the centered hero headline (`scripts/thumbs.mjs` makes the 480px thumbs), a manifesto whose words brighten as you scroll (SplitText words + scrub), the mega number on a full green page, pinned horizontal service panels (`.hsvc`, desktop), the v2 stacked case-study cards, compare, featured quote + review marquees, and a closing section with a pulsing magnetic orb button. Spacing is tighter than v2 (`.v3 .sec` 5rem).
 
 ## Design direction (decided 2026-10-29)
 

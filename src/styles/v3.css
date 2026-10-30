@@ -1,0 +1,118 @@
+/* ============ HOMEPAGE V3 ============
+   Loaded after global.css and v2.css. The page body changes color per section (html[data-theme], set by
+   motion.ts from each section's data-theme); sections are transparent so the whole page shifts together. */
+
+/* themes */
+html{--bg:#FFFFFF;--fg:#11252B;--fg2:#5A6B70;--accent:#2E7D4B;--hair:#E2E8E6}
+html[data-theme="dark"]{--bg:#0B1A1E;--fg:#FFFFFF;--fg2:#C3D1D4;--accent:#66BF84;--hair:rgba(255,255,255,.14)}
+html[data-theme="green"]{--bg:#66BF84;--fg:#0B1A1E;--fg2:#0B1A1E;--accent:#0B1A1E;--hair:rgba(11,26,30,.25)}
+html[data-theme="light"]{--bg:#FFFFFF;--fg:#11252B;--fg2:#5A6B70;--accent:#2E7D4B;--hair:#E2E8E6}
+body:has(.v3){background:var(--bg);color:var(--fg2);transition:background-color .9s cubic-bezier(.2,.8,.2,1),color .9s}
+.v3 section{background:transparent;color:var(--fg2)}
+/* each section also carries its own theme variables, so its text is right even before the body catches up */
+.v3 [data-theme="dark"]{--fg:#FFFFFF;--fg2:#C3D1D4;--accent:#66BF84;--hair:rgba(255,255,255,.14)}
+.v3 [data-theme="green"]{--fg:#0B1A1E;--fg2:#0B1A1E;--accent:#0B1A1E;--hair:rgba(11,26,30,.25)}
+.v3 [data-theme="light"]{--fg:#11252B;--fg2:#5A6B70;--accent:#2E7D4B;--hair:#E2E8E6}
+/* without the motion script (reduced motion, JS off) sections paint their own background instead */
+html:not(.motion) .v3 [data-theme="dark"]{background:#0B1A1E}
+html:not(.motion) .v3 [data-theme="green"]{background:#66BF84}
+html:not(.motion) .v3 [data-theme="light"]{background:#fff}
+.v3 h1,.v3 h2,.v3 h3{color:var(--fg)}
+.v3 h1 em,.v3 h2 em{color:var(--accent)}
+.v3 .eyebrow{color:var(--accent)}
+.v3 .eyebrow::before{background:var(--accent)}
+.v3 .sec{padding:5rem 0}
+.v3 .sec-head{margin-bottom:2rem}
+.v3 .btn-ghost{border-color:var(--hair);color:var(--fg)}
+.v3 .btn-ghost:hover{border-color:var(--fg)}
+.v3 .cta-email{color:var(--accent)}
+.v3 .cta-email:hover{color:var(--fg)}
+.v3 .featured-quote blockquote{color:var(--fg)}
+.v3 .featured-quote figcaption{color:var(--accent)}
+.v3 .featured-quote{margin-bottom:2.5rem}
+/* nav reads the theme too */
+html[data-theme="dark"] nav.nav-dark:not(.scrolled) .nlink{color:var(--on-navy)}
+html:not([data-theme="dark"]) nav.nav-dark .logo-light{display:none}
+html:not([data-theme="dark"]) nav.nav-dark .logo-dark{display:block}
+html:not([data-theme="dark"]) nav.nav-dark:not(.scrolled) .nlink{color:var(--muted)}
+html:not([data-theme="dark"]) nav.nav-dark:not(.scrolled) .nav-toggle span{background:var(--text)}
+html[data-theme="green"] nav.nav-dark:not(.scrolled) .nlink{color:#0B1A1E}
+
+/* HERO: tilted drifting wall of work behind the centered headline */
+.hero3{display:flex;align-items:center;justify-content:center;text-align:center;min-height:100svh;margin-top:-76px;padding:calc(76px + 3rem) 0 4rem;background:transparent;overflow:hidden;position:relative;isolation:isolate;border-radius:0}
+.hero3-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero3 h1{font-size:clamp(2.8rem,1.4rem + 7.2vw,8.4rem);line-height:.95;letter-spacing:-.05em;color:#fff;max-width:none}
+.hero3 h1 .l{display:block}
+.hero3 h1 em{color:var(--green);font-weight:500}
+.hero3 .lede{color:#C3D1D4;margin:1.6rem auto 2rem;max-width:46ch;text-align:center}
+.hero3 .hero-cta-row{justify-content:center}
+.hero3 .btn-ghost{border-color:rgba(255,255,255,.3);color:#fff}
+/* darkening veil over the wall so the headline stays legible; heavier on phones where the wall is denser */
+.hero3::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(11,26,30,.68) 0%,rgba(11,26,30,.88) 60%,#0B1A1E 100%)}
+@media(max-width:900px){.hero3::after{background:radial-gradient(ellipse at center,rgba(11,26,30,.8) 0%,rgba(11,26,30,.92) 60%,#0B1A1E 100%)}}
+.wall{position:absolute;inset:-25% -20%;z-index:0;display:flex;flex-direction:column;justify-content:center;gap:1.4rem;transform:perspective(1400px) rotateX(18deg) rotateZ(-7deg) scale(1.08);transform-origin:center;pointer-events:none;will-change:transform}
+.wall-row{overflow:visible}
+.wall-track{display:flex;width:max-content;animation:marquee 90s linear infinite}
+.wall-row.reverse .wall-track{animation-direction:reverse;animation-duration:110s}
+.wall-row:nth-child(3) .wall-track{animation-duration:130s}
+.wall-set{display:flex;gap:1.4rem;padding-right:1.4rem}
+.wall-item{width:clamp(220px,20vw,340px);aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#13282E;border:1px solid rgba(255,255,255,.08);flex:none}
+.wall-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.85)}
+.hero3 .hero-scroll{color:#6F8489}
+@media(max-width:900px){.wall{inset:-20% -40%;transform:perspective(1000px) rotateX(14deg) rotateZ(-6deg) scale(1.25)}.wall-item{width:200px}}
+
+/* MANIFESTO */
+.manifesto{padding:4rem 0 6rem}
+.manifesto-text{font-size:clamp(1.6rem,1.1rem + 2.6vw,3.6rem);font-weight:600;line-height:1.18;letter-spacing:-.03em;max-width:24ch;color:#fff}
+.manifesto-text .word{opacity:.18;transition:none}
+html:not(.motion) .manifesto-text .word{opacity:1}
+
+/* CLIENTS on dark */
+.logos3{padding:1rem 0 4rem;border:0}
+.logos3 .logo-row img{filter:brightness(0) invert(1);opacity:.7}
+
+/* RESULTS on green */
+.mega3{padding:7rem 0 6rem}
+html[data-theme="green"] .mega-num{background:linear-gradient(to top,#0B1A1E var(--fill,0%),rgba(11,26,30,.28) var(--fill,0%));-webkit-background-clip:text;background-clip:text}
+.mega3 .mega-cap{color:#0B1A1E}
+.mega3 .mega-cap em{color:#0B1A1E}
+.mega3 .mega-row{border-top-color:var(--hair)}
+.mega3 .mega-row strong,.mega3 .mega-row span{color:#0B1A1E}
+
+/* SERVICES: pinned horizontal panels (desktop), stacked on mobile */
+.hsvc{padding:5rem 0 3rem;overflow:hidden}
+.hsvc-head{margin-bottom:2rem}
+.hsvc-track{display:flex;gap:2rem;padding:0 max(1.25rem,calc((100vw - var(--maxw)) / 2))}
+.hpanel{flex:0 0 min(84vw,1100px);display:grid;grid-template-columns:1fr 1.1fr;gap:2.5rem;align-items:center;background:var(--mist);border-radius:var(--radius);padding:2.6rem;min-height:66vh}
+.hpanel-n{font-family:var(--serif);font-style:italic;font-size:clamp(3rem,2rem + 4vw,6rem);color:var(--green-dk);line-height:1;display:block;margin-bottom:.5rem}
+.hpanel h3{font-size:clamp(1.8rem,1.2rem + 2vw,3.2rem);letter-spacing:-.035em;margin-bottom:1rem}
+.hpanel p{max-width:42ch;font-size:1.05rem}
+.hpanel-foot{display:flex;align-items:center;gap:1.2rem;margin-top:1.8rem;flex-wrap:wrap}
+.hpanel .price{font-size:.85rem;font-weight:700;color:var(--green-dk);background:#fff;padding:.4rem .8rem;border-radius:999px}
+.hpanel-img{display:block;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#fff}
+.hpanel-img img{width:100%;height:100%;object-fit:cover;transition:scale 1.2s cubic-bezier(.2,.8,.2,1)}
+.hpanel:hover .hpanel-img img{scale:1.04}
+.hsvc.pinned{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0}
+.hsvc.pinned .hsvc-head{margin-bottom:1.6rem}
+@media(max-width:900px){.hsvc-track{flex-direction:column;padding:0 1.25rem}.hpanel{flex-basis:auto;grid-template-columns:1fr;min-height:0;padding:1.8rem}.hpanel-img{order:-1}}
+
+/* WORK stack cards sit on the body color */
+.v3 .stack-card{box-shadow:0 30px 80px rgba(17,37,43,.14)}
+
+/* CLOSE: orb */
+.orb-sec{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-bottom:4rem;overflow:hidden}
+.orb-sec .big-marquee{padding:1.5rem 0 3rem}
+.orb-inner{display:grid;grid-template-columns:1.1fr auto;gap:3rem;align-items:center}
+.orb-inner h2{font-size:clamp(2.6rem,1.6rem + 5vw,6rem);letter-spacing:-.045em;line-height:.98;margin-bottom:1rem}
+.orb-inner p{max-width:46ch;font-size:1.1rem;margin-bottom:1.4rem}
+.orb{width:clamp(200px,24vw,300px);aspect-ratio:1;border-radius:50%;background:var(--green);color:#0B1A1E;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(1.3rem,1rem + 1.4vw,2rem);font-weight:700;letter-spacing:-.03em;line-height:1.05;padding:0;box-shadow:0 0 0 0 rgba(102,191,132,.45);animation:orb-pulse 3.2s ease-out infinite}
+.orb:hover{background:#79CC95;transform:none}
+@keyframes orb-pulse{0%{box-shadow:0 0 0 0 rgba(102,191,132,.45)}100%{box-shadow:0 0 0 46px rgba(102,191,132,0)}}
+@media(max-width:800px){.orb-inner{grid-template-columns:1fr;justify-items:start}.orb{width:200px}}
+
+@media (prefers-reduced-motion:reduce){
+  .wall-track{animation:none}
+  .orb{animation:none}
+  .manifesto-text .word{opacity:1}
+  body:has(.v3){transition:none}
+}
