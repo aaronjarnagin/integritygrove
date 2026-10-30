@@ -410,10 +410,16 @@ function wall() {
   const rx = gsap.quickTo(el, 'rotationX', { duration: 1.4, ease: 'power3' });
   const rz = gsap.quickTo(el, 'rotationZ', { duration: 1.4, ease: 'power3' });
   gsap.set(el, { transformPerspective: 1400, rotationX: 18, rotationZ: -7, scale: 1.08 });
-  $('.hero3')!.addEventListener('pointermove', (e) => {
+  // the green glow trails the cursor across the hero
+  const glow = $('.hero3 .hero-glow');
+  const gx = glow && gsap.quickTo(glow, 'x', { duration: 1.2, ease: 'power3' });
+  const gy = glow && gsap.quickTo(glow, 'y', { duration: 1.2, ease: 'power3' });
+  const hero = $('.hero3')!;
+  hero.addEventListener('pointermove', (e) => {
     const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
     rx(18 - ny * 8);
     rz(-7 + nx * 6);
+    if (gx && gy) { const r = hero.getBoundingClientRect(); gx(e.clientX - r.left - r.width / 2); gy(e.clientY - r.top - r.height / 2); }
   });
 }
 

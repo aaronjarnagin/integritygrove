@@ -410,6 +410,9 @@ footer{background:var(--ink);color:#93A6AB;padding:4.5rem 0 0;overflow:hidden}
 /* SplitText line masks: pad the clip box so serif descenders and italic overhang aren't cut while words rise in.
    The negative margin cancels the padding, so layout doesn't move. (The split is reverted once the entrance ends.) */
 .sl-mask{padding:.28em .18em .3em;margin:-.28em -.18em -.3em}
+/* vertical margins between stacked block masks collapse (only -.3em applies, not -.58em), which spread the lines
+   apart; flex columns never collapse margins, so the padding is fully cancelled */
+h1:has(.sl-mask),h2:has(.sl-mask),h1 .l:has(.sl-mask){display:flex;flex-direction:column}
 
 /* scroll progress */
 .progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;z-index:120;pointer-events:none}
