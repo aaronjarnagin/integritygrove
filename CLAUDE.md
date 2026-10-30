@@ -45,13 +45,30 @@ Also `ink` `#0B1A1E` (hero, CTA band, footer) and `green-dk` `#2E7D4B` for green
 
 Fonts are self-hosted in `public/fonts/` (woff2, latin subset, downloaded from Google Fonts on 2026-10-29) and preloaded in `Base.astro`: Hanken Grotesk variable 400 to 800 for everything, plus Lora italic 500 for one accent phrase per headline (Instrument Serif was tried first and read too much like script). Wrap that phrase in `<em>` inside an `h1` or `h2` and it renders serif italic green automatically. `font-display: block` plus an `html.fonts-pending` hold (body hidden until `document.fonts.ready`, max 1s) means text never paints in a fallback font and reflows. Don't go back to the Google Fonts stylesheet: loading it async caused a visible font swap on every page load. The old site used niveau-grotesk (Adobe Fonts).
 
+## Versions
+
+- **v1 "classic"**: git tag `v1-classic` (2026-10-29). Dark hero + light body, structurally close to the WordPress site. Aaron liked it. The homepage file is kept as `src/pages/_index-v1.astro` (underscore = not routed). To restore: `cp src/pages/_index-v1.astro src/pages/index.astro` and drop the v2 pieces noted below.
+- **v2 "full out"** (current `src/pages/index.astro`): same colors, fonts and content, new layout built around scroll-driven motion. See "Homepage v2" below.
+
 ## Design direction (decided 2026-10-29)
 
 "Cinematic dark hero, light body." The homepage opens on a full-height ink hero with film grain (`.grain`), a cursor-following green glow, the tilted project-photo stack, and a transparent nav (white logo) that turns solid white once the hero is scrolled past (`nav.nav-dark`, set in `Nav.astro` for `/`). The hero's bottom corners are rounded into the light body. Everything you have to read sits on white or mist. CTA bands and the footer go back to ink with grain.
 
 Type is a fluid scale (`--fs-display`, `--fs-h1`, `--fs-h2` in `:root`) so headlines are huge on desktop and still fit a 390px phone. Body stays 17px / 1.65. `text-wrap: balance` on headings, `pretty` on paragraphs. Eyebrows are small caps with a green dot.
 
-Homepage sections, in order: hero → client logo marquee → results bento (`.bento`, counters including the real 15,450,000 organic impressions figure from the old site, a photo tile and a serif pull quote) → numbered editorial service rows that reveal a photo on hover (`.service-list`) → pinned work reel → us vs other agencies → review marquees → CTA band. Inner pages keep the light `page-head` pattern with a serif accent in the h1.
+v1 homepage sections (in `_index-v1.astro`): hero → client logo marquee → results bento → numbered editorial service rows → pinned work reel → us vs other agencies → review marquees → CTA band. Inner pages keep the light `page-head` pattern with a serif accent in the h1.
+
+## Homepage v2 (current)
+
+Scroll-driven, built in the "HOMEPAGE V2" block at the end of `global.css` and the "homepage v2" functions at the end of `motion.ts`:
+
+- `ScrollSmoother` (GSAP, desktop with a mouse only) wraps `main` + footer in `#smooth-wrapper > #smooth-content` in `Base.astro`. Because the content is transformed, the nav is `position: fixed` and `main` has 76px top padding (the hero pulls itself up under the nav). `position: sticky` won't work inside the content; use ScrollTrigger pins instead.
+- Intro curtain (`.intro`): ink panel with the logo, about 1s, once per browser session (`sessionStorage` `ig-intro`), skipped under reduced motion. The hero entrance waits for it.
+- Hero: full-width display headline (`.hero2`, up to 9.6rem), lede + CTA + three stats on the right, and a slow film strip of the 8 newest covers (`.strip`) along the bottom, with a `data-speed` parallax.
+- Results (`.mega`): "15,450,000" in outlined navy that fills with green as it scrolls (`--fill` scrubbed by ScrollTrigger, `background-clip: text`), then four supporting numbers.
+- Services (`.svc`): the index on the left is pinned while three 78vh photo panels scroll on the right; the row matching the panel in view lights up and expands. Below 900px it falls back to the v1 rows (`.svc-mobile`).
+- Work (`.stack`): the 5 newest case studies as full-width cards that pin near the top and stack, each shrinking and dimming as the next slides over. Below 900px, a plain `WorkCard` grid.
+- Then the v1 compare section, a featured Lora quote above the review marquees, and a full-height closing CTA (`.cta-xl`) with the big marquee.
 
 Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site; the tree mark is the first 370px).
 

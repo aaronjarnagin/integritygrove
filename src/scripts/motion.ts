@@ -4,8 +4,9 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, ScrollSmoother);
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -18,9 +19,14 @@ if (import.meta.env.DEV) (window as any).gsap = gsap;
 
 if (!reduce) {
   try {
+    smoother();
+    const delay = intro();
     nav();
     progress();
-    hero();
+    hero(delay);
+    mega();
+    services();
+    stack();
     headings();
     reveals();
     counters();
@@ -68,10 +74,10 @@ function progress() {
 }
 
 /* hero: headline rises word by word out of masked lines, then the rest; photo stack drops in and floats */
-function hero() {
+function hero(delay = 0) {
   // the headline is the largest paint on the page, so phones skip its word reveal and show it straight away
   const h1 = matchMedia('(min-width: 900px)').matches ? $('.hero h1, .page-head h1, .cs-head h1') : null;
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, delay });
   if (h1) {
     SplitText.create(h1, {
       type: 'lines,words',
@@ -81,7 +87,7 @@ function hero() {
       onSplit(self) {
         gsap.set(h1, { opacity: 1 });
         // once the words have landed, put the original headline back so nothing can clip its descenders
-        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out', onComplete: () => self.revert() });
+        return gsap.from(self.words, { yPercent: 110, duration: 1.1, stagger: 0.06, ease: 'expo.out', delay, onComplete: () => self.revert() });
       },
     });
   }
@@ -221,7 +227,9 @@ function reel() {
       if (!card || !(e.target as Element).matches(':focus-visible')) return;
       const all = $$('.reel-card', track);
       const p = all.indexOf(card as HTMLElement) / Math.max(1, all.length - 1);
-      window.scrollTo({ top: st.start + p * (st.end - st.start), behavior: 'auto' });
+      const y = st.start + p * (st.end - st.start);
+      const sm = ScrollSmoother.get();
+      if (sm) sm.scrollTo(y, false); else window.scrollTo({ top: y, behavior: 'auto' });
     };
     track.addEventListener('focusin', onFocus);
     return () => { section.classList.remove('reel-pinned'); track.removeEventListener('focusin', onFocus); };
@@ -304,5 +312,61 @@ function tilt() {
       card.style.setProperty('--my', py * 100 + '%');
     });
     card.addEventListener('pointerleave', () => { rx(0); ry(0); });
+  });
+}
+
+/* ---------- homepage v2 ---------- */
+
+/* buttery scroll on desktop with a mouse; touch devices keep native scrolling */
+function smoother() {
+  if (!fine || !$('#smooth-wrapper') || !matchMedia('(min-width: 900px)').matches) return;
+  ScrollSmoother.create({ wrapper: '#smooth-wrapper', content: '#smooth-content', smooth: 1.1, effects: true, smoothTouch: false });
+}
+
+/* intro curtain, once per browser session; returns how long the hero should wait */
+function intro(): number {
+  const el = $('.intro');
+  if (!el) return 0;
+  if (sessionStorage.getItem('ig-intro')) { el.remove(); return 0; }
+  sessionStorage.setItem('ig-intro', '1');
+  gsap.timeline({ onComplete: () => { el.remove(); ScrollTrigger.refresh(); } })
+    .from('.intro-mark', { scale: 0.7, opacity: 0, duration: 0.7, ease: 'expo.out' })
+    .to('.intro-mark', { scale: 0.9, opacity: 0, duration: 0.4, ease: 'power2.in' }, 0.75)
+    .to(el, { yPercent: -100, duration: 0.8, ease: 'expo.inOut' }, 0.85);
+  return 1.0;
+}
+
+/* the enormous impressions number fills with green as it scrolls through the viewport */
+function mega() {
+  const el = $('.mega-num');
+  if (!el) return;
+  gsap.fromTo(el, { '--fill': '0%' }, { '--fill': '100%', ease: 'none', scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 35%', scrub: 0.6 } });
+}
+
+/* services: pin the index while the photo panels scroll by, light up the matching row */
+function services() {
+  const sec = $('.svc');
+  const sticky = $('.svc-sticky');
+  if (!sec || !sticky || !matchMedia('(min-width: 900px)').matches) return;
+  const items = $$('.svc-item');
+  ScrollTrigger.create({ trigger: '.svc-grid', start: 'top top+=100', end: 'bottom bottom', pin: sticky, pinSpacing: false });
+  $$('.svc-panel').forEach((panel, i) => {
+    ScrollTrigger.create({
+      trigger: panel, start: 'top 55%', end: 'bottom 55%',
+      onToggle: (self) => { if (self.isActive) items.forEach((it, j) => it.classList.toggle('on', j === i)); },
+    });
+    const img = $('img', panel);
+    if (img) gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none', scrollTrigger: { trigger: panel, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+}
+
+/* work: each card pins near the top and the next one slides over it, shrinking the one beneath */
+function stack() {
+  const cards = $$('.stack-card');
+  if (cards.length < 2 || !matchMedia('(min-width: 900px)').matches) return;
+  cards.forEach((card, i) => {
+    ScrollTrigger.create({ trigger: card, start: 'top top+=100', endTrigger: '.stack', end: 'bottom bottom', pin: true, pinSpacing: false });
+    const next = cards[i + 1];
+    if (next) gsap.to(card, { scale: 0.94, opacity: 0.55, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: 'top top+=100', scrub: true } });
   });
 }

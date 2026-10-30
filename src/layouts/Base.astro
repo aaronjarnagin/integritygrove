@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/v2.css'; // after global.css on purpose: homepage v2 rules must win ties
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { STAGING, EMAIL } from '../config';
@@ -83,10 +84,15 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <Nav />
-    <main id="main-content">
-      <slot />
-    </main>
-    <Footer />
+    <!-- ScrollSmoother (desktop, motion.ts) needs these two wrappers; they are plain divs otherwise -->
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <main id="main-content">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
 
     <!-- motion layer: scroll progress + cursor follower (driven by src/scripts/motion.ts) -->
     <div class="progress" aria-hidden="true"></div>
