@@ -17,7 +17,7 @@ export const clients = [
   { name: 'Guthrie County State Bank', logo: '/images/clients/gcsb.webp', w: 600, h: 150 },
   { name: 'Noble Method', logo: '/images/clients/bull-and-nm.webp', w: 600, h: 345 },
   { name: 'Denver Savings Bank', logo: '/images/clients/dsb.webp', w: 600, h: 127 },
-  { name: 'Pollari Productions', logo: '/images/clients/mesa.webp', w: 600, h: 186 },
+  { name: 'Pollari Media', logo: '/images/clients/mesa.webp', w: 600, h: 186 },
   { name: 'UCS Healthcare', logo: '/images/clients/ucs.webp', w: 600, h: 245 },
 ];
 

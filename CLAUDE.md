@@ -130,9 +130,10 @@ Category archives: `/category/photography/`, `/category/social-media/`, `/catego
 ## Open items
 
 1. Contact form endpoint: the form on `/contact/` is built (AJAX, inline success, honeypot) but `FORM_URL` in `src/config.ts` is empty. Create a new Formspree form delivering to info@integritygrove.com and paste its `https://formspree.io/f/...` URL there. Don't reuse `xgogozar`: it is shared by aaronjarnagin and aarongoesoutdoors and delivers to outdoors@aaronjarnagin.com.
-2. Confirm with Aaron (found in the 2026-10-29 review, carried over from WordPress): the Peoples Savings Bank case study uses Denver Savings Bank's testimonial signed by Jamin Wass (needs a real PSB quote or removal); About says 47k+ followers in one place and 50k+ in another; the client logo file is labelled Pollari Productions while the Google review says Pollari Media.
-3. Case study alt text is generated ("Client: section, image N"). Real descriptions would be better; the older posts (Noble Method, Guthrie County, Misty Metschke) could also use a tightening pass.
-4. Cutover (see "Cutover day" below).
+2. Case study alt text is generated ("Client: section, image N"). Real descriptions would be better; the older posts (Noble Method, Guthrie County, Misty Metschke) could also use a tightening pass.
+3. Cutover (see "Cutover day" below).
+
+Settled 2026-10-29 with Aaron: the Peoples Savings Bank case study has no testimonial (the one on WordPress was Denver Savings Bank's); Isaac's follower count is 50k+; the client is Pollari Media (the logo file `mesa.webp` is theirs).
 
 ## Cutover day
 

@@ -31,9 +31,3 @@ Our team directed the entire production for Peoples Savings Bank, making sure th
 **Post-Production:** 
 We handled all editing and post-production for the Peoples Savings Bank video, making sure it was delivered on time and met the high standards they were looking for. We refined the final cut, added effects, and pulled everything together for a smooth, polished result.
 
-## Client Testimonial
-
-“Working with Integrity Grove was an absolute blast! Aaron and Isaac are not only passionate but also down-to-earth, making the entire process enjoyable from start to finish. Their communication and collaboration were top-notch, always ensuring my vision was met while delivering high-quality content in record time. Integrity Grove exceeded my expectations, and I highly recommend them to anyone seeking outstanding marketing services.”
-
-Jamin Wass
-Vice President of HR & Marketing
