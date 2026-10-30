@@ -69,6 +69,7 @@ Scroll-driven, built in the "HOMEPAGE V2" block at the end of `global.css` and t
 - Services (`.svc`): the index on the left is pinned while three 78vh photo panels scroll on the right; the row matching the panel in view lights up and expands. Below 900px it falls back to the v1 rows (`.svc-mobile`).
 - Work (`.stack`): the 5 newest case studies as full-width cards that pin near the top and stack, each shrinking and dimming as the next slides over. Below 900px, a plain `WorkCard` grid.
 - Then the v1 compare section, a featured Lora quote above the review marquees, and a full-height closing CTA (`.cta-xl`) with the big marquee.
+- Inner pages: every `.page-head` and `.cs-head` is an ink band with grain and the display headline (rules in `v2.css`), so the nav is `nav-dark` on every page and turns solid once the band scrolls past. Case study covers overlap the band's bottom edge (`.cs-cover` negative margin).
 
 Logos: `public/images/logo-dark.png` and `logo-white.png` (1257x474 PNGs from the old site; the tree mark is the first 370px).
 

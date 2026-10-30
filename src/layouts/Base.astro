@@ -107,7 +107,7 @@ const ogImage = image.startsWith('http') ? image : `${site}${image}`;
       (function () {
         var nav = document.querySelector('nav');
         // over a dark hero the bar stays transparent until the hero is scrolled past
-        var hero = nav && nav.classList.contains('nav-dark') ? document.querySelector('.hero') : null;
+        var hero = nav && nav.classList.contains('nav-dark') ? document.querySelector('.hero, .page-head, .cs-head') : null;
         var heroH = hero ? hero.offsetHeight : 0;
         window.addEventListener('resize', function () { heroH = hero ? hero.offsetHeight : 0; });
         function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > (hero ? heroH - 76 : 8)); }
