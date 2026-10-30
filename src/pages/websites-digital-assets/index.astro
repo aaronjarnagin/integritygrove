@@ -10,6 +10,20 @@ const work = (await getCollection('work', (e) => !e.data.draft && e.data.filters
   .sort((a, b) => +b.data.date - +a.data.date)
   .slice(0, 6);
 
+// every number here comes from a case study on this site (Spoke Society, Jyles FBA)
+const proof = [
+  { n: '1 in 4', t: 'visits to Spoke Society’s new site come straight from Google search' },
+  { n: '12.84%', t: 'click rate on those search results, more than double the industry average' },
+  { n: '93%', t: 'average month-over-month growth in website searches from our articles for Jyles FBA' },
+];
+
+const process = [
+  { h: 'Content plan', p: 'We map the pages, the questions your customers search, and the story your site needs to tell before anything gets designed.' },
+  { h: 'Design & build', p: 'A custom, fast, mobile-first site built around your own photos and video, not stock, with a clear next step on every page.' },
+  { h: 'Launch & local search', p: 'Analytics, Search Console, and your Google Business Profile set up so local customers find you from day one.' },
+  { h: 'Keep publishing', p: 'Articles and case studies that answer real questions and keep earning traffic long after launch day.' },
+];
+
 const packages = [
   {
     name: 'Growth',
@@ -30,31 +44,58 @@ const packages = [
 ];
 
 const why = [
-  { h: 'Custom website', p: 'A site built around your business that ties your social media, email, and ads together and gives customers an easy next step.' },
-  { h: 'Search engine optimization', p: 'Proven, ethical SEO that grows organic traffic and keeps your site showing up in Google and in AI search tools.' },
-  { h: 'Google Business Profile', p: 'An optimized profile with accurate information so local customers find you, trust you, and call or walk in.' },
-  { h: 'Metrics dashboards', p: 'Real-time insight into how your site performs, so we can keep improving it after launch day.' },
+  { h: 'Built around real content', p: 'We shoot the photos and video your site needs, so it looks like your business, not a template everyone else is using too.' },
+  { h: 'Search and AI search ready', p: 'Proven, ethical SEO that grows organic traffic and keeps your site showing up in Google and in AI search tools.' },
+  { h: 'Found locally', p: 'An optimized Google Business Profile with accurate information, so customers in your town find you, trust you, and call or walk in.' },
+  { h: 'Numbers you can read', p: 'Real-time insight into how your site performs, so we can keep improving it after launch day.' },
 ];
 ---
-<Base title="Web Design & Digital Assets | Integrity Grove" description="Custom website design from Integrity Grove: fast, search-ready sites with SEO, Google Business Profile setup, and metrics dashboards. From $1,750.">
+<Base title="Websites & SEO Content in Iowa | Integrity Grove" description="Websites for Iowa and Midwest businesses, built around your content: fast, search-ready, with articles that earn traffic and live metrics. From $1,750.">
   <section class="page-head">
     <div class="wrap split">
       <div>
-        <span class="eyebrow">Websites & digital assets</span>
-        <h1>Websites that turn visitors <em>into customers</em></h1>
-        <p class="lede">Your website is the cornerstone of your brand online. A well-built site connects your social media, emails, and ads, and gives your customers an easy next step to do business with you.</p>
+        <span class="eyebrow">Websites & SEO content</span>
+        <h1>A website built to <em>put your content to work</em></h1>
+        <p class="lede">Your photos, videos, and stories deserve better than a template. We build fast, custom sites around your content, then add the articles, case studies, and local search setup that keep bringing customers in.</p>
         <div class="hero-cta-row">
           <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
           <a href="#packages" class="btn btn-ghost">See packages</a>
         </div>
       </div>
-      <figure class="head-img">
-        <img src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="Spoke Society website homepage" width="800" height="1000" fetchpriority="high" />
+      <figure class="head-img wide">
+        <img src="/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp" alt="Spoke Society website homepage" width="1558" height="870" fetchpriority="high" />
       </figure>
     </div>
   </section>
 
-  <section class="sec tint" id="packages">
+  <section class="sec">
+    <div class="wrap">
+      <div class="mega-row three proof">
+        {proof.map((x) => <div class="reveal"><strong>{x.n}</strong><span>{x.t}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>Content first, <em>then the build</em></h2>
+        <p>Most websites start with a template and fill in words later. Ours start with what your customers are searching for.</p>
+      </div>
+      <div class="feature-grid four">
+        {process.map((s, i) => (
+          <div class="feature reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{s.h}</h3>
+            <p>{s.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="packages">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Packages</span>
@@ -75,11 +116,11 @@ const why = [
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec tint">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Why us</span>
-        <h2>Why build your website with us?</h2>
+        <h2>Why our websites <em>keep working</em></h2>
       </div>
       <div class="feature-grid">
         {why.map((w, i) => (
@@ -93,17 +134,17 @@ const why = [
     </div>
   </section>
 
-  <section class="sec tint">
+  <section class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Websites we've built</h2>
+        <h2>Websites <em>we've built</em></h2>
         <a href="/work/?f=websites" class="btn btn-ghost btn-sm">All website work</a>
       </div>
       <div class="work-grid">{work.map((w) => <WorkCard entry={w} />)}</div>
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec tint">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Hear from our clients</span>

@@ -125,3 +125,14 @@ html[data-theme="green"] .mega-num{background:linear-gradient(to top,#0B1A1E var
   .manifesto-text .word{opacity:1}
   body:has(.v3){transition:none}
 }
+
+/* service pages: proof strip (reuses .mega-row) and a four-step process grid */
+.mega-row.three{grid-template-columns:repeat(3,1fr);margin-top:0}
+.proof strong{color:var(--green-dk);font-size:clamp(2.4rem,1.6rem + 2.4vw,3.8rem)}
+.proof span{max-width:30ch}
+.feature-grid.four{grid-template-columns:repeat(4,1fr);gap:2rem}
+@media(max-width:1000px){.feature-grid.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.mega-row.three{grid-template-columns:1fr;gap:1.6rem}}
+@media(max-width:560px){.feature-grid.four{grid-template-columns:1fr}}
+/* landscape screenshots in a page head keep their shape instead of a tall crop */
+.head-img.wide{aspect-ratio:16/9}

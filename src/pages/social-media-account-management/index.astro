@@ -10,10 +10,24 @@ const work = (await getCollection('work', (e) => !e.data.draft && e.data.filters
   .sort((a, b) => +b.data.date - +a.data.date)
   .slice(0, 3);
 
+// every number here comes from a case study or review on this site
+const proof = [
+  { n: '15.4M', t: "organic impressions on our clients' content last year" },
+  { n: '8.1M', t: 'impressions in one year for Louie Wickett, a Des Moines loan officer' },
+  { n: '500K+', t: 'views on a single post for an Ames realtor who started near zero' },
+];
+
+const process = [
+  { h: 'Plan', p: 'A monthly strategy meeting: what your business needs to say, who needs to hear it, and what worked last month.' },
+  { h: 'Shoot', p: 'We come to you every month and record photo and video in person. Real people, real place, no stock.' },
+  { h: 'Publish', p: 'We edit everything into posts built for each platform and schedule them for when your audience is actually scrolling.' },
+  { h: 'Report', p: 'A live dashboard shows what landed. Those numbers shape the next month’s plan.' },
+];
+
 const packages = [
   {
     name: 'Growth',
-    text: 'A consistent social media presence with original content every month and clear reporting on what it is doing.',
+    text: 'A consistent presence with original content every month and clear reporting on what it is doing.',
     items: ['Monthly strategy meetings', 'Monthly content recording', '8+ custom posts per month, per platform', 'Content scheduling', 'Interactive metrics dashboard', 'Photo and video library'],
   },
   {
@@ -25,19 +39,19 @@ const packages = [
 ];
 
 const why = [
-  { h: 'Proven track record', p: "We've built audiences for our clients and for ourselves, and we have the case studies to show what our content strategies do for a business." },
-  { h: 'Content creation and scheduling', p: 'We record, edit, and post high-quality content at the times your audience is actually online, so your brand stays visible and relevant.' },
+  { h: 'Original content, not templates', p: 'Everything we post was shot for your business. Your customers see your people, your place, and your work.' },
+  { h: 'Made by the people who post it', p: 'The same two people plan, shoot, edit, and publish. No handoffs between a video crew and a social team, nothing lost in between.' },
   { h: 'Community management', p: 'Great content gets impressions. Answering messages, comments, and reviews turns those impressions into a community that trusts you.' },
-  { h: 'Metrics dashboards', p: 'A live dashboard of the numbers that matter, so every decision about your content is based on data, not guesses.' },
+  { h: 'Numbers you can read', p: 'A live dashboard of the numbers that matter, so every decision about your content is based on data, not guesses.' },
 ];
 ---
-<Base title="Social Media Management | Integrity Grove" description="Social media management from Integrity Grove: strategy, monthly content shoots, custom posts, community management, and live metrics. From $1,500/mo.">
+<Base title="Social Media Content & Management in Iowa | Integrity Grove" description="Content-first social media for Iowa and Midwest businesses: monthly shoots, custom posts, community management, and live metrics. From $1,500/mo.">
   <section class="page-head">
     <div class="wrap split">
       <div>
-        <span class="eyebrow">Social media management</span>
-        <h1>Social media that builds a <em>real audience</em></h1>
-        <p class="lede">Your social media is more than posts. It's your brand's voice and its daily connection with your customers. We build a strategy around your business, then create and post the content ourselves.</p>
+        <span class="eyebrow">Social media content & management</span>
+        <h1>Social content your customers <em>actually stop for</em></h1>
+        <p class="lede">We shoot photo and video in person every month, turn it into posts made for each platform, and publish them for you. Strategy, content, posting, and reporting from one small Iowa team, for businesses across the Midwest.</p>
         <div class="hero-cta-row">
           <a href={BOOK_URL} class="btn" target="_blank" rel="noopener">Book a discovery call</a>
           <a href="#packages" class="btn btn-ghost">See packages</a>
@@ -49,12 +63,39 @@ const why = [
     </div>
   </section>
 
-  <section class="sec tint" id="packages">
+  <section class="sec">
+    <div class="wrap">
+      <div class="mega-row three proof">
+        {proof.map((x) => <div class="reveal"><strong>{x.n}</strong><span>{x.t}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="sec-title reveal">
+        <span class="eyebrow">How it works</span>
+        <h2>One team, <em>every month</em></h2>
+        <p>Content-first social media means the shoot comes before the post. Here's the loop we run for every client.</p>
+      </div>
+      <div class="feature-grid four">
+        {process.map((s, i) => (
+          <div class="feature reveal">
+            <span class="num">0{i + 1}</span>
+            <h3>{s.h}</h3>
+            <p>{s.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="packages">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Packages</span>
         <h2>Starting at $1,500/mo</h2>
-        <p>Whether you're starting from zero or leveling up an existing presence, every package includes strategy, original content, and reporting.</p>
+        <p>Every package includes a monthly content shoot, custom posts, scheduling, and a live metrics dashboard.</p>
       </div>
       <div class="packages">
         {packages.map((p) => (
@@ -70,11 +111,11 @@ const why = [
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec tint">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Why us</span>
-        <h2>Why trust us with your social media?</h2>
+        <h2>Why content-first <em>works</em></h2>
       </div>
       <div class="feature-grid">
         {why.map((w, i) => (
@@ -88,17 +129,17 @@ const why = [
     </div>
   </section>
 
-  <section class="sec tint">
+  <section class="sec">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Brands we manage</h2>
+        <h2>Content we create <em>and manage</em></h2>
         <a href="/work/?f=social" class="btn btn-ghost btn-sm">All social media work</a>
       </div>
       <div class="work-grid">{work.map((w) => <WorkCard entry={w} />)}</div>
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec tint">
     <div class="wrap">
       <div class="sec-title reveal">
         <span class="eyebrow">Hear from our clients</span>
