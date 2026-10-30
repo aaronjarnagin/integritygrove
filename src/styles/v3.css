@@ -41,17 +41,18 @@ html[data-theme="green"] nav.nav-dark:not(.scrolled) .nlink{color:#0B1A1E}
 html[data-theme="green"] nav.nav-dark:not(.scrolled) .nav-toggle span{background:#0B1A1E}
 
 /* HERO: tilted drifting wall of work behind the centered headline */
-.hero3{display:flex;align-items:center;justify-content:center;text-align:center;min-height:100svh;margin-top:-76px;padding:calc(76px + 3rem) 0 4rem;background:transparent;overflow:hidden;position:relative;isolation:isolate;border-radius:0}
+.hero3{display:flex;align-items:center;justify-content:flex-start;text-align:left;min-height:100svh;margin-top:-76px;padding:calc(76px + 3rem) 0 4rem;background:transparent;overflow:hidden;position:relative;isolation:isolate;border-radius:0}
 /* .hero .wrap (global.css) also sets z-index:1, same as the veil; this has to outrank it so text sits above */
-.hero3 .hero3-inner.wrap{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center}
+.hero3 .hero3-inner.wrap{position:relative;z-index:3;display:flex;flex-direction:column;align-items:flex-start}
 .hero3 h1{font-size:clamp(2.8rem,1.4rem + 7.2vw,8.4rem);line-height:.95;letter-spacing:-.05em;color:#fff;max-width:none}
 .hero3 h1 .l{display:block}
 .hero3 h1 em{color:var(--green);font-weight:500}
-.hero3 .lede{color:#C3D1D4;margin:1.6rem auto 2rem;max-width:46ch;text-align:center}
-.hero3 .hero-cta-row{justify-content:center}
+.hero3 .lede{color:#C3D1D4;margin:1.6rem 0 2rem;max-width:46ch;text-align:left}
+.hero3 .hero-cta-row{justify-content:flex-start}
 .hero3 .btn-ghost{border-color:rgba(255,255,255,.3);color:#fff}
 /* darkening veil over the wall so the headline stays legible; heavier on phones where the wall is denser */
-.hero3::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 60% at center,rgba(11,26,30,.86) 0%,rgba(11,26,30,.92) 55%,#0B1A1E 100%)}
+/* veil is heavy on the left behind the text and opens up on the right so the wall shows through */
+.hero3::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#0B1A1E 0%,rgba(11,26,30,.94) 30%,rgba(11,26,30,.7) 58%,rgba(11,26,30,.25) 100%),linear-gradient(0deg,#0B1A1E 0%,rgba(11,26,30,0) 22%)}
 .hero3 h1,.hero3 .lede{text-shadow:0 2px 24px rgba(11,26,30,.9),0 0 2px rgba(11,26,30,.8)}
 @media(max-width:900px){.hero3::after{background:radial-gradient(ellipse at center,rgba(11,26,30,.9) 0%,rgba(11,26,30,.95) 60%,#0B1A1E 100%)}}
 .wall{position:absolute;inset:-25% -20%;z-index:0;display:flex;flex-direction:column;justify-content:center;gap:1.4rem;transform:perspective(1400px) rotateX(18deg) rotateZ(-7deg) scale(1.08);transform-origin:center;pointer-events:none;will-change:transform}
@@ -62,8 +63,8 @@ html[data-theme="green"] nav.nav-dark:not(.scrolled) .nav-toggle span{background
 .wall-set{display:flex;gap:1.4rem;padding-right:1.4rem}
 .wall-item{width:clamp(220px,20vw,340px);aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#13282E;border:1px solid rgba(255,255,255,.08);flex:none}
 /* the wall is atmosphere, not content: dim, desaturated and softened so the headline owns the frame */
-.wall{opacity:.55;filter:blur(1.2px)}
-.wall-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.6) brightness(.8)}
+.wall{opacity:.85}
+.wall-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.9)}
 .hero3 .hero-scroll{color:#6F8489}
 @media(max-width:900px){.wall{inset:-20% -40%;transform:perspective(1000px) rotateX(14deg) rotateZ(-6deg) scale(1.25)}.wall-item{width:200px}}
 
