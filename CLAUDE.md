@@ -2,7 +2,7 @@
 
 Marketing agency site for Integrity Grove (Aaron Jarnagin, Strategy Lead & Partner, and Isaac Jarnagin). Social media account management, websites and digital assets, photo and video production. Being rebuilt in October 2026 from a WordPress/Divi site into a custom static site, same setup as the aaronjarnagin and aarongoesoutdoors sites.
 
-Positioning: small agency, full attention, original content, real results. "We're a small agency, and we like it that way."
+Positioning (updated 2026-10-29): **an Iowa content marketing agency for Midwest businesses.** Content first (photo and video made in-house), then put to work on social media, websites and search. Small agency, full attention, two founders, real results. Default site title "Integrity Grove | Iowa Content Marketing Agency". Keep claims honest: most clients are in Iowa, a few elsewhere in the Midwest and beyond (Ohio, Philadelphia), so "Iowa-based, serving the Midwest" rather than "Midwest's leading". The service page URLs still say social-media / websites on purpose (old URLs, rankings).
 
 ## Output rules
 

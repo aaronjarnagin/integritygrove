@@ -16,9 +16,9 @@ const rows = [work.slice(0, 6), work.slice(6, 12), [...work.slice(12), ...work.s
 const stack = work.slice(0, 5);
 
 const services = [
-  { n: '01', name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Strategy, monthly content shoots, custom posts, community management, and a live metrics dashboard. Made by the people who post it.', img: '/images/work/louie-wickett-social-media-content-partnership/cover.webp', alt: 'Content shoot for Louie Wickett' },
-  { n: '02', name: 'Websites & digital assets', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Custom, fast, search-ready websites that tie your marketing together and give customers an easy next step.', img: '/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp', alt: 'Spoke Society website' },
-  { n: '03', name: 'Photo & video production', href: '/work/?f=video', price: 'Per project', text: 'Commercials, event coverage, and photo libraries your team will use for months. Shot and edited in-house.', img: '/images/work/video-commercial-production-for-denver-savings-bank/cover.webp', alt: 'Denver Savings Bank commercial still' },
+  { n: '01', name: 'Photo & video content', href: '/work/?f=video', price: 'Per project', text: 'Commercials, brand stories, event coverage, and photo libraries, all shot and edited in-house. The raw material for everything else we do.', img: '/images/work/video-commercial-production-for-denver-savings-bank/cover.webp', alt: 'Denver Savings Bank commercial still' },
+  { n: '02', name: 'Social media management', href: '/social-media-account-management/', price: 'From $1,500/mo', text: 'Monthly content shoots, custom posts, community management, and a live metrics dashboard. Your content, published where your customers scroll.', img: '/images/work/louie-wickett-social-media-content-partnership/cover.webp', alt: 'Content shoot for Louie Wickett' },
+  { n: '03', name: 'Websites & SEO content', href: '/websites-digital-assets/', price: 'From $1,750', text: 'Fast, search-ready websites with articles and case studies that keep earning traffic long after launch day.', img: '/images/work/spoke-society-fishtown-philadelphia-website-build/cover.webp', alt: 'Spoke Society website' },
 ];
 
 const us = ['Consistent pricing structure', 'We produce original content', 'On top of cultural trends', 'Quick & effective communication', 'We leverage new technology', 'Built-in metrics reports', "We've built audiences & businesses personally"];
@@ -33,7 +33,12 @@ const schema = {
   url: 'https://integritygrove.com',
   email: EMAIL,
   logo: 'https://integritygrove.com/images/logo-dark.png',
-  areaServed: 'Iowa',
+  description: 'Iowa content marketing agency: photo and video production, social media management, and websites for businesses across the Midwest.',
+  areaServed: [
+    { '@type': 'State', name: 'Iowa' },
+    { '@type': 'Place', name: 'Midwestern United States' },
+  ],
+  knowsAbout: ['Content marketing', 'Social media marketing', 'Video production', 'Photography', 'Web design', 'SEO'],
   founder: [{ '@type': 'Person', name: 'Isaac Jarnagin' }, { '@type': 'Person', name: 'Aaron Jarnagin' }],
   sameAs: ['https://www.instagram.com/integritygrove/', 'https://www.tiktok.com/@integritygrove', 'https://twitter.com/integritygrove'],
 };
@@ -61,13 +66,13 @@ const schema = {
         ))}
       </div>
       <div class="hero3-inner wrap">
-        <span class="eyebrow">Social media · Websites · Photo & video · Iowa</span>
+        <span class="eyebrow">Iowa content marketing agency · Serving the Midwest</span>
         <h1>
-          <span class="l">Social media marketing</span>
+          <span class="l">Content marketing</span>
           <span class="l">that <em>actually grows</em></span>
           <span class="l">your business</span>
         </h1>
-        <p class="lede">Original content, real strategy, and numbers you can read. A small Iowa agency run by two brothers who built audiences of their own first.</p>
+        <p class="lede">We make the photos, videos, and posts your customers stop scrolling for, then put them to work on social media, your website, and search. An Iowa agency for Midwest businesses, run by two brothers who built audiences of their own first.</p>
         <div class="hero-cta-row">
           <a href={BOOK_URL} class="btn btn-lg" target="_blank" rel="noopener">Book a free discovery call</a>
           <a href="#work" class="btn btn-ghost btn-lg">See the work</a>
@@ -79,7 +84,7 @@ const schema = {
     <!-- MANIFESTO: words light up as you scroll through them -->
     <section class="manifesto" data-theme="dark">
       <div class="wrap">
-        <p class="manifesto-text" data-manifesto>We're a small agency, and we like it that way. Every client gets our full attention, not a junior account rep. We make the content ourselves, we post it ourselves, and we show you the numbers every month. Sponsored or not, the work has to actually move your business, or we don't ship it.</p>
+        <p class="manifesto-text" data-manifesto>Good content is the whole game. We plan it, shoot it, edit it, and publish it ourselves, then show you the numbers every month. No stock photos, no recycled templates, no junior account rep. Just two Iowa brothers who show up, in person, for businesses across the Midwest.</p>
       </div>
     </section>
 
@@ -102,7 +107,7 @@ const schema = {
       <div class="wrap">
         <span class="eyebrow">Results</span>
         <p class="mega-num" data-count="15450000">15,450,000</p>
-        <p class="mega-cap">organic impressions for our clients last year, <em>with no ad spend behind them</em></p>
+        <p class="mega-cap">organic impressions on our clients' content last year, <em>with no ad spend behind them</em></p>
         <div class="mega-row">
           <div class="reveal"><strong data-count="100" data-suffix="s">100s</strong><span>of projects across dozens of industries</span></div>
           <div class="reveal"><strong data-count="500" data-suffix="K+">500K+</strong><span>views on a single post for a realtor who started near zero</span></div>
@@ -116,7 +121,7 @@ const schema = {
     <section class="hsvc" id="services" data-theme="light">
       <div class="wrap hsvc-head">
         <span class="eyebrow">What we do</span>
-        <h2>A full-service agency, <em>sized for real attention</em></h2>
+        <h2>Content made in-house, <em>put to work everywhere</em></h2>
       </div>
       <div class="hsvc-track">
         {services.map((s) => (
@@ -189,7 +194,7 @@ const schema = {
       <div class="marquee big-marquee" aria-hidden="true">
         <div class="marquee-track">
           {[0, 1].map((copy) => (
-            <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>{["Let's grow your business", 'Social media', 'Websites', 'Photo & video'].map((w) => <span>{w}<i>✦</i></span>)}</div>
+            <div class="marquee-set" aria-hidden={copy === 1 ? 'true' : undefined}>{["Let's grow your business", 'Content', 'Photo & video', 'Social media', 'Websites'].map((w) => <span>{w}<i>✦</i></span>)}</div>
           ))}
         </div>
       </div>
@@ -197,7 +202,7 @@ const schema = {
         <div>
           <span class="eyebrow">Free 30-minute discovery call</span>
           <h2>Ready when <em>you are.</em></h2>
-          <p>An honest look at where you stand online and where the biggest opportunities are. No pitch deck, no junior rep.</p>
+          <p>An honest look at your content, your channels, and where the biggest opportunities are. No pitch deck, no junior rep.</p>
           <a href={`mailto:${EMAIL}`} class="cta-email">{EMAIL}</a>
         </div>
         <a href={BOOK_URL} class="orb btn" target="_blank" rel="noopener"><span>Book<br />a call</span></a>

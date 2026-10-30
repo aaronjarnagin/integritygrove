@@ -19,11 +19,11 @@ const font = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
 const svg = `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <rect width="${W}" height="${H}" fill="${NAVY}"/>
   <g font-family="${font}" font-weight="700" font-size="58" letter-spacing="-1.6" fill="#fff">
-    <text x="74" y="262">Social media marketing</text>
+    <text x="74" y="262">Content marketing</text>
     <text x="74" y="332">that <tspan fill="${GREEN}">grows your</tspan></text>
     <text x="74" y="402"><tspan fill="${GREEN}">business.</tspan></text>
   </g>
-  <text x="76" y="470" font-family="${font}" font-weight="400" font-size="25" fill="#C3D1D4">Social media, websites, photo &amp; video. Iowa.</text>
+  <text x="76" y="470" font-family="${font}" font-weight="400" font-size="25" fill="#C3D1D4">Iowa content marketing for Midwest businesses.</text>
   <text x="76" y="552" font-family="${font}" font-weight="600" font-size="22" fill="${GREEN}">integritygrove.com</text>
 </svg>`;
 
