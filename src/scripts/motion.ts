@@ -102,7 +102,7 @@ function hero(delay = 0) {
       },
     });
   }
-  const intro = $('.hero .eyebrow, .hero .lede, .hero .hero-cta-row, .hero2-meta, .page-head .eyebrow, .page-head .lede, .page-head .hero-cta-row, .page-head .chips, .page-head .contact-cards, .page-head .btn-lg, .cs-head .back, .cs-head .eyebrow, .cs-head .pills');
+  const intro = $$('.hero .eyebrow, .hero .lede, .hero .hero-cta-row, .hero2-meta, .hero3-links, .page-head .eyebrow, .page-head .lede, .page-head .hero-cta-row, .page-head .chips, .page-head .contact-cards, .page-head .btn-lg, .cs-head .back, .cs-head .eyebrow, .cs-head .pills');
   if (intro.length) tl.fromTo(intro, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1, stagger: 0.08 }, 0.35);
   const side = $$('.page-head .head-img, .page-head .cform');
   if (side.length) tl.fromTo(side, { opacity: 0, y: 40, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 1.3 }, 0.3);
